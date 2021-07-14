@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery-3.6.0.js"></script>
+</head>
+<body>
+<form action="">
+    <input type="text" name="name" id="name">
+    <input type="text" name="pwd" id="pwd">
+    <input type="button" value="登录">
+</form>
+<button id="ajax">ajax请求</button>
+</body>
+</html>
+<script>
+    $("#ajax").click(function () {
+        $.ajax({
+            url:'GGB2',
+            data:{name:$("#name").val(),pwd:$("#pwd").val()},
+            type:"get",
+            dataType:"json",
+            success:function (data) {
+                console.log(data)
+            }
+        })
+    })
+</script>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.LoginMapper">
+    <!--execl表格解析数据存入exampaper表-->
+    <!--  id 方法名  resultType返回类型 -->
+
+    <select id="checkLogin" parameterType="com.cykj.bean.User" resultType="com.cykj.bean.User">
+        select * from t_user where name = #{name} and pwd = #{pwd}
+    </select>
+
+
+    <select id="menuAll" parameterType="com.cykj.bean.Menu" resultType="com.cykj.bean.Menu">
+        SELECT * from t_menubar LEFT JOIN t_menubarrole ON t_menubar.mbid = t_menubarrole.mbid;
+    </select>
+
+</mapper>
