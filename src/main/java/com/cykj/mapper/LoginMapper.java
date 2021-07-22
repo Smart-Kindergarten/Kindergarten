@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 
-public interface LoginMapper {
+public interface    LoginMapper {
     List<User> checkLogin(User user);
 
     List<Menu> menuAll();
