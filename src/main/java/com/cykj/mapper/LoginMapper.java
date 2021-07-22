@@ -7,7 +7,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-//陈子祥sb发送到事发地点丰富的水电费水电费第三方第三方ssss
+//发送到事发地点丰富的水电费水电费第三方第三方ssss
 
 @Repository
 
