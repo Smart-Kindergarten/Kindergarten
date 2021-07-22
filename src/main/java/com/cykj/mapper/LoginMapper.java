@@ -13,6 +13,6 @@ import java.util.List;
 
 public interface    LoginMapper {
     List<User> checkLogin(User user);
-
+//12121212
     List<Menu> menuAll();
 }
