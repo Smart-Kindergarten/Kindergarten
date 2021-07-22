@@ -15,4 +15,6 @@ public interface    LoginMapper {
     List<User> checkLogin(User user);
 
     List<Menu> menuAll();
+
+    //1111
 }
