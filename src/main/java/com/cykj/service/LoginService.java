@@ -2,6 +2,7 @@ package com.cykj.service;
 
 import com.cykj.bean.Menu;
 import com.cykj.bean.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,5 +15,6 @@ import java.util.List;
 public interface LoginService {
     List<User> checkLogin(User user);
 
-    List<Menu> menuAll();
+    // 菜单
+    List<Menu> menuAll(@Param("account")String account);
 }

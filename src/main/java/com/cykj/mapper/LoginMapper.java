@@ -3,18 +3,19 @@ package com.cykj.mapper;
 
 import com.cykj.bean.Menu;
 import com.cykj.bean.User;
+import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-//发送到事发地点丰富的水电费水电费第三制造者方第三方ssss是是是
 
 @Repository
 
 public interface    LoginMapper {
+    // 登录
     List<User> checkLogin(User user);
 
-    List<Menu> menuAll();
+    // 菜单
+    List<Menu> menuAll(@Param("account")String account);
 
-    //1111
 }

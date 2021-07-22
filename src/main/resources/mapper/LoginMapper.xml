@@ -8,12 +8,12 @@
     <!--  id 方法名  resultType返回类型 -->
 
     <select id="checkLogin" parameterType="com.cykj.bean.User" resultType="com.cykj.bean.User">
-        select * from t_user where name = #{name} and pwd = #{pwd}
+ SELECT * FROM t_user WHERE t_user.uaccount = #{uaccount} and t_user.upwd = #{upwd}
     </select>
 
 
     <select id="menuAll" parameterType="com.cykj.bean.Menu" resultType="com.cykj.bean.Menu">
-        SELECT * from t_menubar LEFT JOIN t_menubarrole ON t_menubar.mbid = t_menubarrole.mbid;
+       SELECT * from t_menu,t_power,t_user WHERE t_menu.mepid = t_power.pid and t_power.mid = t_user.urid and t_user.uaccount = #{account}
     </select>
 
 </mapper>

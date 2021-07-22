@@ -7,60 +7,83 @@ package com.cykj.bean;
  * @Date: 2021/7/13
  */
 public class Menu {
-    private int mbid;
-    private String mbname;
-    private int rid;
-    private String mburl;
+    // 菜单id
+    private int meid;
+    private String mename;
+    private int mepid;
+    private String meurl;
+    private String meres1;
+    private String meres2;
 
     public Menu() {
     }
 
-    public Menu(int mbid, String mbname, int rid, String mburl) {
-        this.mbid = mbid;
-        this.mbname = mbname;
-        this.rid = rid;
-        this.mburl = mburl;
+    public Menu(int meid, String mename, int mepid, String meurl, String meres1, String meres2) {
+        this.meid = meid;
+        this.mename = mename;
+        this.mepid = mepid;
+        this.meurl = meurl;
+        this.meres1 = meres1;
+        this.meres2 = meres2;
     }
 
-    public int getMbid() {
-        return mbid;
+    public int getMeid() {
+        return meid;
     }
 
-    public void setMbid(int mbid) {
-        this.mbid = mbid;
+    public void setMeid(int meid) {
+        this.meid = meid;
     }
 
-    public String getMbname() {
-        return mbname;
+    public String getMename() {
+        return mename;
     }
 
-    public void setMbname(String mbname) {
-        this.mbname = mbname;
+    public void setMename(String mename) {
+        this.mename = mename;
     }
 
-    public int getRid() {
-        return rid;
+    public int getMepid() {
+        return mepid;
     }
 
-    public void setRid(int rid) {
-        this.rid = rid;
+    public void setMepid(int mepid) {
+        this.mepid = mepid;
     }
 
-    public String getMburl() {
-        return mburl;
+    public String getMeurl() {
+        return meurl;
     }
 
-    public void setMburl(String mburl) {
-        this.mburl = mburl;
+    public void setMeurl(String meurl) {
+        this.meurl = meurl;
+    }
+
+    public String getMeres1() {
+        return meres1;
+    }
+
+    public void setMeres1(String meres1) {
+        this.meres1 = meres1;
+    }
+
+    public String getMeres2() {
+        return meres2;
+    }
+
+    public void setMeres2(String meres2) {
+        this.meres2 = meres2;
     }
 
     @Override
     public String toString() {
         return "Menu{" +
-                "mbid=" + mbid +
-                ", mbname='" + mbname + '\'' +
-                ", rid=" + rid +
-                ", mburl='" + mburl + '\'' +
+                "meid=" + meid +
+                ", mename='" + mename + '\'' +
+                ", mepid=" + mepid +
+                ", meurl='" + meurl + '\'' +
+                ", meres1='" + meres1 + '\'' +
+                ", meres2='" + meres2 + '\'' +
                 '}';
     }
 }

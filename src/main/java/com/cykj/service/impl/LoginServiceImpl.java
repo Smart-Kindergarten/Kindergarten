@@ -34,16 +34,6 @@ public class LoginServiceImpl implements LoginService {
     }
 
 
-//    @PostMapping("/GGB2")
-//    public @ResponseBody
-//    String GGB2(User user){
-//        System.out.println("后台进来了");
-//        List<User> users = loginMapper.checkLogin(user);
-//        System.out.println(users);
-//        Gson gson = new Gson();
-//        String s = gson.toJson(users);
-//        return s;
-//    }
 
     @Override
     public List<User> checkLogin(User user) {
@@ -52,8 +42,10 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public List<Menu> menuAll() {
-        List<Menu> menus = loginMapper.menuAll();
+    public List<Menu> menuAll(String account) {
+        List<Menu> menus = loginMapper.menuAll(account);
         return menus;
     }
+
+
 }
