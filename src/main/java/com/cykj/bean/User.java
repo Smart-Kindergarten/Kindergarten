@@ -7,38 +7,20 @@ package com.cykj.bean;
  * @Date: 2021/7/9
  */
 public class User {
-    private String name;
-    private String pwd;
-
-    public User() {
-    }
-
-    public User(String name, String pwd) {
-        this.name = name;
-        this.pwd = pwd;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPwd() {
-        return pwd;
-    }
-
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", pwd='" + pwd + '\'' +
-                '}';
-    }
+    // 用户id
+    private int uid;
+    // 用户账号
+    private String uaccount;
+    // 用户密码
+//    upwd text, --
+//    urid int,--角色id
+//    uname text, --用户名
+//    ustate text, --用户状态
+//    uwork text, --工作
+//    usite text, --地址
+//    uphone text, --用户电话号码
+//    uchildrelation text, --亲子关系
+//    ures1 text, --备用1
+//    ures2 text, --备用2
+//    ures3 text --备用3
 }
