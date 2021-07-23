@@ -50,7 +50,7 @@ public class LoginController {
 
     @GetMapping("/MenuAll")
     public @ResponseBody String GGB2(String uaccount){
-        System.out.println("菜单进来了");
+        System.out.println("菜单进来了阿");
         System.out.println("uaccount:"+uaccount);
         List<Menu> menus = loginMapper.menuAll(uaccount);
 //        System.out.println(users);
