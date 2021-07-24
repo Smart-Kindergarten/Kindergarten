@@ -39,7 +39,7 @@ public class LoginController {
 //        System.out.println(users);
 //        System.out.println(name);
 //        System.out.println(pwd);
-//        User user = new User();
+//        User user = new User();急急急
 //        user.setName(name);
 //        user.setPwd(pwd);
         System.out.println(users.toString()+"dasdads");
