@@ -1,12 +1,12 @@
 package com.cykj.bean;
 
 /**
- * @ClassName: Health
+ * @ClassName: 保健表
  * @Description:
  * @Author: ZW
  * @Date: 2021/7/25
  */
-public class Health {
+public class Healthbean {
     private int babyheid; //id
     private String babyname;// 宝宝名
     private String height;//宝宝高
@@ -20,10 +20,10 @@ public class Health {
     private String reserve2;//备用2
     private String reserve3;// 备用3
 
-    public Health() {
+    public Healthbean() {
     }
 
-    public Health(int babyheid, String babyname, String height, String weight, String eyesight, String temperature, String healthcondition, String checkuptime, int babyid, String reserve1, String reserve2, String reserve3) {
+    public Healthbean(int babyheid, String babyname, String height, String weight, String eyesight, String temperature, String healthcondition, String checkuptime, int babyid, String reserve1, String reserve2, String reserve3) {
         this.babyheid = babyheid;
         this.babyname = babyname;
         this.height = height;

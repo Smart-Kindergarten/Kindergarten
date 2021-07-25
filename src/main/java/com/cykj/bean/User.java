@@ -1,7 +1,7 @@
 package com.cykj.bean;
 
 /**
- * @ClassName: User
+ * @ClassName: 用户
  * @Description:
  * @Author: ZW
  * @Date: 2021/7/9

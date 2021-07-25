@@ -1,7 +1,7 @@
 package com.cykj.bean;
 
 /**
- * @ClassName: Menu
+ * @ClassName: 菜单
  * @Description:
  * @Author: ZW
  * @Date: 2021/7/13
