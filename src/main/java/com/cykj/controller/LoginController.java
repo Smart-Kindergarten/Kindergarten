@@ -62,7 +62,7 @@ public class LoginController {
 //        System.out.println(pwd);
 //        User user = new User();
 //        user.setName(name);
-//        user.setPwd(pwd);
+//        user.setPwd(pwd);阿萨德
         System.out.println(menus.toString());
         Gson gson = new Gson();
         String s = gson.toJson(menus);
