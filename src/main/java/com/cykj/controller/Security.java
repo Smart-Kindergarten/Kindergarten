@@ -1,4 +1,4 @@
-package com.cykj.web;
+package com.cykj.controller;
 
 import com.cykj.bean.Menu;
 import com.cykj.bean.User;
