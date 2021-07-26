@@ -19,4 +19,10 @@ public interface LoginService {
 
     // 菜单
     List<Menu> menuAll(@Param("account")String account);
+
+    //小程序登录
+    List<User> xcxLogin(User user);
+
+    //小程序修改密码
+    Boolean updatePwd(@Param("upwd") String upwd, @Param("uphone") String uphone);
 }

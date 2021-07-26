@@ -24,14 +24,17 @@ public class LoginController {
     @Autowired
     private LoginMapper loginMapper;
 
-//    @ResponseBody
+    boolean flag = false;
+
+    //    @ResponseBody
     @RequestMapping("/dududdu")
-    public String hh(){
+    public String hh() {
         return "loginController";
     }
 
     @GetMapping("/GGB2")
-    public @ResponseBody String GGB2(User user){
+    public @ResponseBody
+    String GGB2(User user) {
         System.out.println(user.getUaccount());
         System.out.println(user.getUpwd());
         System.out.println("后台进来了");
@@ -42,16 +45,17 @@ public class LoginController {
 //        User user = new User();急急急
 //        user.setName(name);
 //        user.setPwd(pwd);
-        System.out.println(users.toString()+"dasdads");
+        System.out.println(users.toString() + "dasdads");
         Gson gson = new Gson();
         String s = gson.toJson(users);
         return s;
     }
 
     @GetMapping("/MenuAll")
-    public @ResponseBody String GGB2(String uaccount){
+    public @ResponseBody
+    String GGB2(String uaccount) {
         System.out.println("菜单进来了阿阿");
-        System.out.println("uaccount:"+uaccount);
+        System.out.println("uaccount:" + uaccount);
         List<Menu> menus = loginMapper.menuAll(uaccount);
 //        System.out.println(users);
 //        System.out.println(name);
@@ -64,4 +68,37 @@ public class LoginController {
         String s = gson.toJson(menus);
         return s;
     }
+
+    /**
+     * @Description: 小程序登录
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-07-26 11:06
+     */
+    @ResponseBody
+    @RequestMapping("/xcxLogin")
+    public String xcxLogin(User user) {
+        System.out.println(user.getUphone());
+        System.out.println(user.getUpwd());
+        List<User> users = loginMapper.xcxLogin(user);
+        System.out.println(users.toString() + "dasdads");
+        Gson gson = new Gson();
+        String loginlist = gson.toJson(users);
+        return loginlist;
+    }
+
+    @ResponseBody
+    @RequestMapping("/updatePwd")
+    public Boolean updatePwd(String upwd, String uphone) {
+        System.out.println(upwd);
+        System.out.println(uphone);
+        Boolean flags = loginMapper.updatePwd(upwd, uphone);
+        if (flags) {
+            flag = true;
+        } else {
+            flag = false;
+        }
+        return flag;
+    }
+
 }
