@@ -28,11 +28,10 @@ public class LoginServiceImpl implements LoginService {
     private LoginMapper loginMapper;
 
     @RequestMapping("/GGB")
-    public String GGB(){
+    public String GGB() {
         System.out.println("后台进来了");
         return "Login";
     }
-
 
 
     @Override
@@ -45,6 +44,28 @@ public class LoginServiceImpl implements LoginService {
     public List<Menu> menuAll(String account) {
         List<Menu> menus = loginMapper.menuAll(account);
         return menus;
+    }
+
+    /**
+     * @Description: 小程序登录
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-07-26 14:10
+     */
+    @Override
+    public List<User> xcxLogin(User user) {
+        return loginMapper.xcxLogin(user);
+    }
+
+    /**
+     * @Description: 小程序修改密码
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-07-26 16:00
+     */
+    @Override
+    public Boolean updatePwd(String upwd, String uphone) {
+        return loginMapper.updatePwd(upwd,uphone);
     }
 
 

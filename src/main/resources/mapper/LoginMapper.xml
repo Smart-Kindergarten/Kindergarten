@@ -25,4 +25,17 @@
           and t_user.uaccount = #{account}
     </select>
 
+    <!--小程序登录-->
+    <select id="xcxLogin" parameterType="com.cykj.bean.User" resultType="com.cykj.bean.User">
+        SELECT *
+        FROM t_user
+        WHERE t_user.uphone = #{uphone}
+          and t_user.upwd = #{upwd}
+    </select>
+
+    <!--小程序修改密码-->
+    <update id="updatePwd" parameterType="com.cykj.bean.User">
+        update t_user set t_user.upwd = #{upwd} where t_user.uphone = #{uphone}
+    </update>
+
 </mapper>
