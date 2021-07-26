@@ -23,6 +23,7 @@ public class Health {
 
     @Autowired
     private HealthMapper healthMapper;
+
     @GetMapping("/HealthAll")
     public @ResponseBody
     String GGB2(int page){
