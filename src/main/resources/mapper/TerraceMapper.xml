@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.TerraceMapper">
+    <!--execl表格解析数据存入exampaper表-->
+    <!--  id 方法名  resultType返回类型 -->
+
+    <select id="selectPatriarch" parameterType="com.cykj.bean.User" resultType="com.cykj.bean.User">
+         SELECT * FROM t_user,t_param,t_babyinf where t_user.ustate = t_param.pid and t_user.uid = t_babyinf.uid  AND t_user.urid = '1'     LIMIT  #{page},#{pages}
+    </select>
+
+    <delete id="delectPatriarch">
+        DELETE from t_user where t_user.uaccount = #{uaccount}
+    </delete>
+
+    <update id="updateState">
+        UPDATE t_user set t_user.ustate = #{ustate} WHERE t_user.uaccount = #{uaccount}
+    </update>
+
+    <update id="affirmClick">
+ UPDATE t_user set t_user.uname = #{uname},t_user.uwork = #{uwork},t_user.usite = #{usite},
+  t_user.uphone = #{uphone},t_user.uchildrelation = #{uchildrelation} WHERE t_user.uaccount = #{uaccount}
+    </update>
+
+    <insert id="affirmAdd">
+INSERT INTO t_user VALUES(NULL,#{uaccount},'123456','1',#{uname},'8',#{uwork},#{usite},#{uphone},#{uchildrelation},NULL,NULL,NULL);
+    </insert>
+
+    <select id="selectBabyinf" parameterType="com.cykj.bean.BabyInf" resultType="com.cykj.bean.BabyInf">
+        select  * from  t_babyinf
+    </select>
+</mapper>

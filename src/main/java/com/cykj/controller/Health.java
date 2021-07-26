@@ -3,6 +3,7 @@ package com.cykj.controller;
 
 import com.cykj.bean.Healthbean;
 import com.cykj.mapper.HealthMapper;
+import com.cykj.service.HealthService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ import java.util.List;
 @RequestMapping("/Health")
 public class Health {
 
+    @Autowired
+    private HealthService healthService;
     @Autowired
     private HealthMapper healthMapper;
     @GetMapping("/HealthAll")

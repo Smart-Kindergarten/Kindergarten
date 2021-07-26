@@ -3,6 +3,7 @@ package com.cykj.service;
 import com.cykj.bean.Menu;
 import com.cykj.bean.User;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @Author: ZW
  * @Date: 2021/6/2
  */
+@Service
 public interface LoginService {
     List<User> checkLogin(User user);
 

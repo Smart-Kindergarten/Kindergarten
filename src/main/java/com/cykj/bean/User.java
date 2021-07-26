@@ -7,6 +7,10 @@ package com.cykj.bean;
  * @Date: 2021/7/9
  */
 public class User {
+    // 创建时间
+    private String  biadtime;
+    // 宝宝名
+    private String biname;
     // 用户id
     private int uid;
     // 用户账号
@@ -34,10 +38,21 @@ public class User {
     //备用3
     private String ures3;
 
+    //参数表
+    private int pzid;
+    private int pid;
+    private String ptype;
+    private String pname;
+    private String pres1;
+    private String pres2;
+    private String pres3;
+
     public User() {
     }
 
-    public User(int uid, String uaccount, String upwd, int urid, String uname, String ustate, String uwork, String usite, String uphone, String uchildrelation, String ures1, String ures2, String ures3) {
+    public User(String biadtime, String biname, int uid, String uaccount, String upwd, int urid, String uname, String ustate, String uwork, String usite, String uphone, String uchildrelation, String ures1, String ures2, String ures3, int pzid, int pid, String ptype, String pname, String pres1, String pres2, String pres3) {
+        this.biadtime = biadtime;
+        this.biname = biname;
         this.uid = uid;
         this.uaccount = uaccount;
         this.upwd = upwd;
@@ -51,8 +66,30 @@ public class User {
         this.ures1 = ures1;
         this.ures2 = ures2;
         this.ures3 = ures3;
+        this.pzid = pzid;
+        this.pid = pid;
+        this.ptype = ptype;
+        this.pname = pname;
+        this.pres1 = pres1;
+        this.pres2 = pres2;
+        this.pres3 = pres3;
     }
 
+    public String getBiadtime() {
+        return biadtime;
+    }
+
+    public void setBiadtime(String biadtime) {
+        this.biadtime = biadtime;
+    }
+
+    public String getBiname() {
+        return biname;
+    }
+
+    public void setBiname(String biname) {
+        this.biname = biname;
+    }
 
     public int getUid() {
         return uid;
@@ -158,10 +195,68 @@ public class User {
         this.ures3 = ures3;
     }
 
+    public int getPzid() {
+        return pzid;
+    }
+
+    public void setPzid(int pzid) {
+        this.pzid = pzid;
+    }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
+    public String getPtype() {
+        return ptype;
+    }
+
+    public void setPtype(String ptype) {
+        this.ptype = ptype;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public String getPres1() {
+        return pres1;
+    }
+
+    public void setPres1(String pres1) {
+        this.pres1 = pres1;
+    }
+
+    public String getPres2() {
+        return pres2;
+    }
+
+    public void setPres2(String pres2) {
+        this.pres2 = pres2;
+    }
+
+    public String getPres3() {
+        return pres3;
+    }
+
+    public void setPres3(String pres3) {
+        this.pres3 = pres3;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "uid=" + uid +
+                "biadtime='" + biadtime + '\'' +
+                ", biname='" + biname + '\'' +
+                ", uid=" + uid +
                 ", uaccount='" + uaccount + '\'' +
                 ", upwd='" + upwd + '\'' +
                 ", urid=" + urid +
@@ -174,6 +269,13 @@ public class User {
                 ", ures1='" + ures1 + '\'' +
                 ", ures2='" + ures2 + '\'' +
                 ", ures3='" + ures3 + '\'' +
+                ", pzid=" + pzid +
+                ", pid=" + pid +
+                ", ptype='" + ptype + '\'' +
+                ", pname='" + pname + '\'' +
+                ", pres1='" + pres1 + '\'' +
+                ", pres2='" + pres2 + '\'' +
+                ", pres3='" + pres3 + '\'' +
                 '}';
     }
 }
