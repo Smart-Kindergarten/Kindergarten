@@ -129,7 +129,7 @@ public class Terrace {
     }
 
 
-    // 新增家长
+    // 查询宝宝信息
     @GetMapping("/selectBabyinf")
     public @ResponseBody
     String selectBabyinf() {

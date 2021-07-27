@@ -14,5 +14,5 @@ import java.util.List;
 @Service
 public interface HealthService {
     // 查询宝宝保健信息
-    public List<Healthbean> selectHealth(int page,int pages);
+    public List<Healthbean> selectHealth(String uaccount,int page,int pages);
 }

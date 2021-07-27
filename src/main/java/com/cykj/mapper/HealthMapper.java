@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 public interface HealthMapper {
     // 查询宝宝保健信息
-    public List<Healthbean> selectHealth(int page,int pages);
+    public List<Healthbean> selectHealth(String uaccount,int page,int pages);
 }

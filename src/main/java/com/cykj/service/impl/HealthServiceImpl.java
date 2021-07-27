@@ -25,8 +25,8 @@ public class HealthServiceImpl implements HealthService {
     private HealthMapper healthMapper;
 
     @Override
-    public List<Healthbean> selectHealth(int page,int pages) {
-        List<Healthbean> health = healthMapper.selectHealth(page,page);
+    public List<Healthbean> selectHealth(String uaccount,int page,int pages) {
+        List<Healthbean> health = healthMapper.selectHealth(uaccount,page,page);
         return health;
     }
 }
