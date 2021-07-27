@@ -4,7 +4,10 @@ import com.cykj.bean.Menu;
 import com.cykj.va.SecurityMenuVa;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -28,4 +31,16 @@ public interface SecurityService {
      * SecurityMenuVa.Submenu 为此父菜单的子菜单数据
      */
     public List<SecurityMenuVa> getMenu(String UserID);
+    /**
+     * 视频流
+     * @param request Http输入流
+     * @param response Http输出流
+     * @param mp4 需要播放的视频名称
+     * 前端请已此形式访问
+     * <video controls="autoplay"    src="http://localhost:9900/Security/GetVideo?mp4=视频名（不带后缀）" />
+     *
+     * 如
+     * <video controls="autoplay"    src="http://localhost:9900/Security/GetVideo?mp4=TextMp4(1)" />
+     */
+    public void getVido(HttpServletRequest request, HttpServletResponse response, @RequestParam("mp4")String mp4);
 }
