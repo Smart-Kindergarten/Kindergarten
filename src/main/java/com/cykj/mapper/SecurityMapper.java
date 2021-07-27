@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
  * @author: qiyuan
  * @date: 2021/7/24 13:27
  * @desc:
+ * 安全教育
  */
 
 @Repository

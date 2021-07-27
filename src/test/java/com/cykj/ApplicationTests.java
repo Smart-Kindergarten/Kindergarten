@@ -62,7 +62,7 @@ class ApplicationTests {
         String day = format.format(d);
         System.out.println("过去七天：" + day);
         c.setTime(new Date());
-        c.add(Calendar.DATE, +7);
+        c.add(Calendar.DATE, 7);
         Date time = c.getTime();
         String s = format.format(time);
         System.out.println("未来七天：" + s);
@@ -102,7 +102,7 @@ class ApplicationTests {
     //设置周一为每周的第一天
     @Test
     public void getMonday() {
-        String date = "2021-08-01";
+        String date = "2021-07-27";
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date d = null;
         try {
