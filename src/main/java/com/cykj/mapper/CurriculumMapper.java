@@ -1,6 +1,7 @@
 package com.cykj.mapper;
 
 import com.cykj.bean.Curriculum;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,10 +11,11 @@ import java.util.List;
  * @author: qiyuan
  * @date: 2021/7/24 13:25
  * @desc:
+ * 课程表数据处理
  */
 
 @Repository
 public interface CurriculumMapper {
     //（杨）查询课程表信息
-    List<Curriculum> selectCurrAll();
+    List<Curriculum> selectCurrAll(@Param("date")String date);
 }

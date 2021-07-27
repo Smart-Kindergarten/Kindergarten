@@ -6,6 +6,7 @@
 <mapper namespace="com.cykj.mapper.CurriculumMapper">
     <select id="selectCurrAll" resultType="com.cykj.bean.Curriculum">
         SELECT *
-        FROM t_curriculum;
+        FROM t_curriculum
+        WHERE currDate LIKE concat('%', #{date}, '%');
     </select>
 </mapper>

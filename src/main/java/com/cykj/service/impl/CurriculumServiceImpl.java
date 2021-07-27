@@ -13,6 +13,7 @@ import java.util.List;
  * @author: qiyuan
  * @date: 2021/7/26 11:00
  * @desc:
+ * 课程表业务处理
  */
 
 @Service
@@ -22,8 +23,8 @@ public class CurriculumServiceImpl implements CurriculumService {
     private CurriculumMapper curriculumMapper;
 
     @Override
-    public List<Curriculum> selectCurrAll() {
-        List<Curriculum> curriculumList = curriculumMapper.selectCurrAll();
+    public List<Curriculum> selectCurrAll(String date) {
+        List<Curriculum> curriculumList = curriculumMapper.selectCurrAll(date);
         if (!curriculumList.isEmpty()) {
             return curriculumList;
         } else {
@@ -31,3 +32,4 @@ public class CurriculumServiceImpl implements CurriculumService {
         }
     }
 }
+
