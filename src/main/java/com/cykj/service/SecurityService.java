@@ -38,7 +38,6 @@ public interface SecurityService {
      * @param mp4 需要播放的视频名称
      * 前端请已此形式访问
      * <video controls="autoplay"    src="http://localhost:9900/Security/GetVideo?mp4=视频名（不带后缀）" />
-     *
      * 如
      * <video controls="autoplay"    src="http://localhost:9900/Security/GetVideo?mp4=TextMp4(1)" />
      */

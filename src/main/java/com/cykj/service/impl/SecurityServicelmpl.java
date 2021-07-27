@@ -85,7 +85,7 @@ public class SecurityServicelmpl implements SecurityService {
      *  视频流，但无法使用断点播放，只能使用线形播放（一次性播放到底无法拖动进度条已） 已废弃
      * @param request
      * @param response
-     * @param mp4
+     * @param mp4s
      */
 //    @RequestMapping(value = "/preview2", method = RequestMethod.GET)
 //    @ResponseBody
