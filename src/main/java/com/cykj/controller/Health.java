@@ -29,11 +29,11 @@ public class Health {
 
     @GetMapping("/HealthAll")
     public @ResponseBody
-    String GGB2(int page,String uaccount){
+    String GGB2(int page, String uaccount) {
         System.out.println("保健信息进来了");
         System.out.println(page);
         System.out.println(uaccount);
-        List<Healthbean> health = healthMapper.selectHealth(uaccount,(page-1)*5,page*5);
+        List<Healthbean> health = healthMapper.selectHealth(uaccount, (page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
         System.out.println(s);

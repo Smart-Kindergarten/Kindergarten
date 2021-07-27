@@ -37,14 +37,7 @@ public class LoginController {
     String GGB2(User user) {
         System.out.println(user.getUaccount());
         System.out.println(user.getUpwd());
-        System.out.println("后台进来了");
         List<User> users = loginMapper.checkLogin(user);
-//        System.out.println(users);
-//        System.out.println(name);
-//        System.out.println(pwd);
-//        User user = new User();急急急
-//        user.setName(name);
-//        user.setPwd(pwd);
         System.out.println(users.toString() + "dasdads");
         Gson gson = new Gson();
         String s = gson.toJson(users);
@@ -57,12 +50,6 @@ public class LoginController {
         System.out.println("菜单进来了阿阿");
         System.out.println("uaccount:" + uaccount);
         List<Menu> menus = loginMapper.menuAll(uaccount);
-//        System.out.println(users);
-//        System.out.println(name);
-//        System.out.println(pwd);
-//        User user = new User();
-//        user.setName(name);
-//        user.setPwd(pwd);阿萨德
         System.out.println(menus.toString());
         Gson gson = new Gson();
         String s = gson.toJson(menus);
@@ -87,6 +74,12 @@ public class LoginController {
         return loginlist;
     }
 
+    /**
+     * @Description: 小程序修改密码
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-07-27 10:29
+     */
     @ResponseBody
     @RequestMapping("/updatePwd")
     public Boolean updatePwd(String upwd, String uphone) {
