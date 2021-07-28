@@ -12,7 +12,15 @@
     </select>
 
     <insert id="inseVideo">
-        INSERT INTO t_safetyeducation VALUES(null,#{videoName},NULL,NULL,NULL,NULL,NULL,#{releaseTime},NULL,#{fileSite},NULL,NULL,NULL,NULL)
+        INSERT INTO t_safetyeducation VALUES(null,#{videoName},NULL,NULL,NULL,NULL,NULL,#{releaseTime},#{fileName},#{fileSite},NULL,NULL,NULL,NULL)
     </insert>
 
+    <delete id="delectVideo">
+            DELETE from t_safetyeducation where t_safetyeducation.videoId = #{videoId}
+    </delete>
+
+    <update id="updateVideo" parameterType="com.cykj.bean.SafetyEducation">
+        update t_safetyeducation set t_safetyeducation.videoName = #{videoName},t_safetyeducation.releaseTime = #{releaseTime}
+        ,t_safetyeducation.fileName = #{fileName} where t_safetyeducation.videoId = #{videoId}
+    </update>
 </mapper>

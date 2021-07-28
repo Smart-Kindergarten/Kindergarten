@@ -32,6 +32,7 @@ public class SafetyEducationVideo {
             throws IllegalStateException {
 
         System.out.println("前台视频id"+prop);
+
         Map<String,String> resultMap = new HashMap<>();
         System.out.println("视频进来了");
         try{
@@ -55,18 +56,26 @@ public class SafetyEducationVideo {
             resultMap.put("resCode","200");
             //返回视频保存路径
             resultMap.put("VideoUrl",SavePath + "/" + newVidoeName);
-
-
-
+            System.out.println(newVidoeName.charAt(4));
+            String[] splitAddress=newVidoeName.split("\\."); //如果以竖线为分隔符，则split的时候需要加上两个斜杠【\\】进行转义
+            System.out.println(splitAddress.length);
+            System.out.println("切割"+splitAddress[0]);
+            System.out.println("切割"+splitAddress[1]);
             // 获取系统时间
             Date now = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String hehe = dateFormat.format( now );
-            boolean b = safetyEducationVideoMapper.inseVideo(newVidoeName,hehe,SavePath + "/" + newVidoeName);
-            if (b){
-                System.out.println("视频插入成功");
+            if (!prop.equals("null")){
+                // 修改
+                boolean b = safetyEducationVideoMapper.updateVideo(splitAddress[0], hehe,newVidoeName ,Integer.valueOf(prop));
             }else{
-                System.out.println("视频插入失败");
+                // 插入
+                boolean b = safetyEducationVideoMapper.inseVideo(splitAddress[0],hehe,newVidoeName,SavePath + "/" + newVidoeName);
+                if (b){
+                    System.out.println("视频插入成功");
+                }else{
+                    System.out.println("视频插入失败");
+                }
             }
             return  resultMap;
 

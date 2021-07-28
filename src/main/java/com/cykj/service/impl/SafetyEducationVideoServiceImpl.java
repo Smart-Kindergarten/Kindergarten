@@ -27,8 +27,20 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
     }
 
     @Override
-    public boolean inseVideo(String videoName, String releaseTime, String fileSite) {
-        boolean b = safetyEducationVideoMapper.inseVideo(videoName,releaseTime,fileSite);
+    public boolean inseVideo(String videoName, String releaseTime,String fileName, String fileSite) {
+        boolean b = safetyEducationVideoMapper.inseVideo(videoName,releaseTime,fileName,fileSite);
+        return b;
+    }
+
+    @Override
+    public boolean delectVideo(String prop) {
+        boolean b = safetyEducationVideoMapper.delectVideo(prop);
+        return b;
+    }
+
+    @Override
+    public boolean updateVideo(String videoName, String releaseTime,String fileName, int videoId) {
+        boolean b = safetyEducationVideoMapper.updateVideo(videoName, releaseTime,fileName, videoId);
         return b;
     }
 }

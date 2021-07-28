@@ -36,4 +36,21 @@ public class SafetyEducationInf {
         System.out.println(s);
         return s;
     }
+
+
+    @GetMapping("/delectVideo")
+    public @ResponseBody
+    String GGB2(String voids){
+        System.out.println("删除视频");
+        boolean b = safetyEducationVideoMapper.delectVideo(voids);
+        if (b){
+            System.out.println("删除成功");
+        }else{
+            System.out.println("删除失败");
+        }
+        Gson gson = new Gson();
+        String s = gson.toJson(b);
+        System.out.println(s);
+        return s;
+    }
 }
