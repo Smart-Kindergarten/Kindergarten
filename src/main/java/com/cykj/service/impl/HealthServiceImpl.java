@@ -25,8 +25,19 @@ public class HealthServiceImpl implements HealthService {
     private HealthMapper healthMapper;
 
     @Override
-    public List<Healthbean> selectHealth(String uaccount,int page,int pages) {
-        List<Healthbean> health = healthMapper.selectHealth(uaccount,page,page);
+    public List<Healthbean> selectHealth(String uaccount, int page, int pages) {
+        List<Healthbean> health = healthMapper.selectHealth(uaccount, page, page);
         return health;
+    }
+
+    /**
+     * @Description: 小程序根据手机查询宝宝体检数据
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-07-27 15:13
+     */
+    @Override
+    public List<Healthbean> selHeaUphone(String uphone, int page, int pages) {
+        return healthMapper.selHeaUphone(uphone, page, pages);
     }
 }
