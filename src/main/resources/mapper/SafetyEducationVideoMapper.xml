@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.SafetyEducationVideoMapper">
+    <!--execl表格解析数据存入exampaper表-->
+    <!--  id 方法名  resultType返回类型 -->
+
+    <select id="selectAll" parameterType="com.cykj.bean.SafetyEducation" resultType="com.cykj.bean.SafetyEducation">
+        SELECT * from t_safetyeducation LIMIT #{page},#{pages}
+    </select>
+
+    <insert id="inseVideo">
+        INSERT INTO t_safetyeducation VALUES(null,#{videoName},NULL,NULL,NULL,NULL,NULL,#{releaseTime},NULL,#{fileSite},NULL,NULL,NULL,NULL)
+    </insert>
+
+</mapper>

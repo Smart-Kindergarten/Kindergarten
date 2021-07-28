@@ -1,6 +1,11 @@
 package com.cykj.controller;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
+import com.cykj.mapper.HealthMapper;
+import com.cykj.mapper.SafetyEducationVideoMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,12 +20,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class SafetyEducationVideo {
+
+
+    @Autowired
+    private SafetyEducationVideoMapper safetyEducationVideoMapper;
     //实现接收的方法
     @CrossOrigin
     @PostMapping(value = "/uploadVidoe3")
     @ResponseBody
-    public Map<String,String> savaVideotest(@RequestParam("file") MultipartFile file,@RequestParam String SavePath)
+    public Map<String,String> savaVideotest(@RequestParam("file") MultipartFile file,@RequestParam String SavePath,@RequestParam String prop)
             throws IllegalStateException {
+
+        System.out.println("前台视频id"+prop);
         Map<String,String> resultMap = new HashMap<>();
         System.out.println("视频进来了");
         try{
@@ -29,8 +40,10 @@ public class SafetyEducationVideo {
                     .toLowerCase();
             // 重构文件名称
             System.out.println("前端传递的保存路径："+SavePath);
-            String pikId = UUID.randomUUID().toString().replaceAll("-", "");
-            String newVidoeName = pikId + "." + fileExt;
+            String pikId = file.getOriginalFilename();
+//            String pikId = UUID.randomUUID().toString().replaceAll("-", "");
+            String newVidoeName = pikId;
+//            String newVidoeName = pikId + "." + fileExt;
             System.out.println("重构文件名防止上传同名文件："+newVidoeName);
             //保存视频
             File fileSave = new File(SavePath, newVidoeName);
@@ -42,6 +55,19 @@ public class SafetyEducationVideo {
             resultMap.put("resCode","200");
             //返回视频保存路径
             resultMap.put("VideoUrl",SavePath + "/" + newVidoeName);
+
+
+
+            // 获取系统时间
+            Date now = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String hehe = dateFormat.format( now );
+            boolean b = safetyEducationVideoMapper.inseVideo(newVidoeName,hehe,SavePath + "/" + newVidoeName);
+            if (b){
+                System.out.println("视频插入成功");
+            }else{
+                System.out.println("视频插入失败");
+            }
             return  resultMap;
 
         }catch (Exception e){
