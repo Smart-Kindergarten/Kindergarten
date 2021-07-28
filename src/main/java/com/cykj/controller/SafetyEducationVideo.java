@@ -62,6 +62,7 @@ public class SafetyEducationVideo {
             System.out.println("切割"+splitAddress[0]);
             System.out.println("切割"+splitAddress[1]);
             // 获取系统时间
+//            asd
             Date now = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String hehe = dateFormat.format( now );
