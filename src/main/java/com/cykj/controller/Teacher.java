@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-/**
+/*
  * @version 1.0
  * @author: qiyuan
  * @date: 2021/7/26 9:55
- * @desc:
+ * @desc: 教师端
  */
 
 @Controller
@@ -53,5 +53,12 @@ public class Teacher {
         return s;
     }
 
+    //获得教师所在的班级
+    @ResponseBody
+    @RequestMapping("/getClassName")
+    public String getClassName(int id) {
+        System.out.println("-------查询教师所在的班级名称-------");
 
+        return null;
+    }
 }
