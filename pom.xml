@@ -151,6 +151,18 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.25</version>
         </dependency>
+<!--        视频流依赖-->
+        <dependency>
+            <groupId>com.nativelibs4java</groupId>
+            <artifactId>bridj</artifactId>
+            <version>0.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.sarxos</groupId>
+            <artifactId>webcam-capture</artifactId>
+            <version>0.3.9</version>
+        </dependency>
 
     </dependencies>
 
