@@ -8,41 +8,41 @@
     <!--  id 方法名  resultType返回类型 -->
 
     <select id="GetPick" resultType="com.cykj.bean.pick">
-    SELECT
-        t2.biid,
-        t2.time,
-        t2.uname,
-        t2.UID uid,
-        t2.pname state,
-        t_babyinf.biname bname,
-        t_babyinf.bisex sex
-    FROM
-        (
         SELECT
-            t1.pid,
-            t1.uid,
-            t1.biid,
-            t1.time,
-            t1.uname,
-            param.pname
+            t2.biid,
+            t2.time,
+            t2.uname,
+            t2.UID uid,
+            t2.pname state,
+            t_babyinf.biname bname,
+            t_babyinf.bisex sex
         FROM
             (
             SELECT
-                pick.PID,
-                pick.UID,
-                pick.biid,
-                pick.time,
-                pick.SID,
-                buser.uname
+                t1.pid,
+                t1.uid,
+                t1.biid,
+                t1.time,
+                t1.uname,
+                param.pname
             FROM
-                t_pick pick
-                INNER JOIN t_user buser ON pick.UID = buser.uid
-            WHERE
-                pick.biid = #{BID}
-            ) t1
-            INNER JOIN t_param param ON t1.SID = param.pzid
-        ) t2
-    INNER JOIN t_babyinf ON t2.biid = t_babyinf.biid
+                (
+                SELECT
+                    pick.PID,
+                    pick.UID,
+                    pick.biid,
+                    pick.time,
+                    pick.SID,
+                    buser.uname
+                FROM
+                    t_pick pick
+                    INNER JOIN t_user buser ON pick.UID = buser.uid
+                WHERE
+                    pick.biid = #{BID}
+                ) t1
+                INNER JOIN t_param param ON t1.SID = param.pzid
+            ) t2
+        INNER JOIN t_babyinf ON t2.biid = t_babyinf.biid
     </select>
 
 </mapper>
