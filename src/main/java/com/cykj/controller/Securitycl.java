@@ -1,5 +1,6 @@
 package com.cykj.controller;
 
+import com.cykj.bean.Baby;
 import com.cykj.bean.pick;
 import com.cykj.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,13 @@ public class Securitycl {
     @RequestMapping("/GetPick")
     public List<pick> getpick(@RequestParam("BID") String BID){
         return securityService.GetPick(BID);
+    }
+//    equestParam("BID") String BID, @RequestParam("CID") String CID
+//            return securityService.GetBaby(BID,CID);
+    @ResponseBody
+    @RequestMapping("/GetBaby")
+    public List<Baby> GetBaby(@RequestParam(required = false ,value = "Bname") String Bname,@RequestParam(required = false ,value = "CID")String CID){
+        System.out.println(Bname+CID);
+        return securityService.GetBaby(Bname,CID);
     }
 }

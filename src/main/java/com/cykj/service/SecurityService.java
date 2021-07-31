@@ -1,5 +1,6 @@
 package com.cykj.service;
 
+import com.cykj.bean.Baby;
 import com.cykj.bean.Menu;
 import com.cykj.bean.pick;
 import com.cykj.va.SecurityMenuVa;
@@ -50,4 +51,12 @@ public interface SecurityService {
      * @return 返回所有接送记录
      */
     public List<pick> GetPick(String BID);
+
+    /**
+     * 根据条件获取宝宝信息
+     * @param Bname 宝宝ID
+     * @param CID 班级ID
+     * @return 返回符合条件的宝宝信息
+     */
+    public List<Baby> GetBaby(String Bname, String CID);
 }

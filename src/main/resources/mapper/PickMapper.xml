@@ -44,5 +44,37 @@
             ) t2
         INNER JOIN t_babyinf ON t2.biid = t_babyinf.biid
     </select>
-
+    <select id="GetBaby" resultType="com.cykj.bean.Baby">
+        SELECT
+            t1.biid bid,
+            t1.biname bname,
+            t1.biytd,
+            t1.biresidence,
+            t1.bisex,
+            t1.className,
+            users.uname
+        FROM
+            (
+            SELECT
+                babyu.biid,
+                babyu.biname,
+                babyu.biytd,
+                babyu.biresidence,
+                babyu.bisex,
+                class.className,
+                class.teacher
+            FROM
+                t_babyinf babyu
+                INNER JOIN t_classmanagement class ON babyu.clid = class.classId
+            WHERE
+                1 = 1
+                <if test="CID != null and CID !=''">
+                    AND class.classId = #{CID}
+                </if>
+                <if test="Bname != null and Bname !=''">
+                    AND babyu.biname LIKE "%"#{Bname}"%"
+                </if>
+            ) t1
+        INNER JOIN t_user users ON users.uid = t1.teacher
+    </select>
 </mapper>

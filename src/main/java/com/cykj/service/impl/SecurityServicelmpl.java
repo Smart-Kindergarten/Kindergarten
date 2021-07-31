@@ -1,5 +1,6 @@
 package com.cykj.service.impl;
 
+import com.cykj.bean.Baby;
 import com.cykj.bean.Menu;
 import com.cykj.bean.pick;
 import com.cykj.mapper.LoginMapper;
@@ -96,6 +97,13 @@ public class SecurityServicelmpl implements SecurityService {
         List<pick> picks = pickMapper.GetPick(BID);
 
         return null;
+    }
+
+    @Override
+    public List<Baby> GetBaby(String Bname, String CID) {
+        System.out.println(Bname+":"+CID);
+        List<Baby> Babys = pickMapper.GetBaby(Bname,CID);
+        return Babys;
     }
 
 }
