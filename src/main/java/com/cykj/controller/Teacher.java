@@ -2,8 +2,10 @@ package com.cykj.controller;
 
 import com.cykj.bean.ClassManagement;
 import com.cykj.bean.Curriculum;
+import com.cykj.bean.PublishHomework;
 import com.cykj.service.impl.ClassManagementServiceImpl;
 import com.cykj.service.impl.CurriculumServiceImpl;
+import com.cykj.service.impl.P_HServiceImpl;
 import com.cykj.service.impl.UserServiceImpl;
 import com.cykj.utils.Parameter;
 import com.cykj.utils.WeekDate;
@@ -29,9 +31,11 @@ public class Teacher {
     @Autowired
     private CurriculumServiceImpl curriculumService;
     @Autowired
+    private ClassManagementServiceImpl managementService;
+    @Autowired
     private UserServiceImpl userService;
     @Autowired
-    private ClassManagementServiceImpl managementService;
+    private P_HServiceImpl pHService;
 
     //查询当前日期课程表
     @RequestMapping("/selectCurrAll")
@@ -66,9 +70,7 @@ public class Teacher {
     public String getClassName(String uAccount) {
         System.out.println("-------查询教师所在的班级名称-------");
         System.out.println("uAccount:" + uAccount);
-        int id = userService.selectID(uAccount);
-        System.out.println("id:" + id);
-        List<ClassManagement> allClass = managementService.selectAllClass(id);
+        List<ClassManagement> allClass = managementService.selectAllClass(uAccount);
         System.out.println(allClass);
         String s = gson.toJson(allClass);
         return s;
@@ -76,10 +78,19 @@ public class Teacher {
 
     @ResponseBody
     @RequestMapping("/upHomework")
-    public String upHomework() {
+    public String upHomework(int id, String uacc) {
         System.out.println("-------发布作业-------");
-        System.out.println(Parameter.getFileName());
-        System.out.println(Parameter.getPublishHomeworkPath());
-        return null;
+        PublishHomework homework = new PublishHomework();
+        homework.setClassId(id);//班级id
+        homework.setTeacherId(userService.selectID(uacc));//教师id
+        homework.setHomeworkContent(Parameter.getFileName());//文件名
+        homework.setArrangementTime(WeekDate.getCurrentTime());//发布时间
+        homework.setHomeworkURL(Parameter.getPublishHomeworkPath());//URL
+        int i = pHService.insertAll(homework);
+        if (i > 0) {
+            return "发布成功";
+        } else {
+            return "发布失败";
+        }
     }
 }

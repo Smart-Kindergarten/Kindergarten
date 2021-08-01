@@ -10,7 +10,7 @@ package com.cykj.bean;
 public class ClassManagement {
     private int classId;            //班级编号
     private String className;       //班级名称
-    private int teacher;         //班主任
+    private int teacher;            //班主任
     private String classRoom;       //所在教室
     private String creationTime;    //创建时间
     //备用字段，需要使用请修改注释，若有增加新字段，请修改有参构造函数和toString方法

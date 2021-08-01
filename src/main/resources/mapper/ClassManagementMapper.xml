@@ -5,8 +5,9 @@
 <!--namespace路径-->
 <mapper namespace="com.cykj.mapper.ClassManagementMapper">
     <select id="selectAllClass" resultType="com.cykj.bean.ClassManagement">
-        SELECT t_classmanagement.classId, t_classmanagement.className
-        FROM t_classmanagement
-        WHERE t_classmanagement.teacher = #{id}
+        SELECT t1.classId, t1.className
+        FROM t_classmanagement t1
+                 INNER JOIN t_user t2 ON t1.teacher = t2.uid
+        WHERE t2.uaccount = #{acc};
     </select>
 </mapper>
