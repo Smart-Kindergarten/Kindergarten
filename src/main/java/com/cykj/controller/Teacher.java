@@ -3,12 +3,10 @@ package com.cykj.controller;
 import com.cykj.bean.ClassManagement;
 import com.cykj.bean.Curriculum;
 import com.cykj.bean.PublishHomework;
-import com.cykj.service.impl.ClassManagementServiceImpl;
-import com.cykj.service.impl.CurriculumServiceImpl;
-import com.cykj.service.impl.P_HServiceImpl;
-import com.cykj.service.impl.UserServiceImpl;
+import com.cykj.service.impl.*;
 import com.cykj.utils.Parameter;
 import com.cykj.utils.WeekDate;
+import com.cykj.va.C_HVa;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +34,8 @@ public class Teacher {
     private UserServiceImpl userService;
     @Autowired
     private P_HServiceImpl pHService;
+    @Autowired
+    private C_HServiceImpl cHService;
 
     //查询当前日期课程表
     @RequestMapping("/selectCurrAll")
@@ -92,5 +92,17 @@ public class Teacher {
         } else {
             return "发布失败";
         }
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/checkHomework")
+    public String getCheckHomework(int classId) {
+        System.out.println("-------查看作业-------");
+        System.out.println(classId);
+        List<C_HVa> cHVas = cHService.selectClassAll(classId);
+        System.out.println(cHVas);
+        String s = gson.toJson(cHVas);
+        return s;
     }
 }
