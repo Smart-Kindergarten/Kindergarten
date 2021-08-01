@@ -14,5 +14,5 @@ import java.util.List;
 @Repository
 public interface ClassManagementMapper {
     //(杨)查询教师所教的所有班级
-    List<ClassManagement> selectAllClass(String id);
+    List<ClassManagement> selectAllClass(int id);
 }

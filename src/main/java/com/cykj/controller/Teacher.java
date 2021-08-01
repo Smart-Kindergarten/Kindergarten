@@ -5,6 +5,7 @@ import com.cykj.bean.Curriculum;
 import com.cykj.service.impl.ClassManagementServiceImpl;
 import com.cykj.service.impl.CurriculumServiceImpl;
 import com.cykj.service.impl.UserServiceImpl;
+import com.cykj.utils.Parameter;
 import com.cykj.utils.WeekDate;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,8 +68,18 @@ public class Teacher {
         System.out.println("uAccount:" + uAccount);
         int id = userService.selectID(uAccount);
         System.out.println("id:" + id);
-        List<ClassManagement> allClass = managementService.selectAllClass(String.valueOf(id));
+        List<ClassManagement> allClass = managementService.selectAllClass(id);
+        System.out.println(allClass);
         String s = gson.toJson(allClass);
         return s;
+    }
+
+    @ResponseBody
+    @RequestMapping("/upHomework")
+    public String upHomework() {
+        System.out.println("-------发布作业-------");
+        System.out.println(Parameter.getFileName());
+        System.out.println(Parameter.getPublishHomeworkPath());
+        return null;
     }
 }

@@ -1,5 +1,6 @@
 package com.cykj.controller;
 
+import com.cykj.utils.Parameter;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,7 @@ import java.io.IOException;
  * @version 1.0
  * @author: qiyuan
  * @date: 2021/7/28 16:52
- * @desc:
+ * @desc: 上传作业
  */
 
 @CrossOrigin
@@ -23,8 +24,10 @@ public class UpHomework {
     public String elUpload(MultipartFile file) {
         System.out.println("-------上传作业-------");
         String fileName = file.getOriginalFilename();
-        System.out.println(fileName);
+        Parameter.setFileName(fileName);
+        System.out.println(Parameter.getFileName());
         File dest = new File("D:\\Administrator\\Documents\\下载\\" + fileName);
+        System.out.println(dest.getAbsolutePath());
         try {
             file.transferTo(dest);
             return "上传成功";
@@ -34,10 +37,5 @@ public class UpHomework {
         return "上传失败！";
     }
 
-    @RequestMapping("/upHomework")
-    public String upHomework() {
-        System.out.println("-------发布作业-------");
-        return null;
-    }
 
 }
