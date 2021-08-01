@@ -10,7 +10,7 @@ package com.cykj.bean;
 public class ClassManagement {
     private int classId;            //班级编号
     private String className;       //班级名称
-    private String teacher;         //班主任
+    private int teacher;         //班主任
     private String classRoom;       //所在教室
     private String creationTime;    //创建时间
     //备用字段，需要使用请修改注释，若有增加新字段，请修改有参构造函数和toString方法
@@ -21,7 +21,7 @@ public class ClassManagement {
     public ClassManagement() {
     }
 
-    public ClassManagement(int classId, String className, String teacher, String classRoom, String creationTime, String backUp1, String backUP2) {
+    public ClassManagement(int classId, String className, int teacher, String classRoom, String creationTime, String backUp1, String backUP2) {
         this.classId = classId;
         this.className = className;
         this.teacher = teacher;
@@ -60,11 +60,11 @@ public class ClassManagement {
         this.className = className;
     }
 
-    public String getTeacher() {
+    public int getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(String teacher) {
+    public void setTeacher(int teacher) {
         this.teacher = teacher;
     }
 

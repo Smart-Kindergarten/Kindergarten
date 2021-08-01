@@ -20,7 +20,7 @@ public class ClassManagementServiceImpl implements ClassManagementService {
     private ClassManagementMapper classManagementMapper;
 
     @Override
-    public List<ClassManagement> selectAllClass(String id) {
+    public List<ClassManagement> selectAllClass(int id) {
         List<ClassManagement> allClass = classManagementMapper.selectAllClass(id);
         if (!allClass.isEmpty()) {
             return allClass;
