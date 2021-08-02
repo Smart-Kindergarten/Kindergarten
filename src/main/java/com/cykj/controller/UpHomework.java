@@ -27,7 +27,8 @@ public class UpHomework {
         Parameter.setFileName(fileName);
         System.out.println(Parameter.getFileName());
         File dest = new File("D:\\Administrator\\Documents\\下载\\" + fileName);
-        System.out.println(dest.getAbsolutePath());
+        System.out.println(dest.getPath());
+        Parameter.setPublishHomeworkPath(dest.getAbsolutePath());
         try {
             file.transferTo(dest);
             return "上传成功";

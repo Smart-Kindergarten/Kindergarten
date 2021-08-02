@@ -49,4 +49,13 @@ public class WeekDate {
         }
         return day;
     }
+
+    //当前时间
+    public static String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String format = sdf.format(date);
+//        System.out.println(format);
+        return format;
+    }
 }

@@ -3,6 +3,8 @@ package com.cykj;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -117,4 +119,35 @@ class ApplicationTests {
         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         System.out.println(format.format(cal.getTime()));
     }
+
+    @Test
+    public void getDate1() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String format = sdf.format(date);
+        System.out.println(format);
+    }
+
+    @Test
+    public void downloadLocal(HttpServletResponse response) throws FileNotFoundException {
+        // 下载本地文件
+        String fileName = "Operator.doc".toString(); // 文件的默认保存名
+        // 读到流中
+        InputStream inStream = new FileInputStream("c:/Operator.doc");// 文件的存放路径
+        // 设置输出的格式
+        response.reset();
+//        response.setContentType("bin");
+        response.addHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+        // 循环取出流中的数据
+        byte[] b = new byte[100];
+        int len;
+        try {
+            while ((len = inStream.read(b)) > 0)
+                response.getOutputStream().write(b, 0, len);
+            inStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
