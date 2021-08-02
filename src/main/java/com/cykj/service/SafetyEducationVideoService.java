@@ -1,6 +1,8 @@
 package com.cykj.service;
 
+import com.cykj.bean.FamilyRead;
 import com.cykj.bean.SafetyEducation;
+import com.cykj.bean.TerraceInformationBean;
 
 import java.util.List;
 
@@ -16,4 +18,16 @@ public interface SafetyEducationVideoService {
 
     // 修改安全教育视频
     public  boolean updateVideo(String videoName,String releaseTime,String fileName,int videoId);
+
+    // 修改试题地址
+    public boolean updateQuestions(String textUrl,int videoId);
+
+    // 获取绘本信息
+    public List<FamilyRead> selectRead(int page,int pages);
+
+    // 获取平台资讯
+    public List<TerraceInformationBean>  selectTerraceInf(int page,int pages);
+
+    // 新增平台资讯
+    public  boolean insTerraceInf(String iftcontent,String Createtime,String reserve1);
 }

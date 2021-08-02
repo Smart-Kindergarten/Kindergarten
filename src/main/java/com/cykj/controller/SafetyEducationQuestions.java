@@ -1,5 +1,7 @@
 package com.cykj.controller;
 
+import com.cykj.mapper.SafetyEducationVideoMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,13 +19,19 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/ensure")
 public class SafetyEducationQuestions {
+
+    @Autowired
+    private SafetyEducationVideoMapper safetyEducationVideoMapper;
+
     //上传文件
     @PostMapping("/uploadwork")
-    public String uploadWork(HttpServletRequest request, @RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
+    public String uploadWork(HttpServletRequest request,@RequestParam String videoId, @RequestParam(value = "file", required = false) MultipartFile file) throws IOException {
 
         request.setCharacterEncoding("UTF-8");
         String user = request.getParameter("user");
+        int  vid=  Integer.valueOf(videoId);
 
+        System.out.println("vid:"+vid);
         if(!file.isEmpty()) {
             String fileName = file.getOriginalFilename();
             String path = null;
@@ -44,6 +52,10 @@ public class SafetyEducationQuestions {
                     }
 
                     file.transferTo(dest);
+                    boolean b = safetyEducationVideoMapper.updateQuestions(path, vid);
+                    if (b){
+                        System.out.println("修改试题地址成功");
+                    }
 
                     return trueFileName;
                 }else {

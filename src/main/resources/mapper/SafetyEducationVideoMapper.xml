@@ -23,4 +23,21 @@
         update t_safetyeducation set t_safetyeducation.videoName = #{videoName},t_safetyeducation.releaseTime = #{releaseTime}
         ,t_safetyeducation.fileName = #{fileName} where t_safetyeducation.videoId = #{videoId}
     </update>
+
+    <update id="updateQuestions">
+update t_safetyeducation set t_safetyeducation.textUrl = #{textUrl}  where  t_safetyeducation.videoId = #{videoId}
+
+    </update>
+
+    <select id="selectRead" parameterType="com.cykj.bean.FamilyRead" resultType="com.cykj.bean.FamilyRead">
+        select * from t_familyread  LIMIT #{page},#{pages}
+    </select>
+
+    <select id="selectTerraceInf" parameterType="com.cykj.bean.TerraceInformationBean" resultType="com.cykj.bean.TerraceInformationBean">
+     select * from t_terrace  LIMIT #{page},#{pages}
+    </select>
+
+    <insert id="insTerraceInf">
+        INSERT INTO t_terrace(iftcontent,Createtime,reserve1) VALUES(#{iftcontent},#{Createtime},#{reserve1});
+    </insert>
 </mapper>

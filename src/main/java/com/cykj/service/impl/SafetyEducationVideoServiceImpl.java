@@ -1,6 +1,8 @@
 package com.cykj.service.impl;
 
+import com.cykj.bean.FamilyRead;
 import com.cykj.bean.SafetyEducation;
+import com.cykj.bean.TerraceInformationBean;
 import com.cykj.mapper.SafetyEducationVideoMapper;
 import com.cykj.mapper.TerraceMapper;
 import com.cykj.service.SafetyEducationVideoService;
@@ -41,6 +43,31 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
     @Override
     public boolean updateVideo(String videoName, String releaseTime,String fileName, int videoId) {
         boolean b = safetyEducationVideoMapper.updateVideo(videoName, releaseTime,fileName, videoId);
+        return b;
+    }
+    // 修改试题地址
+
+    @Override
+    public boolean updateQuestions(String textUrl,int videoId) {
+        boolean b = safetyEducationVideoMapper.updateQuestions(textUrl,videoId);
+        return b;
+    }
+
+    @Override
+    public List<FamilyRead> selectRead(int page,int pages) {
+        List<FamilyRead> familyReads = safetyEducationVideoMapper.selectRead(page,pages);
+        return familyReads;
+    }
+
+    @Override
+    public List<TerraceInformationBean> selectTerraceInf(int page,int pages) {
+        List<TerraceInformationBean> terraceInformationBeans = safetyEducationVideoMapper.selectTerraceInf(page,pages);
+        return terraceInformationBeans;
+    }
+
+    @Override
+    public boolean insTerraceInf(String iftcontent, String Createtime, String reserve1) {
+        boolean b = safetyEducationVideoMapper.insTerraceInf(iftcontent,Createtime,reserve1);
         return b;
     }
 }

@@ -42,7 +42,7 @@ public class SafetyEducationVideo {
             // 重构文件名称
             System.out.println("前端传递的保存路径："+SavePath);
             String pikId = file.getOriginalFilename();
-//            String pikId = UUID.randomUUID().toString().replaceAll("-", "");
+//            String pikId = UUID.randzomUUID().toString().replaceAll("-", "");
             String newVidoeName = pikId;
 //            String newVidoeName = pikId + "." + fileExt;
             System.out.println("重构文件名防止上传同名文件："+newVidoeName);
@@ -63,7 +63,7 @@ public class SafetyEducationVideo {
             System.out.println("切割"+splitAddress[1]);
             // 获取系统时间
 //            asd
-            Date now = new Date();
+            Date    now = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String hehe = dateFormat.format( now );
             if (!prop.equals("null")){
