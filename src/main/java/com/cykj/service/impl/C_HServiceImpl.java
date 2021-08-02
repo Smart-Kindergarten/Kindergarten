@@ -28,4 +28,13 @@ public class C_HServiceImpl implements C_HService {
         }
         return null;
     }
+
+    @Override
+    public String updateRating(int chId, String rating) {
+        int i = cHMapper.updateRating(chId, rating);
+        if (i > 0) {
+            return "修改完成！";
+        }
+        return "修改失败~";
+    }
 }
