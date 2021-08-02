@@ -7,29 +7,19 @@ package com.cykj.va;
  * @desc: 查看作业va
  */
 public class C_HVa {
-    private String biid;//宝宝编号
+    private int chId;
+    private int biid;//宝宝编号
     private String biname;//宝宝名称
     private String uname;//家长名称
     private String homeworkURL;//作业内容
     private String arrangementTime;//发布时间
     private String completionTime;//完成时间
 
-    public C_HVa() {
-    }
-
-    public C_HVa(String biid, String biname, String uname, String homeworkURL, String arrangementTime, String completionTime) {
-        this.biid = biid;
-        this.biname = biname;
-        this.uname = uname;
-        this.homeworkURL = homeworkURL;
-        this.arrangementTime = arrangementTime;
-        this.completionTime = completionTime;
-    }
-
     @Override
     public String toString() {
         return "C_HVa{" +
-                "biid='" + biid + '\'' +
+                "chId=" + chId +
+                ", biid=" + biid +
                 ", biname='" + biname + '\'' +
                 ", uname='" + uname + '\'' +
                 ", homeworkURL='" + homeworkURL + '\'' +
@@ -38,11 +28,19 @@ public class C_HVa {
                 '}';
     }
 
-    public String getBiid() {
+    public int getChId() {
+        return chId;
+    }
+
+    public void setChId(int chId) {
+        this.chId = chId;
+    }
+
+    public int getBiid() {
         return biid;
     }
 
-    public void setBiid(String biid) {
+    public void setBiid(int biid) {
         this.biid = biid;
     }
 

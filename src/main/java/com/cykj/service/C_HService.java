@@ -13,4 +13,7 @@ import java.util.List;
 public interface C_HService {
     //yang-----查找班级学生作业
     List<C_HVa> selectClassAll(int classId);
+
+    //yang------作业评级
+    String updateRating(int chId, String rating);
 }

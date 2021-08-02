@@ -9,6 +9,7 @@ package com.cykj.bean;
 public class CheckHomework {
     private int chId;//查看作业id
     private int classId;//班级id
+    private int phId;//作业id
     private int babyId;//宝宝id
     private int completionTime;//完成时间
     private int completion;//完成情况(参数id)
@@ -22,9 +23,10 @@ public class CheckHomework {
     public CheckHomework() {
     }
 
-    public CheckHomework(int chId, int classId, int babyId, int completionTime, int completion, int evaluation, int homeworkURL, int ch1, int ch2, int ch3) {
+    public CheckHomework(int chId, int classId, int phId, int babyId, int completionTime, int completion, int evaluation, int homeworkURL, int ch1, int ch2, int ch3) {
         this.chId = chId;
         this.classId = classId;
+        this.phId = phId;
         this.babyId = babyId;
         this.completionTime = completionTime;
         this.completion = completion;
@@ -40,6 +42,7 @@ public class CheckHomework {
         return "CheckHomework{" +
                 "chId=" + chId +
                 ", classId=" + classId +
+                ", phId=" + phId +
                 ", babyId=" + babyId +
                 ", completionTime=" + completionTime +
                 ", completion=" + completion +
@@ -49,6 +52,14 @@ public class CheckHomework {
                 ", ch2=" + ch2 +
                 ", ch3=" + ch3 +
                 '}';
+    }
+
+    public int getPhId() {
+        return phId;
+    }
+
+    public void setPhId(int phId) {
+        this.phId = phId;
     }
 
     public int getChId() {
