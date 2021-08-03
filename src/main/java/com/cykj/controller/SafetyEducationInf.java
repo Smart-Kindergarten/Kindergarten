@@ -100,4 +100,52 @@ public class SafetyEducationInf {
         }
         return "200";
     }
+
+
+    // 修改资讯
+    @GetMapping("/updateTerraceInf")
+    public @ResponseBody
+    String updateTerraceInf(String ttid,String iftcontent,String Createtime){
+        System.out.println("修改资讯");
+        System.out.println("ttid"+ttid);
+        System.out.println("iftcontent"+iftcontent);
+        System.out.println("Createtime"+Createtime);
+        // 获取系统时间
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String hehe = dateFormat.format( now );
+        boolean b = safetyEducationVideoMapper.updateTerraceInf(iftcontent, Createtime, hehe,Integer.valueOf(ttid));
+        if (b){
+            System.out.println("修改资讯成功");
+        }
+        return "200";
+    }
+
+
+    // 删除资讯
+    @GetMapping("/delectTerraceInf")
+    public @ResponseBody
+    String delectTerraceInf(String ttid){
+        System.out.println("删除资讯");
+        System.out.println("ttid"+ttid);
+        boolean b = safetyEducationVideoMapper.delectTerraceInf(Integer.valueOf(ttid));
+        if (b){
+            System.out.println("删除资讯成功");
+        }
+        return "200";
+    }
+
+
+    // 发布资讯
+    @GetMapping("/issue")
+    public @ResponseBody
+    String issue(String ttid){
+        System.out.println("发布资讯");
+        System.out.println("ttid"+ttid);
+        boolean b = safetyEducationVideoMapper.updatereserve2(Integer.valueOf(ttid));
+        if (b){
+            System.out.println("发布资讯成功");
+        }
+        return "200";
+    }
 }

@@ -40,4 +40,13 @@ public interface SafetyEducationVideoMapper {
 
     // 新增平台资讯
     public  boolean insTerraceInf(String iftcontent,String Createtime,String reserve1);
+
+    // 修改平台资讯
+    public boolean updateTerraceInf(String iftcontent,String Createtime,String reserve1,int ttid);
+
+    // 删除平台资讯
+    public  boolean delectTerraceInf(int ttid);
+
+    // 发布资讯
+    public boolean updatereserve2(int ttid);
 }

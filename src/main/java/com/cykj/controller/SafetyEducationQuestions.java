@@ -2,6 +2,10 @@ package com.cykj.controller;
 
 import com.cykj.mapper.SafetyEducationVideoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,8 +47,11 @@ public class SafetyEducationQuestions {
                     // 自定义的文件名称
                     String trueFileName = user + "_" + fileName;
 
+                    File directory = new File("src/main/resources");
+                    String courseFile = directory.getCanonicalPath()+"/static/js/questuons/";;
+                    System.out.println(courseFile);
                     // 设置存放图片文件的路径
-                    path = "F:\\video\\homework\\" + trueFileName;
+                    path = courseFile+ fileName;
                     File dest = new File(path);
                     //判断文件父目录是否存在
                     if (!dest.getParentFile().exists()) {

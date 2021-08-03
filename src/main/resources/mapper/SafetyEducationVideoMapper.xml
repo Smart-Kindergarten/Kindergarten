@@ -38,6 +38,19 @@ update t_safetyeducation set t_safetyeducation.textUrl = #{textUrl}  where  t_sa
     </select>
 
     <insert id="insTerraceInf">
-        INSERT INTO t_terrace(iftcontent,Createtime,reserve1) VALUES(#{iftcontent},#{Createtime},#{reserve1});
+        INSERT INTO t_terrace(iftcontent,Createtime,reserve1,reserve2) VALUES(#{iftcontent},#{Createtime},#{reserve1},"14");
     </insert>
+
+
+    <update id="updateTerraceInf">
+        UPDATE t_terrace SET t_terrace.iftcontent = #{iftcontent},t_terrace.Createtime = #{Createtime},t_terrace.reserve1=#{reserve1} WHERE t_terrace.ttid = #{ttid}
+    </update>
+
+    <delete id="delectTerraceInf">
+   DELETE FROM t_terrace WHERE t_terrace.ttid = #{ttid}
+    </delete>
+
+    <update id="updatereserve2">
+        UPDATE t_terrace SET t_terrace.reserve2 = "15" where t_terrace.ttid = #{ttid}
+    </update>
 </mapper>

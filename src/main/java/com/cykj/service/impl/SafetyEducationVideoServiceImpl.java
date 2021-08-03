@@ -70,4 +70,22 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
         boolean b = safetyEducationVideoMapper.insTerraceInf(iftcontent,Createtime,reserve1);
         return b;
     }
+
+    @Override
+    public boolean updateTerraceInf(String iftcontent, String Createtime, String reserve1, int ttid) {
+        boolean b = safetyEducationVideoMapper.updateTerraceInf(iftcontent,Createtime,reserve1,ttid);
+        return b;
+    }
+
+    @Override
+    public boolean delectTerraceInf(int ttid) {
+        boolean b = safetyEducationVideoMapper.delectTerraceInf(ttid);
+        return b;
+    }
+
+    @Override
+    public boolean updatereserve2(int ttid) {
+        boolean b = safetyEducationVideoMapper.updatereserve2(ttid);
+        return b;
+    }
 }
