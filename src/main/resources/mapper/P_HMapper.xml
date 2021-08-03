@@ -5,6 +5,7 @@
 <!--namespace路径-->
 <mapper namespace="com.cykj.mapper.P_HMapper">
     <insert id="insertAll">
-
+        INSERT INTO t_publishhomework(classId, teacherId, homeworkContent, arrangementTime, homeworkURL)
+        VALUES (#{classId}, #{teacherId}, #{homeworkContent}, #{arrangementTime}, #{homeworkURL});
     </insert>
 </mapper>

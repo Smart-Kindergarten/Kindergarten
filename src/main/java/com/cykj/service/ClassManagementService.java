@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface ClassManagementService {
     //(杨)查询教师所教的所有班级
-    List<ClassManagement> selectAllClass(int id);
+    List<ClassManagement> selectAllClass(String acc);
 }

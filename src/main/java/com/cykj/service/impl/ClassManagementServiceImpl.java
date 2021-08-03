@@ -19,14 +19,15 @@ public class ClassManagementServiceImpl implements ClassManagementService {
     @Autowired
     private ClassManagementMapper classManagementMapper;
 
+
+
     @Override
-    public List<ClassManagement> selectAllClass(int id) {
-        List<ClassManagement> allClass = classManagementMapper.selectAllClass(id);
+    public List<ClassManagement> selectAllClass(String acc) {
+        List<ClassManagement> allClass = classManagementMapper.selectAllClass(acc);
         if (!allClass.isEmpty()) {
             return allClass;
         } else {
             return null;
         }
-
     }
 }
