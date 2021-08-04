@@ -1,12 +1,11 @@
 package com.cykj.controller;
 
-import com.cykj.bean.ClassManagement;
-import com.cykj.bean.Curriculum;
-import com.cykj.bean.PublishHomework;
+import com.cykj.bean.*;
 import com.cykj.service.impl.*;
 import com.cykj.utils.Parameter;
 import com.cykj.utils.WeekDate;
 import com.cykj.va.C_HVa;
+import com.cykj.va.CheckSafEduTestRecord;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +38,12 @@ public class Teacher {
     private P_HServiceImpl pHService;
     @Autowired
     private C_HServiceImpl cHService;
+    @Autowired
+    private SafetyEducationServiceImpl educationService;
+    @Autowired
+    private ParamServiceImpl paramService;
+    @Autowired
+    private SE_ServiceImpl seService;
 
     //查询当前日期课程表
     @RequestMapping("/selectCurrAll")
@@ -118,6 +123,7 @@ public class Teacher {
         return s;
     }
 
+    //文件下载（现在无法使用）
     @ResponseBody
     @GetMapping("/download")
     public HttpServletResponse download(String path, HttpServletResponse response) {
@@ -150,4 +156,58 @@ public class Teacher {
         return response;
     }
 
+    //查询安全教育
+    @ResponseBody
+    @RequestMapping("/selectSafEdu")
+    public String selectSafEdu() {
+        System.out.println("-------查询安全教育-------");
+        List<SafetyEducation> safEduAll = educationService.selectSafEduAll();
+        System.out.println(safEduAll);
+        String s = gson.toJson(safEduAll);
+        return s;
+    }
+
+    //安全教育视频开始时间和结束时间
+    @ResponseBody
+    @RequestMapping("/updateTime")
+    public String updateTime(SafetyEducation safetyEducation) {
+        System.out.println("-------修改安全教育视频开始时间和结束时间-------");
+        System.out.println(safetyEducation.getVideoId() + "," + safetyEducation.getStartTime() + "," + safetyEducation.getEndTime());
+        String updateTime = educationService.updateTime(safetyEducation);
+        System.out.println(updateTime);
+        return updateTime;
+    }
+
+    //查询pzid，pname
+    @ResponseBody
+    @RequestMapping("/getPName")
+    public String getParamName(String pName) {
+        System.out.println("-------查询pzid，pname-------");
+        System.out.println(pName);
+        List<Param> list = paramService.select(pName);
+        System.out.println(list);
+        return gson.toJson(list);
+    }
+
+    //查询安全教育试题记录表
+    @ResponseBody
+    @RequestMapping("/checkSafEduTestRecord")
+    public String checkSafEduTestRecord(int classId) {
+        System.out.println("-------查询安全教育试题记录表-------");
+        System.out.println(classId);
+        List<CheckSafEduTestRecord> list = seService.selectTestRecord(classId);
+        System.out.println(list);
+        return gson.toJson(list);
+    }
+
+    //查询模糊  安全教育试题记录表
+    @ResponseBody
+    @RequestMapping("/checkFuzzy")
+    public String checkFuzzy(int classId, int pzid, String wDate1, String wDate2) {
+        System.out.println("-------模糊查询安全教育试题记录表-------");
+        System.out.println(classId + " " + pzid + " " + wDate1 + " " + wDate2);
+        List<CheckSafEduTestRecord> list = seService.fuzzySelect(classId, pzid, wDate1, wDate2);
+        System.out.println(list);
+        return gson.toJson(list);
+    }
 }

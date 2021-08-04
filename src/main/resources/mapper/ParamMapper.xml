@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.ParamMapper">
+    <select id="select" resultType="com.cykj.bean.Param">
+        SELECT pzid, pname
+        FROM t_param
+        WHERE ptype = #{type}
+    </select>
+</mapper>

@@ -8,11 +8,9 @@ package com.cykj.bean;
  */
 public class Security {
     private int secId;              //安全教育试题记录id
+    private int classId;            //班级id
     private int baId;               //宝宝id
-    private String baName;          //宝宝名字
-    private String patriarchName;   //家长名称
     private String videoId;         //视频名称(id)
-    private String endTime;         //结束时间
     private String completeTime;    //完成时间
     private String secScore;        //得分
     private int completeId;         //完成情况（参数表）id
@@ -21,14 +19,11 @@ public class Security {
     public Security() {
     }
 
-
-    public Security(int secId, int baId, String baName, String patriarchName, String videoId, String endTime, String completeTime, String secScore, int completeId) {
+    public Security(int secId, int classId, int baId, String videoId, String completeTime, String secScore, int completeId) {
         this.secId = secId;
+        this.classId = classId;
         this.baId = baId;
-        this.baName = baName;
-        this.patriarchName = patriarchName;
         this.videoId = videoId;
-        this.endTime = endTime;
         this.completeTime = completeTime;
         this.secScore = secScore;
         this.completeId = completeId;
@@ -38,11 +33,9 @@ public class Security {
     public String toString() {
         return "Security{" +
                 "secId=" + secId +
+                ", classId=" + classId +
                 ", baId=" + baId +
-                ", baName='" + baName + '\'' +
-                ", patriarchName='" + patriarchName + '\'' +
                 ", videoId='" + videoId + '\'' +
-                ", endTime='" + endTime + '\'' +
                 ", completeTime='" + completeTime + '\'' +
                 ", secScore='" + secScore + '\'' +
                 ", completeId=" + completeId +
@@ -57,28 +50,20 @@ public class Security {
         this.secId = secId;
     }
 
+    public int getClassId() {
+        return classId;
+    }
+
+    public void setClassId(int classId) {
+        this.classId = classId;
+    }
+
     public int getBaId() {
         return baId;
     }
 
     public void setBaId(int baId) {
         this.baId = baId;
-    }
-
-    public String getBaName() {
-        return baName;
-    }
-
-    public void setBaName(String baName) {
-        this.baName = baName;
-    }
-
-    public String getPatriarchName() {
-        return patriarchName;
-    }
-
-    public void setPatriarchName(String patriarchName) {
-        this.patriarchName = patriarchName;
     }
 
     public String getVideoId() {
@@ -89,13 +74,6 @@ public class Security {
         this.videoId = videoId;
     }
 
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
 
     public String getCompleteTime() {
         return completeTime;
