@@ -60,7 +60,7 @@ select * from t_terrace where t_terrace.reserve3 = #{reserve3}
 
     <select id="selectParentsVideo"  parameterType="com.cykj.bean.SafetyEducation" resultType="com.cykj.bean.SafetyEducation">
     SELECT t_safetyeducation.startTime,t_safetyeducation.endTime,t_safetyeducation.videoId,t_safetyeducation.videoName,
-t_safetyeducation.releaseTime, t_security.secScore,t_param.pname
+t_safetyeducation.releaseTime, t_security.secScore,t_param.pname,t_safetyeducation.fileSite
  FROM t_safetyeducation LEFT JOIN t_security on t_safetyeducation.videoId = t_security.videoId LEFT JOIN t_param ON  t_security.completeId = t_param.pid
 LEFT JOIN t_user ON t_user.uaccount = t_security.baId LIMIT #{page},#{pages}
     </select>

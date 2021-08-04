@@ -1,9 +1,12 @@
 package com.cykj.service.impl;
 
 
+import com.cykj.bean.BabyFood;
 import com.cykj.bean.Healthbean;
 import com.cykj.mapper.HealthMapper;
 import com.cykj.service.HealthService;
+import com.cykj.va.ChildHomeWork;
+import com.cykj.va.CurrAndUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -39,5 +42,38 @@ public class HealthServiceImpl implements HealthService {
     @Override
     public List<Healthbean> selHeaUphone(String uphone, int page, int pages) {
         return healthMapper.selHeaUphone(uphone, page, pages);
+    }
+
+    /**
+     * @Description: 小程序根据手机查询宝宝课程表数据
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-05 2:03
+     */
+    @Override
+    public List<CurrAndUser> selCurrAndUser(String uphone, int page, int pages) {
+        return healthMapper.selCurrAndUser(uphone, page, pages);
+    }
+
+    /**
+     * @Description: 小程序查询宝宝膳食数据
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-05 3:24
+     */
+    @Override
+    public List<BabyFood> selBabyFood(int page, int pages) {
+        return healthMapper.selBabyFood(page, pages);
+    }
+    
+    /**
+     * @Description: 小程序亲子作业
+     * @Param: 
+     * @Author: BWL
+     * @Date: 2021-08-05 5:47
+     */
+    @Override
+    public List<ChildHomeWork> selChildHomeWork(String uphone, int page, int pages) {
+        return healthMapper.selChildHomeWork(uphone, page, pages);
     }
 }

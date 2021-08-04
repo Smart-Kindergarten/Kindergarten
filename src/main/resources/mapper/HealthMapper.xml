@@ -16,4 +16,24 @@
         SELECT * from t_user,t_babyhealth where t_user.ures1 = t_babyhealth.babyid and t_user.uphone = #{uphone} LIMIT #{page},#{pages}
     </select>
 
+    <!--小程序根据手机查询宝宝课程表数据-->
+    <select id="selCurrAndUser" parameterType="com.cykj.va.CurrAndUser" resultType="com.cykj.va.CurrAndUser">
+        SELECT * from t_user,t_curriculum where t_user.uphone = #{uphone} LIMIT #{page},#{pages}
+    </select>
+
+    <!--小程序查询宝宝膳食数据-->
+    <select id="selBabyFood" parameterType="com.cykj.bean.BabyFood" resultType="com.cykj.bean.BabyFood">
+        SELECT * from t_user,t_babyfood  LIMIT #{page},#{pages}
+    </select>
+
+    <!--小程序亲子作业-->
+    <select id="selChildHomeWork" resultType="com.cykj.va.ChildHomeWork">
+        SELECT t2.biname,t4.homeworkContent, t4.homeworkURL, t4.arrangementTime, t1.homeworkURL tjurl, t5.pname, t1.evaluation
+        FROM t_checkhomework t1
+        INNER JOIN t_babyinf t2 ON t1.babyId = t2.biid
+        INNER JOIN t_user t3 ON t2.uid = t3.uid
+        INNER JOIN t_publishhomework t4 ON t1.phId = t4.phId
+        INNER JOIN t_param t5 ON t5.pid = t1.`completion`
+        WHERE t3.uphone = #{uphone} LIMIT #{page},#{pages}
+    </select>
 </mapper>
