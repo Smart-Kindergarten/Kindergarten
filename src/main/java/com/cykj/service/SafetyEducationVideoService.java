@@ -29,7 +29,7 @@ public interface SafetyEducationVideoService {
     public List<TerraceInformationBean>  selectTerraceInf(int page,int pages);
 
     // 新增平台资讯
-    public  boolean insTerraceInf(String iftcontent,String Createtime,String reserve1);
+    public  boolean insTerraceInf(String iftcontent,String Createtime,String reserve1,String reserve3);
 
     // 修改平台资讯
     public boolean updateTerraceInf(String iftcontent,String Createtime,String reserve1,int ttid);
@@ -39,4 +39,10 @@ public interface SafetyEducationVideoService {
 
     // 发布资讯
     public boolean updatereserve2(int ttid);
+
+    // 查询资讯类型
+    public List<TerraceInformationBean> selectType(String reserve3);
+
+    // 查询家长查看视频信息
+    public List<SafetyEducation> selectParentsVideo(int page,int pages);
 }

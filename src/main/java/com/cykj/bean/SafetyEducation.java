@@ -19,10 +19,15 @@ public class SafetyEducation {
     private String fileSite;    //文件地址
     private String textUrl;     //试题URL
 
+    private int secId;              //安全教育试题记录id
+    private int baId;               //宝宝id
+    private String baName;          //宝宝名字
+    private String patriarchName;   //家长名称
+
     public SafetyEducation() {
     }
 
-    public SafetyEducation(int videoId, String videoName, String startTime, String endTime, String completeTime, String secScore, int completeId, String releaseTime, String fileName, String fileSite, String textUrl) {
+    public SafetyEducation(int videoId, String videoName, String startTime, String endTime, String completeTime, String secScore, int completeId, String releaseTime, String fileName, String fileSite, String textUrl, int secId, int baId, String baName, String patriarchName) {
         this.videoId = videoId;
         this.videoName = videoName;
         this.startTime = startTime;
@@ -34,23 +39,10 @@ public class SafetyEducation {
         this.fileName = fileName;
         this.fileSite = fileSite;
         this.textUrl = textUrl;
-    }
-
-    @Override
-    public String toString() {
-        return "SafetyEducation{" +
-                "videoId=" + videoId +
-                ", videoName='" + videoName + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
-                ", completeTime='" + completeTime + '\'' +
-                ", secScore='" + secScore + '\'' +
-                ", completeId=" + completeId +
-                ", releaseTime='" + releaseTime + '\'' +
-                ", fileName='" + fileName + '\'' +
-                ", fileSite='" + fileSite + '\'' +
-                ", textUrl='" + textUrl + '\'' +
-                '}';
+        this.secId = secId;
+        this.baId = baId;
+        this.baName = baName;
+        this.patriarchName = patriarchName;
     }
 
     public int getVideoId() {
@@ -139,5 +131,58 @@ public class SafetyEducation {
 
     public void setTextUrl(String textUrl) {
         this.textUrl = textUrl;
+    }
+
+    public int getSecId() {
+        return secId;
+    }
+
+    public void setSecId(int secId) {
+        this.secId = secId;
+    }
+
+    public int getBaId() {
+        return baId;
+    }
+
+    public void setBaId(int baId) {
+        this.baId = baId;
+    }
+
+    public String getBaName() {
+        return baName;
+    }
+
+    public void setBaName(String baName) {
+        this.baName = baName;
+    }
+
+    public String getPatriarchName() {
+        return patriarchName;
+    }
+
+    public void setPatriarchName(String patriarchName) {
+        this.patriarchName = patriarchName;
+    }
+
+    @Override
+    public String toString() {
+        return "SafetyEducation{" +
+                "videoId=" + videoId +
+                ", videoName='" + videoName + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", completeTime='" + completeTime + '\'' +
+                ", secScore='" + secScore + '\'' +
+                ", completeId=" + completeId +
+                ", releaseTime='" + releaseTime + '\'' +
+                ", fileName='" + fileName + '\'' +
+                ", fileSite='" + fileSite + '\'' +
+                ", textUrl='" + textUrl + '\'' +
+                ", secId=" + secId +
+                ", baId=" + baId +
+                ", baName='" + baName + '\'' +
+                ", patriarchName='" + patriarchName + '\'' +
+                '}';
     }
 }

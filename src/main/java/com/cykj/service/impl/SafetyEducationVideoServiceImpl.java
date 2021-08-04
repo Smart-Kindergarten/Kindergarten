@@ -66,8 +66,8 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
     }
 
     @Override
-    public boolean insTerraceInf(String iftcontent, String Createtime, String reserve1) {
-        boolean b = safetyEducationVideoMapper.insTerraceInf(iftcontent,Createtime,reserve1);
+    public boolean insTerraceInf(String iftcontent, String Createtime, String reserve1,String reserve3) {
+        boolean b = safetyEducationVideoMapper.insTerraceInf(iftcontent,Createtime,reserve1,reserve3);
         return b;
     }
 
@@ -87,5 +87,17 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
     public boolean updatereserve2(int ttid) {
         boolean b = safetyEducationVideoMapper.updatereserve2(ttid);
         return b;
+    }
+
+    @Override
+    public List<TerraceInformationBean> selectType(String reserve3) {
+        List<TerraceInformationBean> terraceInformationBeans = safetyEducationVideoMapper.selectType(reserve3);
+        return terraceInformationBeans;
+    }
+
+    @Override
+    public List<SafetyEducation> selectParentsVideo(int page, int pages) {
+        List<SafetyEducation> safetyEducations = safetyEducationVideoMapper.selectParentsVideo(page, pages);
+        return safetyEducations;
     }
 }

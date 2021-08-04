@@ -86,15 +86,16 @@ public class SafetyEducationInf {
     // 新增资讯
     @GetMapping("/addTerraceInf")
     public @ResponseBody
-    String TerraceInf(String ttid,String iftcontent){
+    String TerraceInf(String ttid,String iftcontent,String types){
         System.out.println("新增资讯");
         System.out.println("ttid"+ttid);
         System.out.println("iftcontent"+iftcontent);
+        System.out.println("types"+types);
         // 获取系统时间
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String hehe = dateFormat.format( now );
-        boolean b = safetyEducationVideoMapper.insTerraceInf(ttid, iftcontent, hehe);
+        boolean b = safetyEducationVideoMapper.insTerraceInf(ttid, iftcontent, hehe,types);
         if (b){
             System.out.println("新增资讯成功");
         }
@@ -147,5 +148,33 @@ public class SafetyEducationInf {
             System.out.println("发布资讯成功");
         }
         return "200";
+    }
+
+
+    // 查询类型资讯
+    @GetMapping("/types")
+    public @ResponseBody
+    String types(String types){
+        System.out.println("查询分类资讯");
+        System.out.println("types"+types);
+        List<TerraceInformationBean> terraceInformationBeans = safetyEducationVideoMapper.selectType(types);
+        Gson gson = new Gson();
+        String s = gson.toJson(terraceInformationBeans);
+        System.out.println(s);
+        return s;
+    }
+
+
+    // 家长查看安全视频信息 进行答题
+    @GetMapping("/selectParentsVideo")
+    public @ResponseBody
+    String selectParentsVideo(int page){
+        System.out.println("家长查看安全视频信息 进行答题");
+        System.out.println("page"+page);
+        List<SafetyEducation> safetyEducations = safetyEducationVideoMapper.selectParentsVideo((page - 1) * 5, page * 5);
+        Gson gson = new Gson();
+        String s = gson.toJson(safetyEducations);
+        System.out.println(s);
+        return s;
     }
 }
