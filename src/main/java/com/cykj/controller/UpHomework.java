@@ -66,7 +66,7 @@ public class UpHomework {
         String newName = UUID.randomUUID().toString() + sub;
         try {
             file.transferTo(new File(folder, originName));
-            String url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + format + originName;
+            String url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + format + "/" + originName;
             Parameter.setPublishHomeworkPath(url);
             result.put("status", "success");
             result.put("url", url);

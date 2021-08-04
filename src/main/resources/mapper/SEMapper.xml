@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.SEMapper">
+    <select id="selectTestRecord" resultType="com.cykj.va.CheckSafEduTestRecord">
+        SELECT t2.biid,
+               t2.biname,
+               t3.uname,
+               t4.videoName,
+               t4.endTime,
+               t1.completeTime,
+               t1.secScore,
+               t5.pname
+        FROM t_security t1
+                 INNER JOIN t_babyinf t2 ON t1.baId = t2.biid
+                 INNER JOIN t_user t3 ON t2.uid = t3.uid
+                 INNER JOIN t_safetyeducation t4 ON t1.videoId = t4.videoId
+                 INNER JOIN t_param t5 ON t1.completeId = t5.pzid
+        WHERE t1.classId = #{classId}
+    </select>
+
+    <select id="fuzzySelect" resultType="com.cykj.va.CheckSafEduTestRecord">
+        SELECT t2.biid,
+        t2.biname,
+        t3.uname,
+        t4.videoName,
+        t4.endTime,
+        t1.completeTime,
+        t1.secScore,
+        t5.pname
+        FROM t_security t1
+        INNER JOIN t_babyinf t2 ON t1.baId = t2.biid
+        INNER JOIN t_user t3 ON t2.uid = t3.uid
+        INNER JOIN t_safetyeducation t4 ON t1.videoId = t4.videoId
+        INNER JOIN t_param t5 ON t1.completeId = t5.pzid
+        WHERE 1=1
+        <if test="classId != null and classId != ''">
+            and t1.classId = #{classId}
+        </if>
+        <if test="pId != null and pId !=''">
+            and t1.completeId=#{pId}
+        </if>
+        <if test="wDate1 != null and wDate1 != ''">
+            and t1.completeTime <![CDATA[>=]]>#{wDate1}
+        </if>
+        <if test="wDate2 != null and wDate2 != ''">
+            and t1.completeTime <![CDATA[<=]]>#{wDate2}
+        </if>
+    </select>
+</mapper>

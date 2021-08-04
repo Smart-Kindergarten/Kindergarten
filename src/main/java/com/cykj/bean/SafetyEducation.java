@@ -11,9 +11,9 @@ public class SafetyEducation {
     private String videoName;   //视频名称
     private String startTime;   //开始时间
     private String endTime;     //结束时间
-    private String completeTime;//完成时间
-    private String secScore;    //得分
-    private int completeId;     //完成情况（参数表）id
+    private String completeTime;//完成时间（无用）
+    private String secScore;    //得分（无用）
+    private int completeId;     //完成情况（参数表）id（无用）
     private String releaseTime; //发布时间
     private String fileName;    //文件名称
     private String fileSite;    //文件地址
