@@ -5,8 +5,10 @@
 <!--namespace路径-->
 <mapper namespace="com.cykj.mapper.CurriculumMapper">
     <select id="selectCurrAll" resultType="com.cykj.bean.Curriculum">
-        SELECT *
-        FROM t_curriculum
-        WHERE currDate LIKE concat('%', #{date}, '%');
+        SELECT t1.*
+        FROM t_curriculum t1
+                 INNER JOIN t_classmanagement t2 ON t1.classId = t2.classId
+        WHERE t1.classId = #{classId}
+          AND t1.currDate LIKE concat('%', #{date}, '%');
     </select>
 </mapper>

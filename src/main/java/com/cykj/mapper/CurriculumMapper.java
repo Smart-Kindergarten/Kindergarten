@@ -17,5 +17,5 @@ import java.util.List;
 @Repository
 public interface CurriculumMapper {
     //（杨）查询课程表信息
-    List<Curriculum> selectCurrAll(@Param("date")String date);
+    List<Curriculum> selectCurrAll(@Param("classId")int classId,@Param("date")String date);
 }
