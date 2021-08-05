@@ -24,4 +24,12 @@ public interface HealthMapper {
 
     //小程序亲子作业
     public List<ChildHomeWork> selChildHomeWork(String uphone, int page, int pages);
+
+    void upFood(BabyFood babyFood);
+
+    List<BabyFood> selectFood();
+
+    void changeFood(BabyFood babyFood);
+
+    void upFoodTime(BabyFood babyFood);
 }
