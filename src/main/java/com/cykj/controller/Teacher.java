@@ -6,6 +6,7 @@ import com.cykj.utils.Parameter;
 import com.cykj.utils.WeekDate;
 import com.cykj.va.C_HVa;
 import com.cykj.va.CheckSafEduTestRecord;
+import com.cykj.va.ClassInfo;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,10 +46,12 @@ public class Teacher {
     private ParamServiceImpl paramService;
     @Autowired
     private SE_ServiceImpl seService;
+    @Autowired
+    private BabyInfServiceImpl babyInfService;
 
     //查询当前日期课程表
-    @RequestMapping("/selectCurrAll")
     @ResponseBody
+    @RequestMapping("/selectCurrAll")
     public String getCurrAll(int classId, String date) {
         System.out.println("-------查询课程表-------");
         String monday = WeekDate.getMonday(date);
@@ -214,5 +217,44 @@ public class Teacher {
         return gson.toJson(list);
     }
 
+    //班级信息
+    @ResponseBody
+    @RequestMapping("/getClassInfo")
+    public String getClassInfo(int classId) {
+        System.out.println("-------班级信息-------");
+        List<ClassInfo> info = babyInfService.selectClassInfo(classId);
+        System.out.println(info);
+        return gson.toJson(info);
+    }
 
+    //模糊查询入学时间
+    @ResponseBody
+    @RequestMapping("/fuzzySelectATime")
+    public String fuzzySelectATime(int classId, String aTime1, String aTime2) {
+        System.out.println("-------模糊查询入学时间-------");
+        System.out.println(classId + " " + aTime1 + " " + aTime2);
+        List<ClassInfo> info = babyInfService.fuzzySelectClassInfo(classId, aTime1, aTime2);
+        System.out.println(info);
+        return gson.toJson(info);
+    }
+
+    //宝宝信息
+    @ResponseBody
+    @RequestMapping("/getBabyInfo")
+    public String babyInfo(int id) {
+        System.out.println("-------宝宝信息-------");
+        BabyInf babyInf = babyInfService.selectBabyInfo(id);
+        System.out.println(babyInf);
+        return gson.toJson(babyInf);
+    }
+
+    //家长信息
+    @ResponseBody
+    @RequestMapping("/getParentsInfo")
+    public String parentsInfo(int id) {
+        System.out.println("-------家长信息-------");
+        User user = userService.parentsInfo(id);
+        System.out.println(user);
+        return gson.toJson(user);
+    }
 }
