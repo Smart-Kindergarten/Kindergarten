@@ -67,7 +67,7 @@ public class Health extends HttpServlet {
 
 
     /**
-     * @Description: 小程序根据手机查询宝宝考勤数据
+     * @Description: 小程序根据手机查询宝宝课程表数据
      * @Param:
      * @Author: BWL
      * @Date: 2021-08-05 2:00
