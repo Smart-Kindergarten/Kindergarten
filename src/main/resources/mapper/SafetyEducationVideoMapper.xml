@@ -30,11 +30,36 @@ update t_safetyeducation set t_safetyeducation.textUrl = #{textUrl}  where  t_sa
     </update>
 
     <select id="selectRead" parameterType="com.cykj.bean.FamilyRead" resultType="com.cykj.bean.FamilyRead">
-        select * from t_familyread  LIMIT #{page},#{pages}
+        select * from t_familyread
+        WHERE
+        1 = 1
+        <if test="UploadTime != null and UploadTime !=''">
+            AND  UploadTime <![CDATA[>=]]> #{UploadTime}
+        </if>
+        <if test="UploadTime != null and UploadTime !=''">
+            AND  UploadTime <![CDATA[>=]]> #{UploadTime}
+        </if>
+        <if test="bookname != null and bookname !=''">
+            AND bookname = #{bookname}
+        </if>
+
+         LIMIT #{page},#{pages}
     </select>
 
     <select id="selectTerraceInf" parameterType="com.cykj.bean.TerraceInformationBean" resultType="com.cykj.bean.TerraceInformationBean">
-     select * from t_terrace  LIMIT #{page},#{pages}
+     select * from t_terrace
+     WHERE
+                1 = 1
+        <if test="Createtime != null and Createtime !=''">
+            AND  Createtime <![CDATA[>=]]> #{Createtime}
+        </if>
+        <if test="Createtime != null and Createtime !=''">
+            AND  Createtime <![CDATA[>=]]> #{Createtime}
+        </if>
+        <if test="iftcontent != null and iftcontent !=''">
+            AND iftcontent = #{iftcontent}
+        </if>
+     LIMIT #{page},#{pages}
     </select>
 
     <insert id="insTerraceInf">

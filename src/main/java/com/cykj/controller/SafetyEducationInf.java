@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,11 +64,16 @@ public class SafetyEducationInf {
         return s;
     }
 
+
+    // 获取绘本信息
     @GetMapping("/readInf")
     public @ResponseBody
-    String readInf(int page){
+    String readInf(String UploadTime,String UploadTimes,String bookname,int page){
         System.out.println("获取绘本信息");
-        List<FamilyRead> familyReads = safetyEducationVideoMapper.selectRead((page - 1) * 5, page * 5);
+        System.out.println(UploadTime);
+        System.out.println(UploadTimes);
+        System.out.println(bookname);
+        List<FamilyRead> familyReads = safetyEducationVideoMapper.selectRead(UploadTime,UploadTimes,bookname,(page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(familyReads);
         System.out.println(s);
@@ -78,9 +84,17 @@ public class SafetyEducationInf {
 
     @GetMapping("/TerraceInf")
     public @ResponseBody
-    String TerraceInf(int page){
+    String TerraceInfs( String Createtime, String Createtimes, String iftcontent,  int page){
         System.out.println("获取平台信息");
-        List<TerraceInformationBean> terraceInformationBeans = safetyEducationVideoMapper.selectTerraceInf((page - 1) * 5, page * 5);
+        System.out.println(Createtime);
+        System.out.println(Createtimes);
+        System.out.println(iftcontent);
+        System.out.println(page);
+        List<TerraceInformationBean> terraceInformationBeans = safetyEducationVideoMapper.selectTerraceInf(Createtime
+                ,Createtimes
+                ,iftcontent,
+                (page - 1) * 5,
+                (page * 5));
         Gson gson = new Gson();
         String s = gson.toJson(terraceInformationBeans);
         System.out.println(s);

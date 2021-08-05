@@ -8,7 +8,20 @@
     <!--  id 方法名  resultType返回类型 -->
 
     <select id="selectPatriarch" parameterType="com.cykj.bean.User" resultType="com.cykj.bean.User">
-         SELECT * FROM t_user,t_param,t_babyinf where t_user.ustate = t_param.pid and t_user.uid = t_babyinf.uid  AND t_user.urid = '1'     LIMIT  #{page},#{pages}
+         SELECT * FROM t_user,t_param,t_babyinf
+        WHERE
+        1 = 1
+        <if test="biadtime != null and biadtime !=''">
+            AND  t_babyinf.biadtime <![CDATA[>=]]> #{biadtime}
+        </if>
+        <if test="biadtime != null and biadtime !=''">
+            AND  t_babyinf.biadtime <![CDATA[>=]]> #{biadtime}
+        </if>
+        <if test="uname != null and uname !=''">
+            AND t_user.uname = #{uname}
+        </if>
+        and t_user.ustate = t_param.pid and t_user.uid = t_babyinf.uid  AND t_user.urid = '1'
+           LIMIT  #{page},#{pages}
     </select>
 
     <delete id="delectPatriarch">

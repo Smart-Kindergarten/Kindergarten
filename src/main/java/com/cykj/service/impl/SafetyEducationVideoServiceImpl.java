@@ -53,15 +53,17 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
         return b;
     }
 
+
     @Override
-    public List<FamilyRead> selectRead(int page,int pages) {
-        List<FamilyRead> familyReads = safetyEducationVideoMapper.selectRead(page,pages);
+    public List<FamilyRead> selectRead(String UploadTime,String UploadTimes,String bookname,int page,int pages) {
+        List<FamilyRead> familyReads = safetyEducationVideoMapper.selectRead(UploadTime,UploadTimes,bookname,page,pages);
         return familyReads;
     }
 
+    // 获取平台资讯
     @Override
-    public List<TerraceInformationBean> selectTerraceInf(int page,int pages) {
-        List<TerraceInformationBean> terraceInformationBeans = safetyEducationVideoMapper.selectTerraceInf(page,pages);
+    public List<TerraceInformationBean> selectTerraceInf(String Createtime,String Createtimes,String iftcontent,int page,int pages) {
+        List<TerraceInformationBean> terraceInformationBeans = safetyEducationVideoMapper.selectTerraceInf(Createtime,Createtimes,iftcontent,page,pages);
         return terraceInformationBeans;
     }
 

@@ -23,10 +23,11 @@ public interface SafetyEducationVideoService {
     public boolean updateQuestions(String textUrl,int videoId);
 
     // 获取绘本信息
-    public List<FamilyRead> selectRead(int page,int pages);
+    public List<FamilyRead> selectRead(String UploadTime,String UploadTimes,String bookname,int page,int pages);
 
     // 获取平台资讯
-    public List<TerraceInformationBean>  selectTerraceInf(int page,int pages);
+    public List<TerraceInformationBean>  selectTerraceInf(String Createtime,String Createtimes,String iftcontent,int page,int pages);
+
 
     // 新增平台资讯
     public  boolean insTerraceInf(String iftcontent,String Createtime,String reserve1,String reserve3);

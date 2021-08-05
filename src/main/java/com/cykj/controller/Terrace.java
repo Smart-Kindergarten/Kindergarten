@@ -28,10 +28,13 @@ public class Terrace {
 
     @GetMapping("/PatriarchAll")
     public @ResponseBody
-    String GGB2(int page) {
+    String GGB2(String biadtime,String biadtimes,String uname,int page) {
         System.out.println("家长管理进来了");
+        System.out.println(biadtime);
+        System.out.println(biadtimes);
+        System.out.println(uname);
         System.out.println(page);
-        List<User> users = terraceMapper.selectPatriarch((page - 1) * 5, page * 5);
+        List<User> users = terraceMapper.selectPatriarch(biadtime,biadtimes,uname,(page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(users);
         System.out.println(s);
