@@ -39,7 +39,7 @@
         <if test="classId != null and classId != ''">
             and t1.classId = #{classId}
         </if>
-        <if test="pId != null and pId !=''">
+        <if test="pId != null and pId !='' and pId != 0">
             and t1.completeId=#{pId}
         </if>
         <if test="wDate1 != null and wDate1 != ''">

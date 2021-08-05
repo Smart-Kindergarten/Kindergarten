@@ -1,5 +1,9 @@
 package com.cykj.service;
 
+import com.cykj.bean.User;
+
+import java.util.List;
+
 /**
  * @version 1.0
  * @author: qiyuan
@@ -9,4 +13,7 @@ package com.cykj.service;
 public interface UserService {
     //查询用户ID
     int selectID(String acc);
+
+    //家长信息
+    User parentsInfo(int id);
 }

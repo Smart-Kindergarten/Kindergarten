@@ -1,5 +1,6 @@
 package com.cykj.service.impl;
 
+import com.cykj.bean.User;
 import com.cykj.mapper.UserMapper;
 import com.cykj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,14 @@ public class UserServiceImpl implements UserService {
     public int selectID(String acc) {
         int id = userMapper.selectID(acc);
         return id;
+    }
+
+    @Override
+    public User parentsInfo(int id) {
+        User user = userMapper.parentsInfo(id);
+        if (user != null) {
+            return user;
+        }
+        return null;
     }
 }
