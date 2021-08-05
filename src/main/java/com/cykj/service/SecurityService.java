@@ -1,6 +1,7 @@
 package com.cykj.service;
 
 import com.cykj.bean.Baby;
+import com.cykj.bean.BabyClass;
 import com.cykj.bean.Menu;
 import com.cykj.bean.pick;
 import com.cykj.va.SecurityMenuVa;
@@ -59,4 +60,11 @@ public interface SecurityService {
      * @return 返回符合条件的宝宝信息
      */
     public List<Baby> GetBaby(String Bname, String CID);
+
+    /**
+     * 根据条件获取宝宝班级
+     * @param CName 班级名称 支持模糊查询
+     * @return  返回符合条件的所有班级列表
+     */
+    public List<BabyClass> GetBabyClass(String CName);
 }

@@ -1,6 +1,7 @@
 package com.cykj.controller;
 
 import com.cykj.bean.Baby;
+import com.cykj.bean.BabyClass;
 import com.cykj.bean.pick;
 import com.cykj.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,11 @@ public class Securitycl {
     @ResponseBody
     @RequestMapping("/GetBaby")
     public List<Baby> GetBaby(@RequestParam(required = false ,value = "Bname") String Bname,@RequestParam(required = false ,value = "CID")String CID){
-        System.out.println(Bname+CID);
         return securityService.GetBaby(Bname,CID);
+    }
+    @ResponseBody
+    @RequestMapping("/GetBabyClass")
+    public List<BabyClass> GetBabyClass(@RequestParam(required = false ,value = "CName") String CName){
+        return securityService.GetBabyClass(CName);
     }
 }

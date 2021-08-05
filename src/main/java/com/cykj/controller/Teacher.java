@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
@@ -75,10 +76,12 @@ public class Teacher {
     //获得教师所在的班级
     @ResponseBody
     @RequestMapping("/getClassName")
-    public String getClassName(String uAccount) {
+    public String getClassName(String uAccount, HttpServletRequest req) {
         System.out.println("-------查询教师所在的班级名称-------");
         System.out.println("uAccount:" + uAccount);
-        List<ClassManagement> allClass = managementService.selectAllClass(uAccount);
+        String uAcc = (String) req.getSession().getAttribute("uaccount");
+        System.out.println("Acc:" + uAcc);
+        List<ClassManagement> allClass = managementService.selectAllClass(uAcc);
         System.out.println(allClass);
         String s = gson.toJson(allClass);
         return s;

@@ -30,4 +30,10 @@ public interface HealthService {
 
     //小程序亲子作业
     public List<ChildHomeWork> selChildHomeWork(String uphone, int page, int pages);
+
+    String upFood(String breakFood,String lunch,String dinner,String time);
+
+    String selectFood();
+
+    String changeFood(String foodId,String date,String changeFood,String foodType,String time);
 }
