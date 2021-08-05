@@ -19,4 +19,6 @@ public interface HealthManageMappper {
     public boolean updatehealth(int babyheid, String babyname, String height, String weight, String eyesight, String temperature, String healthcondition);
 
     public List<Healthbean> selectAll();
+
+    public boolean inserthealth(String babyname,String height,String weight,String eyesight,String temperature,String healthcondition,String checkuptime);
 }

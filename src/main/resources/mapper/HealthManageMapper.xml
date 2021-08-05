@@ -21,4 +21,9 @@
         SELECT * FROM t_babyhealth
     </select>
 
+    <insert id="inserthealth">
+INSERT INTO t_babyhealth(babyheid,babyname,height,weight,eyesight,temperature,healthcondition,checkuptime)
+VALUES(null ,#{babyname},#{height},#{weight},#{eyesight}, #{temperature},#{healthcondition},#{checkuptime});
+    </insert>
+
 </mapper>

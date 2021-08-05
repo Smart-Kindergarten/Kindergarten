@@ -41,6 +41,14 @@ public class HealthManageImpl implements HealthManageService {
 
     @Override
     public List<Healthbean> selectAll() {
-        return null;
+        List<Healthbean> list = healthManageMappper.selectAll();
+        return list;
+    }
+
+    @Override
+    public boolean inserthealth(String babyname, String height, String weight, String eyesight, String temperature, String healthcondition ,String checkuptime) {
+     boolean b = healthManageMappper.inserthealth(babyname, height, weight, eyesight, temperature, healthcondition,checkuptime);
+
+        return b;
     }
 }

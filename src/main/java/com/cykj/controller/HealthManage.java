@@ -4,12 +4,16 @@ import com.cykj.bean.Healthbean;
 import com.cykj.mapper.HealthManageMappper;
 import com.cykj.service.HealthManageService;
 import com.google.gson.Gson;
+import javafx.scene.chart.PieChart;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,8 +31,8 @@ public class HealthManage {
     private HealthManageMappper healthManageMappper;
 
     @GetMapping("/HealthmanageAll")
-    public @ResponseBody String health(int page){
-        List<Healthbean> list = healthManageMappper.selecthealth((page-1)*5,page*5);
+    public @ResponseBody String health(int page,int pagesize){
+        List<Healthbean> list = healthManageMappper.selecthealth((page-1)*pagesize,pagesize);
         Gson gson = new Gson();
         String g = gson.toJson(list);
         System.out.println(g);
@@ -56,4 +60,20 @@ public class HealthManage {
         System.out.println(g);
         return g;
     }
+   @GetMapping("/insert")
+    public @ResponseBody String insert(String babyname,String height,String weight,String eyesight,String temperature,String healthcondition,String checkuptime){
+
+       SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+       Date date = new Date(System.currentTimeMillis());
+       String shijian = simpleDateFormat.format(date);
+        boolean b = healthManageMappper.inserthealth(babyname, height, weight, eyesight, temperature, healthcondition,shijian);
+       Gson gson = new Gson();
+       String s = null;
+       if (b) {
+           s = gson.toJson("200");
+       } else {
+           s = gson.toJson("100");
+       }
+       return s;
+   }
 }
