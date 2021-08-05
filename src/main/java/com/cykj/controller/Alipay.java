@@ -49,8 +49,4 @@ public class Alipay {
         response.getWriter().close();
     }
 
-//    @RequestMapping("/payReturn")
-//    public String payReturn() {
-//        return "hello";
-//    }
 }
