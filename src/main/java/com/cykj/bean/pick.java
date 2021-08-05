@@ -7,6 +7,7 @@ package com.cykj.bean;
  * @desc:
  */
 public class pick {
+    private String pid = null;
     /**
      * 宝宝ID
      */
@@ -15,6 +16,10 @@ public class pick {
      * 宝宝被接送时间
      */
     private String time = null;
+    /**
+     * 宝宝被接送日期
+     */
+    private String date = null;
     /**
      * 接送宝宝的家长名
      */
@@ -36,17 +41,24 @@ public class pick {
      */
     private String sex = null;
 
+    /**
+     * 当前时间段为上下午？
+     */
+    private String TimeClass;
     public pick() {
     }
 
-    public pick(String biid, String time, String uname, String uid, String state, String bname, String sex) {
+    public pick(String pid, String biid, String time, String date, String uname, String uid, String state, String bname, String sex, String timeClass) {
+        this.pid = pid;
         this.biid = biid;
         this.time = time;
+        this.date = date;
         this.uname = uname;
         this.uid = uid;
         this.state = state;
         this.bname = bname;
         this.sex = sex;
+        TimeClass = timeClass;
     }
 
     public String getBiid() {
@@ -56,14 +68,33 @@ public class pick {
     @Override
     public String toString() {
         return "pick{" +
-                "biid='" + biid + '\'' +
+                "pid='" + pid + '\'' +
+                ", biid='" + biid + '\'' +
                 ", time='" + time + '\'' +
+                ", date='" + date + '\'' +
                 ", uname='" + uname + '\'' +
                 ", uid='" + uid + '\'' +
                 ", state='" + state + '\'' +
                 ", bname='" + bname + '\'' +
                 ", sex='" + sex + '\'' +
+                ", TimeClass='" + TimeClass + '\'' +
                 '}';
+    }
+
+    public String getTimeClass() {
+        return TimeClass;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
+
+    public void setTimeClass(String timeClass) {
+        TimeClass = timeClass;
     }
 
     public void setBiid(String biid) {
@@ -116,5 +147,13 @@ public class pick {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
