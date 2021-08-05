@@ -96,6 +96,14 @@ public class ChildHomeWork {
         this.evaluation = evaluation;
     }
 
+    public String getUphone() {
+        return uphone;
+    }
+
+    public void setUphone(String uphone) {
+        this.uphone = uphone;
+    }
+
     @Override
     public String toString() {
         return "ChildHomeWork{" +
@@ -105,6 +113,7 @@ public class ChildHomeWork {
                 ", arrangementTime='" + arrangementTime + '\'' +
                 ", tjurl='" + tjurl + '\'' +
                 ", pname='" + pname + '\'' +
+                ", uphone='" + uphone + '\'' +
                 ", evaluation='" + evaluation + '\'' +
                 '}';
     }
