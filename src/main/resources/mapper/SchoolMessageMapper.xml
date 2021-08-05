@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.SchoolMessageMapper">
+    <insert id="upDateSchoolMessage" parameterType="com.cykj.bean.SchoolMessage" >
+        insert  into t_schoolMessage(schoolName,legalPerson,legalPersonId,address,
+                                     TLE,schoolPermit,hygienicLicense,firePermit,organizationPermit,TaxPermit,applicationDeadline,type)
+                                      value (#{schoolName},#{legalPerson},#{legalPersonId},#{address},
+            #{TLE},#{schoolPermit},#{hygienicLicense},#{firePermit},#{organizationPermit},#{TaxPermit},#{applicationDeadline},#{type})
+    </insert>
+
+    <insert id="upDateTeacher" parameterType="com.cykj.bean.User">
+        insert into t_user(uname,uaccount,urid,ustate,upwd,uwork) value (#{uname},#{uaccount},#{urid},#{ustate},#{upwd},#{uwork})
+    </insert>
+
+
+    <select id="checkTeacherAcc" parameterType="com.cykj.bean.User" resultType="int">
+        select * from t_user where uaccount =#{uaccount}
+    </select>
+
+    <select id="selectTeacher" resultType="com.cykj.bean.User" >
+        select * from t_user where urid = ${2} or urid = ${4} or urid = ${5}
+    </select>
+
+    <update id="changeTeacher" parameterType="com.cykj.bean.User">
+        update t_user set urid = ${urid},uname = #{uname},uwork = #{uwork} where uid = ${uid}
+    </update>
+
+    <delete id="deleteTeacher" parameterType="int">
+        DELETE FROM t_user WHERE uid = ${id}
+    </delete>
+
+    <select id="select" resultType="com.cykj.bean.User" parameterType="String">
+        select * from t_user where uname = #{_uname}
+    </select>
+
+
+</mapper>

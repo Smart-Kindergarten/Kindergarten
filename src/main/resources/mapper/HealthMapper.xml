@@ -36,4 +36,22 @@
         INNER JOIN t_param t5 ON t5.pid = t1.`completion`
         WHERE t3.uphone = #{uphone} LIMIT #{page},#{pages}
     </select>
+
+<!--    查询膳食-->
+    <select id="selectFood" resultType="com.cykj.bean.BabyFood">
+        select * from t_babyfood where fdate!='' order by fid desc
+    </select>
+<!--    上传膳食-->
+    <insert id="upFood" parameterType="com.cykj.bean.BabyFood">
+        insert into t_babyfood(ftime,fdate,fone,ftow,fthree,ffour,ffive)
+        value (#{ftime},#{fdate},#{fone},#{ftow},#{fthree},#{ffour},#{ffive})
+    </insert>
+
+    <update id="upFoodTime" parameterType="com.cykj.bean.BabyFood">
+        update t_babyfood set fdate = #{fdate} where fid = ${fid}
+    </update>
+
+    <update id="changeFood"  parameterType="com.cykj.bean.BabyFood">
+        update t_babyfood set ${reserve2} = #{reserve3} where fid = ${fid}
+    </update>
 </mapper>
