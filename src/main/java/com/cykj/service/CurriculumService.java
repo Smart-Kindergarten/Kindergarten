@@ -13,5 +13,5 @@ import java.util.List;
 
 public interface  CurriculumService {
     //（杨）查询课程表信息
-    List<Curriculum> selectCurrAll(String date);
+    List<Curriculum> selectCurrAll(int classId,String date);
 }

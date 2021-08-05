@@ -23,4 +23,45 @@
         update t_safetyeducation set t_safetyeducation.videoName = #{videoName},t_safetyeducation.releaseTime = #{releaseTime}
         ,t_safetyeducation.fileName = #{fileName} where t_safetyeducation.videoId = #{videoId}
     </update>
+
+    <update id="updateQuestions">
+update t_safetyeducation set t_safetyeducation.textUrl = #{textUrl}  where  t_safetyeducation.videoId = #{videoId}
+
+    </update>
+
+    <select id="selectRead" parameterType="com.cykj.bean.FamilyRead" resultType="com.cykj.bean.FamilyRead">
+        select * from t_familyread  LIMIT #{page},#{pages}
+    </select>
+
+    <select id="selectTerraceInf" parameterType="com.cykj.bean.TerraceInformationBean" resultType="com.cykj.bean.TerraceInformationBean">
+     select * from t_terrace  LIMIT #{page},#{pages}
+    </select>
+
+    <insert id="insTerraceInf">
+        INSERT INTO t_terrace(iftcontent,Createtime,reserve1,reserve2,reserve3) VALUES(#{iftcontent},#{Createtime},#{reserve1},"14",#{reserve3});
+    </insert>
+
+
+    <update id="updateTerraceInf">
+        UPDATE t_terrace SET t_terrace.iftcontent = #{iftcontent},t_terrace.Createtime = #{Createtime},t_terrace.reserve1=#{reserve1} WHERE t_terrace.ttid = #{ttid}
+    </update>
+
+    <delete id="delectTerraceInf">
+   DELETE FROM t_terrace WHERE t_terrace.ttid = #{ttid}
+    </delete>
+
+    <update id="updatereserve2">
+        UPDATE t_terrace SET t_terrace.reserve2 = "15" where t_terrace.ttid = #{ttid}
+    </update>
+
+    <select id="selectType" parameterType="com.cykj.bean.TerraceInformationBean" resultType="com.cykj.bean.TerraceInformationBean">
+select * from t_terrace where t_terrace.reserve3 = #{reserve3}
+    </select>
+
+    <select id="selectParentsVideo"  parameterType="com.cykj.bean.SafetyEducation" resultType="com.cykj.bean.SafetyEducation">
+    SELECT t_safetyeducation.startTime,t_safetyeducation.endTime,t_safetyeducation.videoId,t_safetyeducation.videoName,
+t_safetyeducation.releaseTime, t_security.secScore,t_param.pname,t_safetyeducation.fileSite
+ FROM t_safetyeducation LEFT JOIN t_security on t_safetyeducation.videoId = t_security.videoId LEFT JOIN t_param ON  t_security.completeId = t_param.pid
+LEFT JOIN t_user ON t_user.uaccount = t_security.baId LIMIT #{page},#{pages}
+    </select>
 </mapper>

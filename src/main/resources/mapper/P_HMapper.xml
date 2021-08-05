@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.P_HMapper">
+    <insert id="insertAll">
+        INSERT INTO t_publishhomework(classId, teacherId, homeworkContent, arrangementTime, homeworkURL)
+        VALUES (#{classId}, #{teacherId}, #{homeworkContent}, #{arrangementTime}, #{homeworkURL});
+    </insert>
+</mapper>

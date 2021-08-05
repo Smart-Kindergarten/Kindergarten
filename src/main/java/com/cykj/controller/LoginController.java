@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.EndpointConfig;
+import javax.websocket.Session;
 import java.util.List;
 
 /**
@@ -20,7 +26,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/admin")
-public class LoginController {
+public class LoginController extends HttpServlet {
     @Autowired
     private LoginMapper loginMapper;
 
@@ -34,9 +40,12 @@ public class LoginController {
 
     @GetMapping("/GGB2")
     public @ResponseBody
-    String GGB2(User user) {
+    String GGB2(User user, HttpServletRequest req, HttpServletResponse resp) {
         System.out.println(user.getUaccount());
+        String uaccount = user.getUaccount();
         System.out.println(user.getUpwd());
+        HttpSession session = req.getSession();
+        session.setAttribute("uaccount",uaccount);
         List<User> users = loginMapper.checkLogin(user);
         System.out.println(users.toString() + "dasdads");
         Gson gson = new Gson();
@@ -46,10 +55,12 @@ public class LoginController {
 
     @GetMapping("/MenuAll")
     public @ResponseBody
-    String GGB2(String uaccount) {
+    String GGB2(String uaccount, HttpServletRequest req, HttpServletResponse resp) {
         System.out.println("菜单进来了阿阿");
         System.out.println("uaccount:" + uaccount);
-        List<Menu> menus = loginMapper.menuAll(uaccount);
+        String uaccounts = (String) req.getSession().getAttribute("uaccount");
+        System.out.println(uaccounts);
+        List<Menu> menus = loginMapper.menuAll(uaccounts);
         System.out.println(menus.toString());
         Gson gson = new Gson();
         String s = gson.toJson(menus);

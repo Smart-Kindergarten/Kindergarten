@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.C_HMapper">
+    <select id="selectClassAll" resultType="com.cykj.va.C_HVa">
+        SELECT t1.chId, t2.biid, t2.biname, t3.uname, t1.homeworkURL, t4.arrangementTime, t1.completionTime
+        FROM t_checkhomework t1
+                 INNER JOIN t_babyinf t2 ON t1.babyId = t2.biid
+                 INNER JOIN t_user t3 ON t2.uid = t3.uid
+                 INNER JOIN t_publishhomework t4 ON t1.phId = t4.phId
+        WHERE t1.classId = #{classId};
+    </select>
+    <update id="updateRating">
+        UPDATE t_checkhomework t1
+        SET t1.evaluation=#{rating}
+        WHERE t1.chId = #{chId};
+    </update>
+
+</mapper>

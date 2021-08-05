@@ -30,16 +30,22 @@ public class WeekDate {
     }
 
     //获取当前日的一周前和一周后
-    public static String getDate(String week) {
+    public static String getDate(String week, String date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
+        Date d = null;
+        try {
+            d = format.parse(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //过去七天
-        c.setTime(new Date());
+        c.setTime(d);
         String day;
         if (week.equals("LastWeek")) {
             c.add(Calendar.DATE, -7);
-            Date d = c.getTime();
-            day = format.format(d);
+            Date da = c.getTime();
+            day = format.format(da);
             System.out.println("过去七天：" + day);
         } else {
             c.add(Calendar.DATE, 7);
@@ -48,5 +54,14 @@ public class WeekDate {
             System.out.println("未来七天：" + day);
         }
         return day;
+    }
+
+    //当前时间
+    public static String getCurrentTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String format = sdf.format(date);
+//        System.out.println(format);
+        return format;
     }
 }

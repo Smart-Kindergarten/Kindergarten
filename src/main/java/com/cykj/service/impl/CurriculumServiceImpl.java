@@ -23,8 +23,8 @@ public class CurriculumServiceImpl implements CurriculumService {
     private CurriculumMapper curriculumMapper;
 
     @Override
-    public List<Curriculum> selectCurrAll(String date) {
-        List<Curriculum> curriculumList = curriculumMapper.selectCurrAll(date);
+    public List<Curriculum> selectCurrAll(int classId,String date) {
+        List<Curriculum> curriculumList = curriculumMapper.selectCurrAll(classId,date);
         if (!curriculumList.isEmpty()) {
             return curriculumList;
         } else {

@@ -5,11 +5,12 @@ import org.springframework.stereotype.Repository;
 /**
  * @version 1.0
  * @author: qiyuan
- * @date: 2021/7/24 13:27
+ * @date: 2021/7/30 22:40
  * @desc:
- * 安全教育
  */
-
 @Repository
-public interface SecurityMapper {
+public interface UserMapper {
+    //查询用户ID
+    int selectID(String acc);
+
 }
