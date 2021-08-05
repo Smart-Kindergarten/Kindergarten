@@ -48,11 +48,11 @@ public class Teacher {
     //查询当前日期课程表
     @RequestMapping("/selectCurrAll")
     @ResponseBody
-    public String getCurrAll(String date) {
+    public String getCurrAll(int classId, String date) {
         System.out.println("-------查询课程表-------");
         String monday = WeekDate.getMonday(date);
         System.out.println(date + "这周的第一天：" + monday);
-        List<Curriculum> currAll = curriculumService.selectCurrAll(monday);
+        List<Curriculum> currAll = curriculumService.selectCurrAll(classId, monday);
         String s = gson.toJson(currAll);
         System.out.println(s);
         return s;
@@ -61,12 +61,12 @@ public class Teacher {
     //查询当前日期的上周或下周课程表
     @ResponseBody
     @RequestMapping("/getWeekDate")
-    public String getWeekCurrAll(String week) {
+    public String getWeekCurrAll(int classId, String week, String date) {
         System.out.println("-------查询课程表-------");
-        String date = WeekDate.getDate(week);//获取到日期的上周或下周
-        String monday = WeekDate.getMonday(date);//获取到上周或下周的第一天（星期一为一周开始）
+        String s1 = WeekDate.getDate(week, date);//获取到日期的上周或下周
+        String monday = WeekDate.getMonday(s1);//获取到上周或下周的第一天（星期一为一周开始）
         System.out.println("日期：" + monday);
-        List<Curriculum> currAll = curriculumService.selectCurrAll(monday);
+        List<Curriculum> currAll = curriculumService.selectCurrAll(classId, monday);
         String s = gson.toJson(currAll);
         System.out.println(s);
         return s;
@@ -210,4 +210,6 @@ public class Teacher {
         System.out.println(list);
         return gson.toJson(list);
     }
+
+
 }
