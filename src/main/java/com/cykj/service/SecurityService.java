@@ -1,6 +1,8 @@
 package com.cykj.service;
 
+import com.cykj.bean.Baby;
 import com.cykj.bean.Menu;
+import com.cykj.bean.pick;
 import com.cykj.va.SecurityMenuVa;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -42,4 +44,19 @@ public interface SecurityService {
      * <video controls="autoplay"    src="http://localhost:9900/Security/GetVideo?mp4=TextMp4(1)" />
      */
     public void getVido(HttpServletRequest request, HttpServletResponse response, @RequestParam("mp4")String mp4);
+
+    /**
+     * 获取指定宝宝的接送记录
+     * @param BID 宝贝id
+     * @return 返回所有接送记录
+     */
+    public List<pick> GetPick(String BID);
+
+    /**
+     * 根据条件获取宝宝信息
+     * @param Bname 宝宝ID
+     * @param CID 班级ID
+     * @return 返回符合条件的宝宝信息
+     */
+    public List<Baby> GetBaby(String Bname, String CID);
 }

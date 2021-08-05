@@ -12,7 +12,45 @@
     </select>
 
     <insert id="inseVideo">
-        INSERT INTO t_safetyeducation VALUES(null,#{videoName},NULL,NULL,NULL,NULL,NULL,#{releaseTime},NULL,#{fileSite},NULL,NULL,NULL,NULL)
+        INSERT INTO t_safetyeducation VALUES(null,#{videoName},NULL,NULL,NULL,NULL,NULL,#{releaseTime},#{fileName},#{fileSite},NULL,NULL,NULL,NULL)
     </insert>
 
+    <delete id="delectVideo">
+            DELETE from t_safetyeducation where t_safetyeducation.videoId = #{videoId}
+    </delete>
+
+    <update id="updateVideo" parameterType="com.cykj.bean.SafetyEducation">
+        update t_safetyeducation set t_safetyeducation.videoName = #{videoName},t_safetyeducation.releaseTime = #{releaseTime}
+        ,t_safetyeducation.fileName = #{fileName} where t_safetyeducation.videoId = #{videoId}
+    </update>
+
+    <update id="updateQuestions">
+update t_safetyeducation set t_safetyeducation.textUrl = #{textUrl}  where  t_safetyeducation.videoId = #{videoId}
+
+    </update>
+
+    <select id="selectRead" parameterType="com.cykj.bean.FamilyRead" resultType="com.cykj.bean.FamilyRead">
+        select * from t_familyread  LIMIT #{page},#{pages}
+    </select>
+
+    <select id="selectTerraceInf" parameterType="com.cykj.bean.TerraceInformationBean" resultType="com.cykj.bean.TerraceInformationBean">
+     select * from t_terrace  LIMIT #{page},#{pages}
+    </select>
+
+    <insert id="insTerraceInf">
+        INSERT INTO t_terrace(iftcontent,Createtime,reserve1,reserve2) VALUES(#{iftcontent},#{Createtime},#{reserve1},"14");
+    </insert>
+
+
+    <update id="updateTerraceInf">
+        UPDATE t_terrace SET t_terrace.iftcontent = #{iftcontent},t_terrace.Createtime = #{Createtime},t_terrace.reserve1=#{reserve1} WHERE t_terrace.ttid = #{ttid}
+    </update>
+
+    <delete id="delectTerraceInf">
+   DELETE FROM t_terrace WHERE t_terrace.ttid = #{ttid}
+    </delete>
+
+    <update id="updatereserve2">
+        UPDATE t_terrace SET t_terrace.reserve2 = "15" where t_terrace.ttid = #{ttid}
+    </update>
 </mapper>
