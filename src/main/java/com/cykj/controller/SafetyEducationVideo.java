@@ -3,12 +3,10 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import com.cykj.mapper.HealthMapper;
 import com.cykj.mapper.SafetyEducationVideoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 /**
  * @ClassName: SafetyEducationVideo
@@ -41,7 +39,7 @@ public class SafetyEducationVideo {
             String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1)
                     .toLowerCase();
             File directory = new File("src/main/resources");
-            String courseFile = directory.getCanonicalPath()+"/static/js/video";;
+            String courseFile = directory.getCanonicalPath()+ "/static/zw/video";;
             System.out.println(courseFile);
             // 重构文件名称
             System.out.println("前端传递的保存路径："+courseFile);

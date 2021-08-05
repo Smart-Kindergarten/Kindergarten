@@ -100,4 +100,22 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
         List<SafetyEducation> safetyEducations = safetyEducationVideoMapper.selectParentsVideo(page, pages);
         return safetyEducations;
     }
+
+    @Override
+    public boolean inseRead(String bookname, String Folderaddress, String UploadTime, String reserve1, String reserve2, String reserve3) {
+        boolean b = safetyEducationVideoMapper.inseRead(bookname, Folderaddress, UploadTime, reserve1, reserve2, reserve3);
+        return b;
+    }
+
+    @Override
+    public boolean updateRead(String bookname, String Folderaddress, String UploadTime, String reserve1, String reserve2, int frid) {
+        boolean b = safetyEducationVideoMapper.updateRead(bookname, Folderaddress, UploadTime, reserve1, reserve2, frid);
+        return b;
+    }
+
+    @Override
+    public boolean delectBook(int frid) {
+        boolean b = safetyEducationVideoMapper.delectBook(frid);
+        return b;
+    }
 }

@@ -64,4 +64,18 @@ t_safetyeducation.releaseTime, t_security.secScore,t_param.pname,t_safetyeducati
  FROM t_safetyeducation LEFT JOIN t_security on t_safetyeducation.videoId = t_security.videoId LEFT JOIN t_param ON  t_security.completeId = t_param.pid
 LEFT JOIN t_user ON t_user.uaccount = t_security.baId LIMIT #{page},#{pages}
     </select>
+
+
+    <insert id="inseRead">
+    INSERT INTO t_familyread VALUES(NULL,NULL,#{bookname},#{Folderaddress},#{UploadTime},#{reserve1},#{reserve2},#{reserve3});
+    </insert>
+
+
+    <update id="updateRead">
+        UPDATE t_familyread SET bookname = #{bookname},Folderaddress = #{Folderaddress},UploadTime = #{UploadTime},reserve1 = #{reserve1},reserve2 = #{reserve2} WHERE frid = #{frid}
+    </update>
+
+    <delete id="delectBook">
+DELETE from t_familyread  WHERE frid = #{frid}
+    </delete>
 </mapper>

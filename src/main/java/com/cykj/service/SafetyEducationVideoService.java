@@ -45,4 +45,15 @@ public interface SafetyEducationVideoService {
 
     // 查询家长查看视频信息
     public List<SafetyEducation> selectParentsVideo(int page,int pages);
+
+    // 上传绘本
+    public boolean inseRead(String bookname,String Folderaddress,String UploadTime,String reserve1,String reserve2,String reserve3);
+
+    // 重新上传绘本
+    public  boolean updateRead(String bookname,String Folderaddress,String UploadTime,String reserve1,String reserve2,int frid);
+
+    // 删除绘本
+    public boolean delectBook(int frid);
+
+
 }
