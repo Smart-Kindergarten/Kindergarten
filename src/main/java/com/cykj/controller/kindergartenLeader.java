@@ -183,4 +183,11 @@ public class kindergartenLeader {
         String msg = message.selectBaby(ptime,pName);
         return msg;
     }
+
+    @ResponseBody
+    @RequestMapping("/deleteBaby")
+    public String deleteBaby(String id) {
+        String msg = message.deleteBaby(id);
+        return msg;
+    }
 }

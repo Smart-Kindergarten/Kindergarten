@@ -41,4 +41,6 @@ public interface SchoolMessageMapper {
     void addBaby(BabyInf babyInf);
 
     void changeBaby(BabyInf babyInf);
+
+    void deleteBaby(int id);
 }

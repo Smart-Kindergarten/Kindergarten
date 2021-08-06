@@ -79,4 +79,8 @@
     <update id="changeBaby" parameterType="com.cykj.bean.BabyInf">
         update t_babyinf set biname = #{biname},bisex = #{bisex},biytd = #{biytd} where biid = ${biid}
     </update>
+
+    <delete id="deleteBaby" parameterType="int">
+        delete FROM t_babyinf where biid = ${id}
+    </delete>
 </mapper>

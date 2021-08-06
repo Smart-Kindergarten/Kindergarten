@@ -40,4 +40,6 @@ public interface SchoolMessageService {
     String changeBaby(BabyInf babyInf);
 
     String selectBaby(String ptime,String pName);
+
+    String deleteBaby(String id);
 }

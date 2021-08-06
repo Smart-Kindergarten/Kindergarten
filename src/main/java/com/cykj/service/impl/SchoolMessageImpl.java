@@ -278,5 +278,17 @@ public class SchoolMessageImpl implements SchoolMessageService {
         return null;
     }
 
+    @Override
+    public String deleteBaby(String id) {
+        try {
+            int babyId = Integer.parseInt(id);
+            messageMapper.deleteBaby(babyId);
+            return "成功";
+        } catch (Exception e) {
+            return "失败";
+        }
+
+    }
+
 
 }
