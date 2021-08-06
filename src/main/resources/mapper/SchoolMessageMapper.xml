@@ -36,5 +36,37 @@
         select * from t_user where uname = #{_uname}
     </select>
 
+    <select id="selectAllParents" resultType="com.cykj.bean.User">
+        SELECT *
+        FROM t_user join t_babyinf
+        ON t_user.ures1=t_babyinf.biid
+    </select>
 
+    <select id="selectAllBaby" resultType="com.cykj.bean.BabyInf">
+        select * from t_babyinf
+    </select>
+
+    <select id="checkParents" parameterType="com.cykj.bean.User" resultType="com.cykj.bean.User">
+        select * from t_user where uname = #{uname} and ures3  &gt; #{ures1} and ures3 &lt; #{ures2}
+    </select>
+
+    <update id="changeParents" parameterType="com.cykj.bean.User">
+        update t_user
+        set ures1 = ${ures1},uname = #{uname},uwork = #{uwork},uchildrelation = #{uchildrelation}
+        where uid = ${uid}
+    </update>
+
+    <delete id="deleteParents" parameterType="int">
+        delete from t_user where uid = ${id}
+    </delete>
+
+    <insert id="addParents" parameterType="com.cykj.bean.User">
+        insert
+        into t_user(uname,ures1,uchildrelation,uphone,uwork,ures3,urid,uaccount,upwd,ustate)
+        value (#{uname},#{biname},#{uchildrelation},#{uphone},#{uwork},#{ures3},${1},#{uaccount},123456,8)
+    </insert>
+
+    <select id="checkParentsAcc" parameterType="String" resultType="com.cykj.bean.User">
+        select * from t_user where uaccount=#{_acc}
+    </select>
 </mapper>

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.cykj.bean.SchoolMessage;
 import com.cykj.bean.TeacherManagement;
 import com.cykj.bean.User;
+import com.cykj.service.SchoolMessageService;
 import com.cykj.service.impl.SchoolMessageImpl;
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -22,7 +24,7 @@ import java.util.*;
 @RestController
 public class kindergartenLeader {
     @Autowired
-    SchoolMessageImpl message;
+    SchoolMessageService message;
 
     @ResponseBody
     @RequestMapping("/upData")
@@ -106,5 +108,55 @@ public class kindergartenLeader {
             }
         }
         return null;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectAllParents")
+    public String selectAllParents() {
+        String msg = message.selectAllParents();
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectAllBaby")
+    public String selectAllBaby() {
+        String msg = message.selectAllBaby();
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/checkParents")
+    public String checkParents(String time,String name) {
+        String msg = message.checkParents(time,name);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/changeParents")
+    public String changeParents(String name,String babyName,String relation,String work,String pid) {
+        System.out.println(name+"!"+babyName+"!"+relation+"!"+work);
+        String msg = message.changeParents(name,babyName,relation,work,pid);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/deleteParents")
+    public String deleteParents(String id) {
+        String msg = message.deleteParents(Integer.parseInt(id));
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/addParents")
+    public String addParents(User user) {
+        String msg = message.addParents(user);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/checkParentsAcc")
+    public String checkParentsAcc(String uaccount) {
+        String msg = message.checkParentsAcc(uaccount);
+        return msg;
     }
 }

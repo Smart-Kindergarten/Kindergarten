@@ -47,6 +47,9 @@ public class User {
     private String pres2;
     private String pres3;
 
+//    private BabyInf  //babyName
+    private String babyname;
+
     public User() {
     }
 
@@ -74,6 +77,7 @@ public class User {
         this.pres2 = pres2;
         this.pres3 = pres3;
     }
+
 
     public String getBiadtime() {
         return biadtime;

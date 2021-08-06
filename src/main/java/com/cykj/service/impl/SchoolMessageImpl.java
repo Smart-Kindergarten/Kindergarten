@@ -1,5 +1,7 @@
 package com.cykj.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.cykj.bean.BabyInf;
 import com.cykj.bean.SchoolMessage;
 import com.cykj.bean.User;
 import com.cykj.mapper.SchoolMessageMapper;
@@ -19,7 +21,6 @@ public class SchoolMessageImpl implements SchoolMessageService {
     @Override
     public int upDateSchoolMessage(SchoolMessage schoolMessage) {
         try {
-
             SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
             sdf.applyPattern("yyyy-MM-dd HH:mm:ss a");// a为am/pm的标记
             Date date = new Date();// 获取当前时间
@@ -121,6 +122,99 @@ public class SchoolMessageImpl implements SchoolMessageService {
         return users;
     }
 
+    @Override
+    public String selectAllParents() {
+        List<User> users = messageMapper.selectAllParents();
+        for (int i=0;i<users.size();i++){
+            User user = users.get(i);
+            String time = user.getUres3();
+            Long timestamp = Long.parseLong(time)*1;
+            String date = new java.text.SimpleDateFormat("yyyy-MM-dd-HH:MM").format(new java.util.Date(timestamp));
+            user.setUres3(date);
+        }
+        System.out.println(users);
+        String msg = JSON.toJSONString(users);
+        return msg;
+    }
+
+    @Override
+    public String selectAllBaby() {
+        List<BabyInf> babyInfs = messageMapper.selectAllBaby();
+        String msg = JSON.toJSONString(babyInfs);
+        System.out.println(msg);
+        return msg;
+    }
+
+    @Override
+    public String checkParents(String time, String pName) {
+        System.out.println(time+"!!"+pName);
+        String []times = time.split(",");
+        User user = new User();
+        user.setUres1(times[0]);
+        user.setUres2(times[1]);
+        user.setUname(pName);
+        List<User> users = messageMapper.checkParents(user);
+        String msg = JSON.toJSONString(users);
+        System.out.println(users);
+        return msg;
+    }
+
+    @Override
+    public String changeParents(String name, String babyName, String relation, String work,String pid) {
+        try {
+            String []BN = babyName.split("-");
+            User user = new User();
+            user.setUid(Integer.parseInt(pid));
+            user.setUres1(BN[1]);
+            user.setUname(name);
+            user.setUchildrelation(relation);
+            user.setUwork(work);
+            messageMapper.changeParents(user);
+            return "成功";
+        }catch (Exception e){
+            System.out.println(e);
+            return "失败";
+        }
+    }
+
+    @Override
+    public String deleteParents(int id) {
+        try {
+            messageMapper.deleteParents(id);
+            return "成功";
+        }catch (Exception e){
+            System.out.println(e);
+            return "失败";
+        }
+    }
+
+    @Override
+    public String addParents(User user) {
+        try {
+            System.out.println(user.getBiname());
+            String []msg = user.getBiname().split("-");
+            String time = String.valueOf(System.currentTimeMillis());
+            user.setUres3(time);
+            user.setBiname(msg[1]);
+            System.out.println(user.getBiname());
+            messageMapper.addParents(user);
+            return "成功";
+        }catch (Exception e){
+            System.out.println(e);
+            return "失败";
+        }
+    }
+
+    @Override
+    public String checkParentsAcc(String uaccount) {
+        try {
+            User user = messageMapper.checkParentsAcc(uaccount);
+            return "成功";
+        }catch (Exception e){
+            System.out.println(e);
+            return "失败";
+        }
+    }
 
 
 }

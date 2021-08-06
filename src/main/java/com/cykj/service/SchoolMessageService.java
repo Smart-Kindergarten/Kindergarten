@@ -20,4 +20,17 @@ public interface SchoolMessageService {
 
     List<User> select(String uname);
 
+    String selectAllParents();
+
+    String selectAllBaby();
+
+    String checkParents(String time,String pName);
+
+    String changeParents(String name,String babyName,String relation,String work,String pid);
+
+    String deleteParents(int id);
+
+    String addParents(User user);
+
+    String checkParentsAcc(String uaccount);
 }
