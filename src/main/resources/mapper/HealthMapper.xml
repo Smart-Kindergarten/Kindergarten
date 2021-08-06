@@ -54,4 +54,5 @@
     <update id="changeFood"  parameterType="com.cykj.bean.BabyFood">
         update t_babyfood set ${reserve2} = #{reserve3} where fid = ${fid}
     </update>
+
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -254,18 +255,21 @@ public class SchoolMessageImpl implements SchoolMessageService {
             String []times = ptime.split(",");
             long timeOne = Long.parseLong(times[0]);
             long timeTow = Long.parseLong(times[1]);
-            System.out.println(timeOne);
-            System.out.println(timeTow);
+            System.out.println(timeOne+"!`!");
+            System.out.println(timeTow+"!`!");
             List<BabyInf> babyInfs = messageMapper.selectAllBaby();
             for (BabyInf babyInf : babyInfs) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String mydate = babyInf.getBiytd();
                 Date datetime = sdf.parse(mydate);;//将你的日期转换为时间戳
                 String time = String.valueOf(datetime.getTime());
+                System.out.println(Long.parseLong(time)+"!--!");
                 if (Long.parseLong(time)>=timeOne&& Long.parseLong(time)<=timeTow && pName.equals(babyInf.getBiname())){
-                    return JSON.toJSONString(babyInf);
-                }else {
-                    return null;
+                    List<BabyInf> babyInfs1 = new ArrayList<BabyInf>();
+                    babyInfs1.add(babyInf);
+                    String msg = JSON.toJSONString(babyInfs1);
+                    System.out.println(msg);
+                    return msg;
                 }
             }
         } catch (ParseException e) {
