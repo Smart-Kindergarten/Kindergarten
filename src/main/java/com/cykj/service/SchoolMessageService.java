@@ -1,5 +1,6 @@
 package com.cykj.service;
 
+import com.cykj.bean.BabyInf;
 import com.cykj.bean.SchoolMessage;
 import com.cykj.bean.User;
 
@@ -33,4 +34,10 @@ public interface SchoolMessageService {
     String addParents(User user);
 
     String checkParentsAcc(String uaccount);
+
+    String addBaby(BabyInf babyInf);
+
+    String changeBaby(BabyInf babyInf);
+
+    String selectBaby(String ptime,String pName);
 }

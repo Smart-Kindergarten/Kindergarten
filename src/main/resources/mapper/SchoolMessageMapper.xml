@@ -69,4 +69,14 @@
     <select id="checkParentsAcc" parameterType="String" resultType="com.cykj.bean.User">
         select * from t_user where uaccount=#{_acc}
     </select>
+
+    <insert id="addBaby" parameterType="com.cykj.bean.BabyInf">
+        insert
+        into t_babyinf(biname,biytd,bisex,biadtime)
+        value (#{biname},#{biytd},#{bisex},#{biadtime})
+    </insert>
+
+    <update id="changeBaby" parameterType="com.cykj.bean.BabyInf">
+        update t_babyinf set biname = #{biname},bisex = #{bisex},biytd = #{biytd} where biid = ${biid}
+    </update>
 </mapper>

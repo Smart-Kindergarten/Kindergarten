@@ -37,4 +37,8 @@ public interface SchoolMessageMapper {
     void addParents(User user);
 
     User checkParentsAcc(String acc);
+
+    void addBaby(BabyInf babyInf);
+
+    void changeBaby(BabyInf babyInf);
 }

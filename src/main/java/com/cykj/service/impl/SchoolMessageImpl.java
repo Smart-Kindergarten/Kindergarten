@@ -9,7 +9,9 @@ import com.cykj.service.SchoolMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -214,6 +216,62 @@ public class SchoolMessageImpl implements SchoolMessageService {
             System.out.println(e);
             return "失败";
         }
+    }
+
+    @Override
+    public String addBaby(BabyInf babyInf) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
+            sdf.applyPattern("yyyy-MM-dd HH:mm");// a为am/pm的标记
+            Date date = new Date();// 获取当前时间
+            System.out.println("现在时间：" + sdf.format(date)); // 输出已经格式化的现在时间(24小时制)
+            babyInf.setBiadtime(sdf.format(date));
+            messageMapper.addBaby(babyInf);
+            return "成功";
+        }catch (Exception e){
+            System.out.println(e);
+            return "失败";
+        }
+    }
+
+    @Override
+    public String changeBaby(BabyInf babyInf) {
+        try {
+            System.out.println(babyInf.getBiname()+"!"+babyInf.getBisex()+"!"+babyInf.getBiytd());
+
+            messageMapper.changeBaby(babyInf);
+            return "成功";
+        }catch (Exception e){
+            System.out.println(e);
+            return "失败";
+        }
+    }
+
+    @Override
+    public String selectBaby(String ptime, String pName) {
+        System.out.println(ptime+"!"+pName);
+        try {
+            String []times = ptime.split(",");
+            long timeOne = Long.parseLong(times[0]);
+            long timeTow = Long.parseLong(times[1]);
+            System.out.println(timeOne);
+            System.out.println(timeTow);
+            List<BabyInf> babyInfs = messageMapper.selectAllBaby();
+            for (BabyInf babyInf : babyInfs) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String mydate = babyInf.getBiytd();
+                Date datetime = sdf.parse(mydate);;//将你的日期转换为时间戳
+                String time = String.valueOf(datetime.getTime());
+                if (Long.parseLong(time)>=timeOne&& Long.parseLong(time)<=timeTow && pName.equals(babyInf.getBiname())){
+                    return JSON.toJSONString(babyInf);
+                }else {
+                    return null;
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

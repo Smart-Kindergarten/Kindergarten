@@ -2,6 +2,7 @@ package com.cykj.controller;
 
 
 import com.alibaba.fastjson.JSON;
+import com.cykj.bean.BabyInf;
 import com.cykj.bean.SchoolMessage;
 import com.cykj.bean.TeacherManagement;
 import com.cykj.bean.User;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -157,6 +159,28 @@ public class kindergartenLeader {
     @RequestMapping("/checkParentsAcc")
     public String checkParentsAcc(String uaccount) {
         String msg = message.checkParentsAcc(uaccount);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/addBaby")
+    public String addBaby(BabyInf babyInf) {
+        String msg = message.addBaby(babyInf);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/changeBaby")
+    public String changeBaby(BabyInf babyInf,String id) {
+        babyInf.setBiid(Integer.parseInt(id));
+        String msg = message.changeBaby(babyInf);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/checkBaby")
+    public String selectBaby(String ptime,String pName) {
+        String msg = message.selectBaby(ptime,pName);
         return msg;
     }
 }
