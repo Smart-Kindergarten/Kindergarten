@@ -2,17 +2,15 @@ package com.cykj.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  * @ClassName: UploadFile
@@ -39,6 +37,7 @@ public class UploadFile {
         Instant timestamp = Instant.now();
         String ext = FilenameUtils.getExtension(file.getOriginalFilename());
         String fileNames = today + String.valueOf(timestamp.toEpochMilli()) + "." + ext;
+        System.out.println(fileNames);
         //保存到文件服务器
         file.transferTo(new File(System.getProperty("user.dir") + "\\src\\main\\resources\\static\\fileImage\\" + fileNames));
         return "上传文件成功";
