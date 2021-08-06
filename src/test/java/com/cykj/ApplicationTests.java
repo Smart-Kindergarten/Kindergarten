@@ -4,7 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -122,8 +125,14 @@ class ApplicationTests {
 
     @Test
     public void getDate1() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String a = "20210708";
+        Date date = null;
+        try {
+            date = sdf.parse(a);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         String format = sdf.format(date);
         System.out.println(format);
     }

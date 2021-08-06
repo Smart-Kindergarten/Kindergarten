@@ -10,8 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -58,11 +64,16 @@ public class SafetyEducationInf {
         return s;
     }
 
+
+    // 获取绘本信息
     @GetMapping("/readInf")
     public @ResponseBody
-    String readInf(int page){
+    String readInf(String UploadTime,String UploadTimes,String bookname,int page){
         System.out.println("获取绘本信息");
-        List<FamilyRead> familyReads = safetyEducationVideoMapper.selectRead((page - 1) * 5, page * 5);
+        System.out.println(UploadTime);
+        System.out.println(UploadTimes);
+        System.out.println(bookname);
+        List<FamilyRead> familyReads = safetyEducationVideoMapper.selectRead(UploadTime,UploadTimes,bookname,(page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(familyReads);
         System.out.println(s);
@@ -73,9 +84,17 @@ public class SafetyEducationInf {
 
     @GetMapping("/TerraceInf")
     public @ResponseBody
-    String TerraceInf(int page){
+    String TerraceInfs( String Createtime, String Createtimes, String iftcontent,  int page){
         System.out.println("获取平台信息");
-        List<TerraceInformationBean> terraceInformationBeans = safetyEducationVideoMapper.selectTerraceInf((page - 1) * 5, page * 5);
+        System.out.println(Createtime);
+        System.out.println(Createtimes);
+        System.out.println(iftcontent);
+        System.out.println(page);
+        List<TerraceInformationBean> terraceInformationBeans = safetyEducationVideoMapper.selectTerraceInf(Createtime
+                ,Createtimes
+                ,iftcontent,
+                (page - 1) * 5,
+                (page * 5));
         Gson gson = new Gson();
         String s = gson.toJson(terraceInformationBeans);
         System.out.println(s);
@@ -177,4 +196,76 @@ public class SafetyEducationInf {
         System.out.println(s);
         return s;
     }
+
+
+
+    // 确认添加绘本
+    @GetMapping("/pictureBook")
+    public @ResponseBody
+    String pictureBook(String bookname, String booknames, String content, String pagess, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        System.out.println("确认添加绘本");
+        String newCompanyImageName = (String) req.getSession().getAttribute("newCompanyImageName");
+        System.out.println(newCompanyImageName);
+
+        File directory = new File("src/main/resources");
+        String courseFile = directory.getCanonicalPath()+ "/static/zw/images/";;
+        System.out.println(courseFile);
+        Date    now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String hehe = dateFormat.format( now );
+
+        String[] splitAddress=booknames.split("\\\\");
+        System.out.println(splitAddress[splitAddress.length-1]);
+
+
+        safetyEducationVideoMapper.inseRead(newCompanyImageName,courseFile+splitAddress[splitAddress.length-1]+newCompanyImageName,hehe,pagess,content,null);
+
+        return "200";
+    }
+
+
+
+    // 确认添加绘本
+    @GetMapping("/updateBook")
+    public @ResponseBody
+    String updateBook(String bookname,String content,String pagess,String frid) throws IOException {
+        System.out.println("重新上传绘本");
+        // id
+        System.out.println(frid);
+        // 名称
+        System.out.println(bookname);
+        // 内容
+        System.out.println(content);
+        // 页数
+        System.out.println(pagess);
+        Date    now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String hehe = dateFormat.format( now );
+
+        File directory = new File("src/main/resources");
+        String courseFile = directory.getCanonicalPath()+ "/static/zw/images/";;
+        System.out.println(courseFile);
+
+
+        safetyEducationVideoMapper.updateRead(bookname,courseFile+bookname,hehe,pagess,content,Integer.valueOf(frid));
+        return "200";
+    }
+
+
+
+
+    // 删除绘本
+    @GetMapping("/delectbook")
+    public @ResponseBody
+    String delectbook(String  delectid){
+        System.out.println("删除绘本");
+        System.out.println();
+        safetyEducationVideoMapper.delectBook(Integer.valueOf(delectid));
+//        List<SafetyEducation> safetyEducations = safetyEducationVideoMapper.selectParentsVideo((page - 1) * 5, page * 5);
+//        Gson gson = new Gson();
+//        String s = gson.toJson(safetyEducations);
+//        System.out.println(s);
+        return "200";
+    }
+
 }

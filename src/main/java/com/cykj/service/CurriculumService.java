@@ -11,7 +11,7 @@ import java.util.List;
  * @desc:
  */
 
-public interface CurriculumService {
+public interface  CurriculumService {
     //（杨）查询课程表信息
     List<Curriculum> selectCurrAll(int classId,String date);
 }

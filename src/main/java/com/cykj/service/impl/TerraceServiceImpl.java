@@ -28,8 +28,8 @@ public class TerraceServiceImpl implements TerraceService {
     private TerraceMapper terraceMapper;
 
     @Override
-    public List<User> selectPatriarch(int page,int pages) {
-        List<User> users = terraceMapper.selectPatriarch(page,pages);
+    public List<User> selectPatriarch(String biadtime,String biadtimes,String uname,int page,int pages) {
+        List<User> users = terraceMapper.selectPatriarch(biadtime,biadtimes,uname,page,pages);
         return users;
     }
 

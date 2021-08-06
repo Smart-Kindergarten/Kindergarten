@@ -18,9 +18,9 @@ public class AlipayConfig {
 
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoJv7C6iOM+C9GYbTlTcDEdm0E58ra2GxnXFks2Xnnp+qqTO/gDdEE1pqXchl5UmSvr/85ZtvkQxlwEEIOTZWZGuBnIsZwfKHQYFxcEpSuKvmKXpGkqnqMyOBR66SDdqOTVjdyZE6GAUoIkMPigrafbn2b5RvqXonk4Gp9lf8TDYd1x2e8Qal98NxI/tU7/prTEMiRlLGxFlqrWD4AhMWAihOjuA2HiKB4OCPNFvpydbs9VPg57NGZIs95SgMW7Jc3offLdhiGG9mbejM5nYXdjx+SjmgyKWeg4RhG9uyUCsT5NYagpxDLIPyVrbr9HfB5HAmogAE6n1hGuYF6Y8Z5wIDAQAB";
 
-	public static String notify_url = "11";
+	public static String notify_url = "http://localhost:8080/Alipay";
 
-	public static String return_url = "http://8080/chats.html";
+	public static String return_url = "http://localhost:8080/Alipay";
 
 	public static String sign_type = "RSA2";
 

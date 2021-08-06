@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface TerraceService {
     // 查询家长
-    public List<User> selectPatriarch(int page, int pages);
+    public List<User> selectPatriarch(String biadtime,String biadtimes,String uname,int page, int pages);
 
     // 删除
     public boolean delectPatriarch(String uaccount);

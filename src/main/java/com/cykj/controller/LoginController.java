@@ -41,11 +41,12 @@ public class LoginController extends HttpServlet {
     @GetMapping("/GGB2")
     public @ResponseBody
     String GGB2(User user, HttpServletRequest req, HttpServletResponse resp) {
-        System.out.println(user.getUaccount());
         String uaccount = user.getUaccount();
-        System.out.println(user.getUpwd());
+        String upwd = user.getUpwd();
         HttpSession session = req.getSession();
         session.setAttribute("uaccount",uaccount);
+        session.setAttribute("upwd",upwd);
+        session.setAttribute("user",user);
         List<User> users = loginMapper.checkLogin(user);
         System.out.println(users.toString() + "dasdads");
         Gson gson = new Gson();

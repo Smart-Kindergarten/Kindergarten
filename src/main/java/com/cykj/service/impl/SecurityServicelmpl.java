@@ -1,6 +1,7 @@
 package com.cykj.service.impl;
 
 import com.cykj.bean.Baby;
+import com.cykj.bean.BabyClass;
 import com.cykj.bean.Menu;
 import com.cykj.bean.pick;
 import com.cykj.mapper.LoginMapper;
@@ -19,7 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpUtils;
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -95,7 +99,36 @@ public class SecurityServicelmpl implements SecurityService {
     @Override
     public List<pick> GetPick(String BID) {
         List<pick> picks = pickMapper.GetPick(BID);
-
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+        try {
+            Date Testdate = sdf.parse("11:59:59");
+            Date Testdate1 = sdf.parse("08:30:01");
+            Date Testdate2 = sdf.parse("18:00:01");
+            if(picks.size() != 0){
+                for(pick pick:picks){
+                    String[] tiem = pick.getDate().split(" ");
+                    pick.setDate(tiem[0]);
+                    pick.setTime(tiem[1]);
+                    Date date = sdf.parse(pick.getTime());
+                    if(Testdate.after(date)){
+                        pick.setTimeClass("上午");
+                        if(!Testdate1.after(date) && pick.getState().equals("正常")){
+                            pick.setState("迟到");
+                        }
+                    }else{
+                        pick.setTimeClass("下午");
+                        if(!Testdate2.after(date) && pick.getState().equals("正常")){
+                            pick.setState("迟到");
+                        }
+                    }
+                }
+                return picks;
+            }else{
+                return new ArrayList<pick>();
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -103,7 +136,21 @@ public class SecurityServicelmpl implements SecurityService {
     public List<Baby> GetBaby(String Bname, String CID) {
         System.out.println(Bname+":"+CID);
         List<Baby> Babys = pickMapper.GetBaby(Bname,CID);
-        return Babys;
+        if(Babys.size() != 0){
+            return Babys;
+        }else{
+            return new ArrayList<Baby>();
+        }
+    }
+
+    @Override
+    public List<BabyClass> GetBabyClass(String CName) {
+        List<BabyClass> BClass = pickMapper.GetBabyClass(CName);
+        if(BClass.size() != 0){
+            return BClass;
+        }else{
+            return new ArrayList<BabyClass>();
+        }
     }
 
 }
