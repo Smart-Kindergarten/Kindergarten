@@ -19,6 +19,8 @@
                  INNER JOIN t_safetyeducation t4 ON t1.videoId = t4.videoId
                  INNER JOIN t_param t5 ON t1.completeId = t5.pzid
         WHERE t1.classId = #{classId}
+        ORDER BY t1.completeTime DESC;
+
     </select>
 
     <select id="fuzzySelect" resultType="com.cykj.va.CheckSafEduTestRecord">
@@ -48,5 +50,6 @@
         <if test="wDate2 != null and wDate2 != ''">
             and t1.completeTime <![CDATA[<=]]>#{wDate2}
         </if>
+        ORDER BY t1.completeTime DESC;
     </select>
 </mapper>

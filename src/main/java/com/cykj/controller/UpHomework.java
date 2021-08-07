@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * @version 1.0
@@ -50,7 +49,7 @@ public class UpHomework {
     }
 
     @PostMapping("/upload")
-    public Map<String, Object> fileUpload(MultipartFile file, HttpServletRequest req) {
+    public Map<String, Object> fileUpload(MultipartFile file, HttpServletRequest req) throws IOException {
         Map<String, Object> result = new HashMap<>();
         String originName = file.getOriginalFilename();
         System.out.println(originName);
@@ -58,18 +57,19 @@ public class UpHomework {
         String sub = originName.substring(originName.lastIndexOf("."));
         System.out.println(sub);
         String format = sdf.format(new Date());
-        String realPath = req.getServletContext().getRealPath("/") + format;
+        File directory = new File("src/main/resources");
+        String courseFile = directory.getCanonicalPath() + "/static/js/publishHomework/";
+        System.out.println(courseFile);
+        String realPath = courseFile + originName;
         File folder = new File(realPath);
-        if (!folder.exists()) {
-            folder.mkdirs();
+        if (!folder.getParentFile().exists()) {
+            folder.getParentFile().mkdir();
         }
-        String newName = UUID.randomUUID().toString() + sub;
         try {
-            file.transferTo(new File(folder, originName));
-            String url = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + format + "/" + originName;
-            Parameter.setPublishHomeworkPath(url);
+            file.transferTo(folder);
+//            Parameter.setPublishHomeworkPath(url);
             result.put("status", "success");
-            result.put("url", url);
+            result.put("url", realPath);
         } catch (IOException e) {
             result.put("status", "error");
             result.put("msg", e.getMessage());

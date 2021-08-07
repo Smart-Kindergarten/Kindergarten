@@ -10,7 +10,8 @@
                  INNER JOIN t_babyinf t2 ON t1.babyId = t2.biid
                  INNER JOIN t_user t3 ON t2.uid = t3.uid
                  INNER JOIN t_publishhomework t4 ON t1.phId = t4.phId
-        WHERE t1.classId = #{classId};
+        WHERE t1.classId = #{classId}
+        ORDER BY t4.arrangementTime DESC;
     </select>
     <update id="updateRating">
         UPDATE t_checkhomework t1
