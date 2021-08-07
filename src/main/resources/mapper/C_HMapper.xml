@@ -5,7 +5,14 @@
 <!--namespace路径-->
 <mapper namespace="com.cykj.mapper.C_HMapper">
     <select id="selectClassAll" resultType="com.cykj.va.C_HVa">
-        SELECT t1.chId, t2.biid, t2.biname, t3.uname, t1.homeworkURL, t4.arrangementTime, t1.completionTime
+        SELECT t1.chId,
+               t2.biid,
+               t2.biname,
+               t3.uname,
+               t1.homeworkURL,
+               t4.arrangementTime,
+               t1.completionTime,
+               t1.workName
         FROM t_checkhomework t1
                  INNER JOIN t_babyinf t2 ON t1.babyId = t2.biid
                  INNER JOIN t_user t3 ON t2.uid = t3.uid

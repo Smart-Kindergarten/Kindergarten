@@ -67,7 +67,7 @@ public class UpHomework {
         }
         try {
             file.transferTo(folder);
-//            Parameter.setPublishHomeworkPath(url);
+            Parameter.setPublishHomeworkPath(realPath);
             result.put("status", "success");
             result.put("url", realPath);
         } catch (IOException e) {

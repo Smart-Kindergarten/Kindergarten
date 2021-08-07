@@ -7,6 +7,7 @@ import com.cykj.utils.WeekDate;
 import com.cykj.va.C_HVa;
 import com.cykj.va.CheckSafEduTestRecord;
 import com.cykj.va.ClassInfo;
+import com.cykj.va.P_H;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -90,6 +91,17 @@ public class Teacher {
         return s;
     }
 
+    //查询发布作业
+    @ResponseBody
+    @RequestMapping("/checkPublishHomeworkint")
+    public String checkPublishHomework(int classId) {
+        System.out.println("-------查询发布作业-------");
+        List<P_H> list = pHService.selectClassPH(classId);
+        System.out.println(list);
+        return gson.toJson(list);
+    }
+
+    //发布作业
     @ResponseBody
     @RequestMapping("/upHomework")
     public String upHomework(int id, String uacc) {
@@ -257,8 +269,6 @@ public class Teacher {
         System.out.println(user);
         return gson.toJson(user);
     }
-
-
 
 
 }

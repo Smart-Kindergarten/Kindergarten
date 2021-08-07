@@ -11,19 +11,20 @@ public class CheckHomework {
     private int classId;//班级id
     private int phId;//作业id
     private int babyId;//宝宝id
-    private int completionTime;//完成时间
+    private String completionTime;//完成时间
     private int completion;//完成情况(参数id)
-    private int evaluation;//作业评价
-    private int homeworkURL;//宝宝作业上传URL
+    private String evaluation;//作业评价
+    private String homeworkURL;//宝宝作业上传URL
+    private String workName;//宝宝作业名
     //备用字段，需要使用请修改注释，若有增加新字段，请修改有参构造函数和toString方法
-    private int ch1;//
-    private int ch2;//
-    private int ch3;//
+    private String ch1;//
+    private String ch2;//
+    private String ch3;//
 
     public CheckHomework() {
     }
 
-    public CheckHomework(int chId, int classId, int phId, int babyId, int completionTime, int completion, int evaluation, int homeworkURL, int ch1, int ch2, int ch3) {
+    public CheckHomework(int chId, int classId, int phId, int babyId, String completionTime, int completion, String evaluation, String homeworkURL, String workName, String ch1, String ch2, String ch3) {
         this.chId = chId;
         this.classId = classId;
         this.phId = phId;
@@ -32,6 +33,7 @@ public class CheckHomework {
         this.completion = completion;
         this.evaluation = evaluation;
         this.homeworkURL = homeworkURL;
+        this.workName = workName;
         this.ch1 = ch1;
         this.ch2 = ch2;
         this.ch3 = ch3;
@@ -44,22 +46,15 @@ public class CheckHomework {
                 ", classId=" + classId +
                 ", phId=" + phId +
                 ", babyId=" + babyId +
-                ", completionTime=" + completionTime +
+                ", completionTime='" + completionTime + '\'' +
                 ", completion=" + completion +
-                ", evaluation=" + evaluation +
-                ", homeworkURL=" + homeworkURL +
-                ", ch1=" + ch1 +
-                ", ch2=" + ch2 +
-                ", ch3=" + ch3 +
+                ", evaluation='" + evaluation + '\'' +
+                ", homeworkURL='" + homeworkURL + '\'' +
+                ", workName='" + workName + '\'' +
+                ", ch1='" + ch1 + '\'' +
+                ", ch2='" + ch2 + '\'' +
+                ", ch3='" + ch3 + '\'' +
                 '}';
-    }
-
-    public int getPhId() {
-        return phId;
-    }
-
-    public void setPhId(int phId) {
-        this.phId = phId;
     }
 
     public int getChId() {
@@ -78,6 +73,14 @@ public class CheckHomework {
         this.classId = classId;
     }
 
+    public int getPhId() {
+        return phId;
+    }
+
+    public void setPhId(int phId) {
+        this.phId = phId;
+    }
+
     public int getBabyId() {
         return babyId;
     }
@@ -86,11 +89,11 @@ public class CheckHomework {
         this.babyId = babyId;
     }
 
-    public int getCompletionTime() {
+    public String getCompletionTime() {
         return completionTime;
     }
 
-    public void setCompletionTime(int completionTime) {
+    public void setCompletionTime(String completionTime) {
         this.completionTime = completionTime;
     }
 
@@ -102,43 +105,51 @@ public class CheckHomework {
         this.completion = completion;
     }
 
-    public int getEvaluation() {
+    public String getEvaluation() {
         return evaluation;
     }
 
-    public void setEvaluation(int evaluation) {
+    public void setEvaluation(String evaluation) {
         this.evaluation = evaluation;
     }
 
-    public int getHomeworkURL() {
+    public String getHomeworkURL() {
         return homeworkURL;
     }
 
-    public void setHomeworkURL(int homeworkURL) {
+    public void setHomeworkURL(String homeworkURL) {
         this.homeworkURL = homeworkURL;
     }
 
-    public int getCh1() {
+    public String getWorkName() {
+        return workName;
+    }
+
+    public void setWorkName(String workName) {
+        this.workName = workName;
+    }
+
+    public String getCh1() {
         return ch1;
     }
 
-    public void setCh1(int ch1) {
+    public void setCh1(String ch1) {
         this.ch1 = ch1;
     }
 
-    public int getCh2() {
+    public String getCh2() {
         return ch2;
     }
 
-    public void setCh2(int ch2) {
+    public void setCh2(String ch2) {
         this.ch2 = ch2;
     }
 
-    public int getCh3() {
+    public String getCh3() {
         return ch3;
     }
 
-    public void setCh3(int ch3) {
+    public void setCh3(String ch3) {
         this.ch3 = ch3;
     }
 }
