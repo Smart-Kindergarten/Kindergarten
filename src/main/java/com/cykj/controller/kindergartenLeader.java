@@ -190,4 +190,41 @@ public class kindergartenLeader {
         String msg = message.deleteBaby(id);
         return msg;
     }
+
+    @ResponseBody
+    @RequestMapping("/checkAllClass")
+    public String checkAllClass() {
+        System.out.println("!@@!!!!!!!!!!!!!!!");
+        String msg = message.checkAllClass();
+        System.out.println(msg);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectClass")
+    public String selectAllClass() {
+        String msg = message.selectAllClass();
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectAllTeacher")
+    public String selectAllTeacher() {
+        String msg = message.selectAllTeacher();
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/upDateBabyClass")
+    public String upDateBabyClass(String baby,String changeClass) {
+        String msg = message.upDateBabyClass(baby,changeClass);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/upDateTeacherClass")
+    public String upDateTeacherClass(String changeClass,String teacher) {
+        String msg = message.upDateTeacherClass(changeClass,teacher);
+        return msg;
+    }
 }

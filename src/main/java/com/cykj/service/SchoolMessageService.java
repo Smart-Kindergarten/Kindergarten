@@ -42,4 +42,14 @@ public interface SchoolMessageService {
     String selectBaby(String ptime,String pName);
 
     String deleteBaby(String id);
+
+    String checkAllClass();
+
+    String selectAllClass();
+
+    String selectAllTeacher();
+
+    String upDateBabyClass(String baby,String changeClass);
+
+    String upDateTeacherClass(String changeClass,String teacher);
 }

@@ -2,6 +2,7 @@ package com.cykj.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.cykj.bean.BabyInf;
+import com.cykj.bean.ClassManagement;
 import com.cykj.bean.SchoolMessage;
 import com.cykj.bean.User;
 import com.cykj.mapper.SchoolMessageMapper;
@@ -131,9 +132,13 @@ public class SchoolMessageImpl implements SchoolMessageService {
         for (int i=0;i<users.size();i++){
             User user = users.get(i);
             String time = user.getUres3();
-            Long timestamp = Long.parseLong(time)*1;
-            String date = new java.text.SimpleDateFormat("yyyy-MM-dd-HH:MM").format(new java.util.Date(timestamp));
-            user.setUres3(date);
+            if (time!=null){
+                Long timestamp = Long.parseLong(time)*1;
+                String date = new java.text.SimpleDateFormat("yyyy-MM-dd-HH:MM").format(new java.util.Date(timestamp));
+                user.setUres3(date);
+            }else {
+                continue;
+            }
         }
         System.out.println(users);
         String msg = JSON.toJSONString(users);
@@ -288,6 +293,75 @@ public class SchoolMessageImpl implements SchoolMessageService {
             return "失败";
         }
 
+    }
+
+    @Override
+    public String checkAllClass() {
+        try {
+            List<ClassManagement> classManagements = messageMapper.checkAllClass();
+            String msg = JSON.toJSONString(classManagements);
+            System.out.println("!!!!!!!!!!!!!!!!!!!");
+            System.out.println(msg);
+            return msg;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public String selectAllClass() {
+        try {
+            List<ClassManagement> classManagements = messageMapper.selectAllClass();
+            String msg = JSON.toJSONString(classManagements);
+            return msg;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public String selectAllTeacher() {
+        try {
+            List<User> users = messageMapper.selectAllTeacher();
+            String msg = JSON.toJSONString(users);
+            return msg;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public String upDateBabyClass(String baby, String changeClass) {
+        try {
+            BabyInf babyInf = new BabyInf();
+            String []changeBaby = baby.split("-");
+            String []CClass = changeClass.split("-");
+            babyInf.setBiid(Integer.parseInt(changeBaby[1]));
+            babyInf.setClid(Integer.parseInt(CClass[1]));
+            messageMapper.upDateBabyClass(babyInf);
+            return "成功";
+        } catch (Exception e) {
+            return "失败";
+        }
+    }
+
+    @Override
+    public String upDateTeacherClass(String changeClass, String teacher) {
+        try {
+            ClassManagement classManagement = new ClassManagement();
+            String []ChangeTeacher = teacher.split("-");
+            String []CClass = changeClass.split("-");
+            classManagement.setClassId(Integer.parseInt(CClass[1]));
+            classManagement.setTeacher(Integer.parseInt(ChangeTeacher[0]));
+            messageMapper.upDateTeacherClass(classManagement);
+            return "成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "失败";
+        }
     }
 
 

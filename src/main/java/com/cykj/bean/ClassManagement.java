@@ -16,7 +16,9 @@ public class ClassManagement {
     //备用字段，需要使用请修改注释，若有增加新字段，请修改有参构造函数和toString方法
     private String backUp1;         //
     private String backUP2;         //
-
+    private String biid;//babyid
+    private String biname;//babyName
+    private String uname;//teacherName
 
     public ClassManagement() {
     }
@@ -42,6 +44,30 @@ public class ClassManagement {
                 ", backUp1='" + backUp1 + '\'' +
                 ", backUP2='" + backUP2 + '\'' +
                 '}';
+    }
+
+    public String getBiid() {
+        return biid;
+    }
+
+    public void setBiid(String biid) {
+        this.biid = biid;
+    }
+
+    public String getBiname() {
+        return biname;
+    }
+
+    public void setBiname(String biname) {
+        this.biname = biname;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
     public int getClassId() {

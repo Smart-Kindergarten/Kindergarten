@@ -38,7 +38,7 @@
 
     <select id="selectAllParents" resultType="com.cykj.bean.User">
         SELECT *
-        FROM t_user join t_babyinf
+        FROM t_user right join t_babyinf
         ON t_user.ures1=t_babyinf.biid
     </select>
 
@@ -83,4 +83,29 @@
     <delete id="deleteBaby" parameterType="int">
         delete FROM t_babyinf where biid = ${id}
     </delete>
+
+    <select id="checkAllClass" resultType="com.cykj.bean.ClassManagement">
+        SELECT b.biid,b.biname,c.className,c.creationTime,u.uname
+        FROM t_babyinf b
+        LEFT JOIN t_classmanagement c
+        on b.clid = c.classId
+        LEFT JOIN t_user u
+        on c.teacher = u.uid
+    </select>
+
+    <select id="selectAllClass" resultType="com.cykj.bean.ClassManagement">
+        select * from t_classmanagement
+    </select>
+
+    <select id="selectAllTeacher" resultType="com.cykj.bean.User">
+        select * from t_user where urid = ${2}
+    </select>
+
+    <update id="upDateBabyClass" parameterType="com.cykj.bean.BabyInf">
+        update t_babyinf set clid = ${clid} where biid = ${biid}
+    </update>
+
+    <update id="upDateTeacherClass" parameterType="com.cykj.bean.ClassManagement">
+        update t_classManagement set teacher = ${teacher} where classId = ${classId}
+    </update>
 </mapper>
