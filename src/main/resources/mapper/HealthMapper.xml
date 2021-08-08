@@ -28,7 +28,7 @@
 
     <!--小程序亲子作业-->
     <select id="selChildHomeWork" resultType="com.cykj.va.ChildHomeWork">
-        SELECT t2.biname,t4.homeworkContent, t4.homeworkURL, t4.arrangementTime, t1.homeworkURL tjurl, t5.pname, t1.evaluation
+        SELECT t2.biname,t4.homeworkContent, t4.homeworkURL, t4.arrangementTime, t1.homeworkURL tjurl, t5.pname, t1.classId, t1.phId, t1.babyId, t1.evaluation
         FROM t_checkhomework t1
         INNER JOIN t_babyinf t2 ON t1.babyId = t2.biid
         INNER JOIN t_user t3 ON t2.uid = t3.uid
@@ -37,21 +37,11 @@
         WHERE t3.uphone = #{uphone} LIMIT #{page},#{pages}
     </select>
 
-<!--    查询膳食-->
-    <select id="selectFood" resultType="com.cykj.bean.BabyFood">
-        select * from t_babyfood where fdate!='' order by fid desc
-    </select>
-<!--    上传膳食-->
-    <insert id="upFood" parameterType="com.cykj.bean.BabyFood">
-        insert into t_babyfood(ftime,fdate,fone,ftow,fthree,ffour,ffive)
-        value (#{ftime},#{fdate},#{fone},#{ftow},#{fthree},#{ffour},#{ffive})
+
+    <!--提交作业至查看作业表-->
+    <insert id="insertHomeWork" parameterType="com.cykj.bean.CheckHomework">
+        INSERT INTO t_checkhomework(classId, phId,babyId,completionTime,completion,homeworkURL)
+        VALUES (#{classId}, #{phId}, #{babyId}, #{completionTime}, 9,#{homeworkURL})
     </insert>
 
-    <update id="upFoodTime" parameterType="com.cykj.bean.BabyFood">
-        update t_babyfood set fdate = #{fdate} where fid = ${fid}
-    </update>
-
-    <update id="changeFood"  parameterType="com.cykj.bean.BabyFood">
-        update t_babyfood set ${reserve2} = #{reserve3} where fid = ${fid}
-    </update>
 </mapper>

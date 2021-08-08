@@ -1,6 +1,7 @@
 package com.cykj.mapper;
 
 import com.cykj.bean.BabyFood;
+import com.cykj.bean.CheckHomework;
 import com.cykj.bean.Healthbean;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
@@ -25,11 +26,6 @@ public interface HealthMapper {
     //小程序亲子作业
     public List<ChildHomeWork> selChildHomeWork(String uphone, int page, int pages);
 
-    void upFood(BabyFood babyFood);
-
-    List<BabyFood> selectFood();
-
-    void changeFood(BabyFood babyFood);
-
-    void upFoodTime(BabyFood babyFood);
+    //提交作业至查看作业表
+    public Boolean insertHomeWork(CheckHomework checkHomework);
 }
