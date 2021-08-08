@@ -26,18 +26,86 @@ public class ChildHomeWork {
     //作业评价
     private String evaluation;
 
+    //查看作业id
+    private int chId;
+    //班级id
+    private int classId;
+    //作业id
+    private int phId;
+    //宝宝id
+    private int babyId;
+    //完成时间
+    private int completionTime;
+    //完成情况
+    private int completion;
+
     public ChildHomeWork() {
 
     }
 
-    public ChildHomeWork(String biname, String homeworkContent, String homeworkURL, String arrangementTime, String tjurl, String pname, String evaluation) {
+    public ChildHomeWork(String biname, String homeworkContent, String homeworkURL, String arrangementTime, String tjurl, String pname, String uphone, String evaluation, int chId, int classId, int phId, int babyId, int completionTime, int completion) {
         this.biname = biname;
         this.homeworkContent = homeworkContent;
         this.homeworkURL = homeworkURL;
         this.arrangementTime = arrangementTime;
         this.tjurl = tjurl;
         this.pname = pname;
+        this.uphone = uphone;
         this.evaluation = evaluation;
+        this.chId = chId;
+        this.classId = classId;
+        this.phId = phId;
+        this.babyId = babyId;
+        this.completionTime = completionTime;
+        this.completion = completion;
+    }
+
+    public int getChId() {
+        return chId;
+    }
+
+    public void setChId(int chId) {
+        this.chId = chId;
+    }
+
+    public int getClassId() {
+        return classId;
+    }
+
+    public void setClassId(int classId) {
+        this.classId = classId;
+    }
+
+    public int getPhId() {
+        return phId;
+    }
+
+    public void setPhId(int phId) {
+        this.phId = phId;
+    }
+
+    public int getBabyId() {
+        return babyId;
+    }
+
+    public void setBabyId(int babyId) {
+        this.babyId = babyId;
+    }
+
+    public int getCompletionTime() {
+        return completionTime;
+    }
+
+    public void setCompletionTime(int completionTime) {
+        this.completionTime = completionTime;
+    }
+
+    public int getCompletion() {
+        return completion;
+    }
+
+    public void setCompletion(int completion) {
+        this.completion = completion;
     }
 
     public String getBiname() {
@@ -115,6 +183,12 @@ public class ChildHomeWork {
                 ", pname='" + pname + '\'' +
                 ", uphone='" + uphone + '\'' +
                 ", evaluation='" + evaluation + '\'' +
+                ", chId=" + chId +
+                ", classId=" + classId +
+                ", phId=" + phId +
+                ", babyId=" + babyId +
+                ", completionTime=" + completionTime +
+                ", completion=" + completion +
                 '}';
     }
 }

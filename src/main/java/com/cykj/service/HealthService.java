@@ -1,6 +1,7 @@
 package com.cykj.service;
 
 import com.cykj.bean.BabyFood;
+import com.cykj.bean.CheckHomework;
 import com.cykj.bean.Healthbean;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
@@ -30,4 +31,7 @@ public interface HealthService {
 
     //小程序亲子作业
     public List<ChildHomeWork> selChildHomeWork(String uphone, int page, int pages);
+
+    //提交作业至查看作业表
+    public Boolean insertHomeWork(CheckHomework checkHomework);
 }
