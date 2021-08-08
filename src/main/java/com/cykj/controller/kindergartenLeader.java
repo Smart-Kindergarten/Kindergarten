@@ -227,4 +227,11 @@ public class kindergartenLeader {
         String msg = message.upDateTeacherClass(changeClass,teacher);
         return msg;
     }
+
+    @ResponseBody
+    @RequestMapping("/checkBabyClass")
+    public String checkBabyClass(String date,String name,String className) {
+        String msg = message.checkBabyClass(date,name,className);
+        return msg;
+    }
 }

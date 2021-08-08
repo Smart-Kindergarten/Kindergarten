@@ -364,5 +364,33 @@ public class SchoolMessageImpl implements SchoolMessageService {
         }
     }
 
+    @Override
+    public String checkBabyClass(String date,String name,String className) {
+        try {
+            String []times = date.split(",");
+            long timeOne = Long.parseLong(times[0]);
+            long timeTow = Long.parseLong(times[1]);
+            List<ClassManagement> classManagements = messageMapper.checkAllClass();
+            for (ClassManagement c : classManagements) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String mydate = c.getCreationTime();
+                Date datetime = sdf.parse(mydate);;//将你的日期转换为时间戳
+                String time = String.valueOf(datetime.getTime());
+                if (c.getClassName().equals(className)&&c.getBiname().equals(name)
+                        &&Long.parseLong(time)>timeOne&&Long.parseLong(time)<timeTow){
+                    List<ClassManagement> classManagements1 = new ArrayList<ClassManagement>();
+                    classManagements1.add(c);
+                    String msg = JSON.toJSONString(classManagements1);
+                    System.out.println(msg);
+                    return msg;
+                }
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 }

@@ -52,4 +52,6 @@ public interface SchoolMessageService {
     String upDateBabyClass(String baby,String changeClass);
 
     String upDateTeacherClass(String changeClass,String teacher);
+
+    String checkBabyClass(String date,String name,String className);
 }
