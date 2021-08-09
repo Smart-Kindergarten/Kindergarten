@@ -49,6 +49,10 @@ public class Teacher {
     private SE_ServiceImpl seService;
     @Autowired
     private BabyInfServiceImpl babyInfService;
+    @Autowired
+    private ClassPhotoServiceImpl photoService;
+    @Autowired
+    private ClassMessageServiceImpl classMessageService;
 
     //查询当前日期课程表
     @ResponseBody
@@ -88,6 +92,15 @@ public class Teacher {
         List<ClassManagement> allClass = managementService.selectAllClass(uAcc);
         System.out.println(allClass);
         String s = gson.toJson(allClass);
+        return s;
+    }
+
+    //使用班级id获取班级名称
+    @ResponseBody
+    @RequestMapping("/getClName")
+    public String getClName(int classId) {
+        System.out.println("-------使用班级id获取班级名称-------");
+        String s = managementService.getClassName(classId);
         return s;
     }
 
@@ -270,5 +283,54 @@ public class Teacher {
         return gson.toJson(user);
     }
 
+    //    查询班级相册
+    @ResponseBody
+    @RequestMapping("/checkClassPhoto")
+    public String selectClassPhoto(int classId) {
+        System.out.println("-------查询班级相册-------");
+        List<Photo> photos = photoService.checkClassPhoto(classId);
+        System.out.println(photos);
+        return gson.toJson(photos);
+    }
+
+    //    存储班级照片
+    @ResponseBody
+    @RequestMapping("/newClassPhoto")
+    public String newClassPhoto(int classId, String text) {
+        System.out.println("-------存储班级照片-------");
+        Photo photo = new Photo();
+        photo.setClassId(classId);
+        photo.setPhoName(Parameter.getFileName());
+        photo.setPhoDescribe(text);
+        photo.setPhoto(Parameter.getPublishHomeworkPath());
+        photo.setPhoUploadTime(WeekDate.getCurrentTime());
+        String s = photoService.insertClassPhoto(photo);
+        System.out.println(s);
+        return s;
+    }
+
+    //查询班级所有公告
+    @ResponseBody
+    @RequestMapping("/checkClassMessage")
+    public String checkClassMessage(int classId) {
+        System.out.println("-------查询班级所有公告-------");
+        List<ClassMessage> list = classMessageService.selectAll(classId);
+        System.out.println(list);
+        return gson.toJson(list);
+    }
+
+    //新增班级公告
+    @ResponseBody
+    @RequestMapping("/newClassMessage")
+    public String newClassMessage(int classId, String text) {
+        System.out.println("-------新增班级公告-------");
+        ClassMessage message = new ClassMessage();
+        message.setClassId(classId);
+        message.setMessage(text);
+        message.setMessageTime(WeekDate.getCurrentTime());
+        String s = classMessageService.insertClassMessage(message);
+        System.out.println(s);
+        return s;
+    }
 
 }
