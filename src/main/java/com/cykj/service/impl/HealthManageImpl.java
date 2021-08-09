@@ -1,5 +1,6 @@
 package com.cykj.service.impl;
 
+import com.cykj.bean.BabyFood;
 import com.cykj.bean.Healthbean;
 import com.cykj.mapper.HealthManageMappper;
 import com.cykj.service.HealthManageService;
@@ -51,4 +52,12 @@ public class HealthManageImpl implements HealthManageService {
 
         return b;
     }
+
+    @Override
+    public List<BabyFood> lookFood(int page, int pages) {
+        List<BabyFood> babyFoods = healthManageMappper.lookFood(page, pages);
+        return babyFoods;
+    }
+
+
 }

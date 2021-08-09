@@ -1,8 +1,6 @@
 package com.cykj.mapper;
 
-import com.cykj.bean.FamilyRead;
-import com.cykj.bean.SafetyEducation;
-import com.cykj.bean.TerraceInformationBean;
+import com.cykj.bean.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -33,10 +31,10 @@ public interface SafetyEducationVideoMapper {
     public boolean updateQuestions(String textUrl,int videoId);
 
     // 获取绘本信息
-    public List<FamilyRead> selectRead(String UploadTime,String UploadTimes,String bookname,int page,int pages);
+    public List<FamilyRead> selectRead(String left,String right,String bookname,int page,int pages);
 
     // 获取平台资讯
-    public List<TerraceInformationBean>  selectTerraceInf(String Createtime,String Createtimes,String iftcontent,int page,int pages);
+    public List<TerraceInformationBean>  selectTerraceInf(String left,String right,String iftcontent,int page,int pages);
 
     // 新增平台资讯
     public  boolean insTerraceInf(String iftcontent,String Createtime,String reserve1,String reserve3);
@@ -65,5 +63,24 @@ public interface SafetyEducationVideoMapper {
     // 删除绘本
     public boolean delectBook(int frid);
 
+    // 统计年龄
+    public List<BabyInf> seleleBaby();
 
+    // 查询男生人数
+    public List<BabyInf> selectMan();
+
+    // 查询女生人数
+    public List<BabyInf> selectWoman();
+
+    // 统计健康状况
+    public List<Healthbean>  selecthealthCondition();
+
+    // 菜单管理
+    public List<Menu> selectMenu(String onename,String mename,int page,int pages);
+
+    // 查询一级菜单
+    public List<Menu> selectOne();
+
+    // 修改菜单
+    public boolean updateMenu(String mename,String menurl,int mepid);
 }

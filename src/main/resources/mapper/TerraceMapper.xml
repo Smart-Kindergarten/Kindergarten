@@ -11,11 +11,11 @@
          SELECT * FROM t_user,t_param,t_babyinf
         WHERE
         1 = 1
-        <if test="biadtime != null and biadtime !=''">
-            AND  t_babyinf.biadtime <![CDATA[>=]]> #{biadtime}
+        <if test="left != null and left !=''">
+            AND  t_babyinf.biadtime <![CDATA[>=]]> #{left}
         </if>
-        <if test="biadtime != null and biadtime !=''">
-            AND  t_babyinf.biadtime <![CDATA[>=]]> #{biadtime}
+        <if test="right != null and right !=''">
+            AND  t_babyinf.biadtime <![CDATA[<=]]> #{right}
         </if>
         <if test="uname != null and uname !=''">
             AND t_user.uname = #{uname}

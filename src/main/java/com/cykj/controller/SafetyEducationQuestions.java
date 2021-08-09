@@ -44,7 +44,8 @@ public class SafetyEducationQuestions {
                     String trueFileName = user + "_" + fileName;
 
                     File directory = new File("src/main/resources");
-                    String courseFile = directory.getCanonicalPath()+ "/static/zw/questuons/";;
+                    String courseFile = directory.getCanonicalPath()+ "/static/js/questuons/";;
+
                     System.out.println(courseFile);
                     // 设置存放图片文件的路径
                     path = courseFile+ fileName;

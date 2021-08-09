@@ -1,5 +1,6 @@
 package com.cykj.mapper;
 
+import com.cykj.bean.BabyFood;
 import com.cykj.bean.Healthbean;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +22,7 @@ public interface HealthManageMappper {
     public List<Healthbean> selectAll();
 
     public boolean inserthealth(String babyname,String height,String weight,String eyesight,String temperature,String healthcondition,String checkuptime);
+
+    // 查询宝宝膳食
+    public List<BabyFood> lookFood(int page,int pages);
 }
