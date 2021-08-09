@@ -46,8 +46,8 @@ public class UploadFile {
         String ext = FilenameUtils.getExtension(file.getOriginalFilename());
         String fileNames = today + String.valueOf(timestamp.toEpochMilli()) + "." + ext;
         //保存到文件服务器
-        file.transferTo(new File(System.getProperty("user.dir") + "\\src\\main\\resources\\static\\fileImage\\" + fileNames));
-        String a = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\fileImage\\" + fileNames;
+        file.transferTo(new File(System.getProperty("user.dir") + "\\src\\main\\resources\\static\\js\\publishHomework\\" + fileNames));
+        String a = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\js\\publishHomework\\" + fileNames;
         System.out.println("bhkbbbbbbbbbbb" + a);
         return a;
     }
