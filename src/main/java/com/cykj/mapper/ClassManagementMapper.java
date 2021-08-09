@@ -15,4 +15,6 @@ import java.util.List;
 public interface ClassManagementMapper {
     //(杨)查询教师所教的所有班级
     List<ClassManagement> selectAllClass(String acc);
+
+    String getClassName(int classId);
 }

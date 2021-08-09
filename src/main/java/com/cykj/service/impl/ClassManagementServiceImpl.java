@@ -19,8 +19,6 @@ public class ClassManagementServiceImpl implements ClassManagementService {
     @Autowired
     private ClassManagementMapper classManagementMapper;
 
-
-
     @Override
     public List<ClassManagement> selectAllClass(String acc) {
         List<ClassManagement> allClass = classManagementMapper.selectAllClass(acc);
@@ -29,5 +27,11 @@ public class ClassManagementServiceImpl implements ClassManagementService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public String getClassName(int classId) {
+        String className = classManagementMapper.getClassName(classId);
+        return className;
     }
 }
