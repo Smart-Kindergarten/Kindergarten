@@ -61,7 +61,6 @@ public class Health extends HttpServlet {
         List<Healthbean> health = healthMapper.selHeaUphone(uphone, (page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
-        System.out.println(s);
         return s;
     }
 
@@ -78,7 +77,6 @@ public class Health extends HttpServlet {
         List<CurrAndUser> health = healthMapper.selCurrAndUser(uphone, (page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
-        System.out.println(s);
         return s;
     }
 
@@ -95,7 +93,6 @@ public class Health extends HttpServlet {
         List<BabyFood> health = healthMapper.selBabyFood((page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
-        System.out.println(s);
         return s;
     }
 
@@ -112,7 +109,6 @@ public class Health extends HttpServlet {
         List<ChildHomeWork> health = healthMapper.selChildHomeWork(uphone, (page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
-        System.out.println(s);
         return s;
     }
 
@@ -129,7 +125,6 @@ public class Health extends HttpServlet {
         List<ChildHomeWork> health = healthMapper.selOldHomeWork(uphone, (page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
-        System.out.println(s);
         return s;
     }
 

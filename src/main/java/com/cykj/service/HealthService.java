@@ -1,9 +1,6 @@
 package com.cykj.service;
 
-import com.cykj.bean.BabyFood;
-import com.cykj.bean.CheckHomework;
-import com.cykj.bean.Healthbean;
-import com.cykj.bean.Security;
+import com.cykj.bean.*;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
 import org.springframework.stereotype.Service;
@@ -19,7 +16,7 @@ import java.util.List;
 @Service
 public interface HealthService {
     // 查询宝宝保健信息
-    public List<Healthbean> selectHealth(String uaccount,int page,int pages);
+    public List<Healthbean> selectHealth(String uaccount, int page, int pages);
 
     //小程序根据手机查询宝宝体检数据
     public List<Healthbean> selHeaUphone(String uphone, int page, int pages);
@@ -28,7 +25,7 @@ public interface HealthService {
     public List<CurrAndUser> selCurrAndUser(String uphone, int page, int pages);
 
     //小程序查询宝宝膳食数据
-    public List<BabyFood> selBabyFood(int page,int pages);
+    public List<BabyFood> selBabyFood(int page, int pages);
 
     //小程序亲子作业
     public List<ChildHomeWork> selChildHomeWork(String uphone, int page, int pages);
@@ -41,4 +38,7 @@ public interface HealthService {
 
     //安全教育答题存成绩于数据库
     public Boolean insertAnswer(String secScore, String videoId);
+
+    //查询绘本信息
+    public List<FamilyRead> selHuiben(int page, int pages);
 }

@@ -1,9 +1,6 @@
 package com.cykj.mapper;
 
-import com.cykj.bean.BabyFood;
-import com.cykj.bean.CheckHomework;
-import com.cykj.bean.Healthbean;
-import com.cykj.bean.Security;
+import com.cykj.bean.*;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
 import org.springframework.stereotype.Repository;
@@ -35,4 +32,7 @@ public interface HealthMapper {
 
     //安全教育答题存成绩于数据库
     public Boolean insertAnswer(String secScore, String videoId);
+
+    //查询绘本信息
+    public List<FamilyRead> selHuiben(int page, int pages);
 }

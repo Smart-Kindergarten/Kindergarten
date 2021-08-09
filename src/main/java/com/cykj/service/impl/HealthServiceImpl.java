@@ -1,10 +1,7 @@
 package com.cykj.service.impl;
 
 
-import com.cykj.bean.BabyFood;
-import com.cykj.bean.CheckHomework;
-import com.cykj.bean.Healthbean;
-import com.cykj.bean.Security;
+import com.cykj.bean.*;
 import com.cykj.mapper.HealthMapper;
 import com.cykj.service.HealthService;
 import com.cykj.va.ChildHomeWork;
@@ -112,6 +109,18 @@ public class HealthServiceImpl implements HealthService {
     @Override
     public Boolean insertAnswer(String secScore, String videoId) {
         return healthMapper.insertAnswer(secScore, videoId);
+    }
+
+
+    /**
+     * @Description: 查询绘本信息
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-10 3:57
+     */
+    @Override
+    public List<FamilyRead> selHuiben(int page, int pages) {
+        return healthMapper.selHuiben(page, pages);
     }
 
 

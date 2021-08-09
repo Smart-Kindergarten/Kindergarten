@@ -1,6 +1,7 @@
 package com.cykj.controller;
 
 import com.cykj.bean.CheckHomework;
+import com.cykj.bean.FamilyRead;
 import com.cykj.service.HealthService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @ClassName: UploadFile
@@ -22,7 +24,6 @@ import java.time.LocalDate;
 
 @RestController
 @Slf4j
-@SessionAttributes("a")
 public class UploadFile {
 
     Gson gson = new Gson();
@@ -100,5 +101,21 @@ public class UploadFile {
         return flag;
     }
 
+
+    /**
+     * @Description: 查看绘本信息
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-10 3:58
+     */
+    @ResponseBody
+    @GetMapping("/selHuiben")
+    public String selHuiben(@RequestParam("page") int page) {
+        System.out.println("查询绘本了");
+        List<FamilyRead> hb = healthService.selHuiben((page - 1) * 5, page * 5);
+        String s = gson.toJson(hb);
+        System.out.println(s);
+        return s;
+    }
 
 }

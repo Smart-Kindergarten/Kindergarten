@@ -59,4 +59,9 @@
         UPDATE t_security set secScore = #{secScore} WHERE videoId = #{videoId}
     </insert>
 
+    <!--查看绘本信息-->
+    <select id="selHuiben" resultType="com.cykj.bean.FamilyRead">
+        select * from t_familyread LIMIT #{page},#{pages}
+    </select>
+
 </mapper>
