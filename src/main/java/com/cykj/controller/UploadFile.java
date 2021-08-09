@@ -1,29 +1,17 @@
 package com.cykj.controller;
 
 import com.cykj.bean.CheckHomework;
-import com.cykj.bean.Healthbean;
 import com.cykj.service.HealthService;
-import com.cykj.va.ChildHomeWork;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @ClassName: UploadFile
@@ -38,6 +26,7 @@ import java.util.Map;
 public class UploadFile {
 
     Gson gson = new Gson();
+    String flag = "";
 
     @Autowired
     private HealthService healthService;
@@ -58,8 +47,8 @@ public class UploadFile {
         String fileNames = today + String.valueOf(timestamp.toEpochMilli()) + "." + ext;
         //保存到文件服务器
         file.transferTo(new File(System.getProperty("user.dir") + "\\src\\main\\resources\\static\\fileImage\\" + fileNames));
-        String a =  System.getProperty("user.dir") + "\\src\\main\\resources\\static\\fileImage\\" + fileNames;
-        System.out.println("bhkbbbbbbbbbbb"+a);
+        String a = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\fileImage\\" + fileNames;
+        System.out.println("bhkbbbbbbbbbbb" + a);
         return a;
     }
 
@@ -74,15 +63,41 @@ public class UploadFile {
     @RequestMapping("/insertHomeWorksa")
     public String insertHomeWork(CheckHomework checkHomework) {
         System.out.println("提交作业");
-        System.out.println(checkHomework);
-        System.out.println(checkHomework.getPhId());
-        System.out.println(checkHomework.getHomeworkURL());
-        // 一下
-//        List<CheckHomework> health = healthService.insertHomeWork();
-//        Gson gson = new Gson();
-//        String s = gson.toJson(health);
-//        System.out.println(s);
-        return null;
+        String URL = checkHomework.getHomeworkURL();
+        String[] split = URL.split("\\\\");
+//        System.out.println(split.length);
+        System.out.println(split[split.length - 1]);
+        checkHomework.setWorkName(split[split.length - 1]);
+        Boolean health = healthService.insertHomeWork(checkHomework);
+        if (health) {
+            flag = "文件上传成功";
+        } else {
+            flag = "文件上传失败";
+        }
+        return flag;
+    }
+
+
+    /**
+     * @return
+     * @Description: 安全教育答题存成绩于数据库
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-09 10:23
+     */
+    @ResponseBody
+    @RequestMapping("/insertAnswer")
+    public String insertAnswer(String secScore, String videoId) {
+        System.out.println("存成绩了");
+        System.out.println(secScore);
+        System.out.println(videoId);
+        Boolean cj = healthService.insertAnswer(secScore, videoId);
+        if (cj) {
+            flag = "成绩存入成功";
+        } else {
+            flag = "成绩存入失败";
+        }
+        return flag;
     }
 
 

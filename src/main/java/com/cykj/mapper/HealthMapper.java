@@ -3,6 +3,7 @@ package com.cykj.mapper;
 import com.cykj.bean.BabyFood;
 import com.cykj.bean.CheckHomework;
 import com.cykj.bean.Healthbean;
+import com.cykj.bean.Security;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
 import org.springframework.stereotype.Repository;
@@ -28,4 +29,10 @@ public interface HealthMapper {
 
     //提交作业至查看作业表
     public Boolean insertHomeWork(CheckHomework checkHomework);
+
+    //往期作业
+    public List<ChildHomeWork> selOldHomeWork(String uphone, int page, int pages);
+
+    //安全教育答题存成绩于数据库
+    public Boolean insertAnswer(String secScore, String videoId);
 }

@@ -26,22 +26,37 @@
         SELECT * from t_user,t_babyfood  LIMIT #{page},#{pages}
     </select>
 
+
     <!--小程序亲子作业-->
     <select id="selChildHomeWork" resultType="com.cykj.va.ChildHomeWork">
-        SELECT t2.biname,t4.homeworkContent, t4.homeworkURL, t4.arrangementTime, t1.homeworkURL tjurl, t5.pname, t1.classId, t1.phId, t1.babyId, t1.evaluation
+        SELECT DISTINCT t3.*, t4.babyId FROM t_user t1
+        LEFT JOIN t_babyinf t2 ON t1.ures1 = t2.biid
+        LEFT JOIN t_publishhomework t3 ON t3.classId = t2.doid
+        LEFT JOIN t_checkhomework t4 ON t4.babyId = t2.biid
+        WHERE t1.uphone = #{uphone} LIMIT #{page},#{pages}
+    </select>
+
+    <!--小程序往期作业-->
+    <select id="selOldHomeWork" resultType="com.cykj.va.ChildHomeWork">
+        SELECT t2.biname,t1.workName, t4.homeworkURL, t4.arrangementTime, t1.homeworkURL tjurl, t5.pname, t1.classId, t1.phId, t1.babyId, t1.evaluation
         FROM t_checkhomework t1
         INNER JOIN t_babyinf t2 ON t1.babyId = t2.biid
         INNER JOIN t_user t3 ON t2.uid = t3.uid
         INNER JOIN t_publishhomework t4 ON t1.phId = t4.phId
         INNER JOIN t_param t5 ON t5.pid = t1.`completion`
         WHERE t3.uphone = #{uphone} LIMIT #{page},#{pages}
-    </select>
+     </select>
 
 
     <!--提交作业至查看作业表-->
     <insert id="insertHomeWork" parameterType="com.cykj.bean.CheckHomework">
-        INSERT INTO t_checkhomework(classId, phId,babyId,completionTime,completion,homeworkURL)
-        VALUES (#{classId}, #{phId}, #{babyId}, #{completionTime}, 9,#{homeworkURL})
+        INSERT INTO t_checkhomework(classId, phId,babyId,completionTime,completion,homeworkURL,workName)
+        VALUES (#{classId}, #{phId}, #{babyId}, #{completionTime}, 9,#{homeworkURL},#{workName})
+    </insert>
+
+    <!--安全教育答题存成绩于数据库-->
+    <insert id="insertAnswer" parameterType="com.cykj.bean.Security">
+        UPDATE t_security set secScore = #{secScore} WHERE videoId = #{videoId}
     </insert>
 
 </mapper>

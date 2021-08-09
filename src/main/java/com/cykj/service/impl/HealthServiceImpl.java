@@ -4,6 +4,7 @@ package com.cykj.service.impl;
 import com.cykj.bean.BabyFood;
 import com.cykj.bean.CheckHomework;
 import com.cykj.bean.Healthbean;
+import com.cykj.bean.Security;
 import com.cykj.mapper.HealthMapper;
 import com.cykj.service.HealthService;
 import com.cykj.va.ChildHomeWork;
@@ -88,4 +89,30 @@ public class HealthServiceImpl implements HealthService {
     public Boolean insertHomeWork(CheckHomework checkHomework) {
         return healthMapper.insertHomeWork(checkHomework);
     }
+
+
+    /**
+     * @Description: 往期作业
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-09 11:27
+     */
+    @Override
+    public List<ChildHomeWork> selOldHomeWork(String uphone, int page, int pages) {
+        return healthMapper.selOldHomeWork(uphone, page, pages);
+    }
+
+
+    /**
+     * @Description: 安全教育答题存成绩于数据库
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-09 10:22
+     */
+    @Override
+    public Boolean insertAnswer(String secScore, String videoId) {
+        return healthMapper.insertAnswer(secScore, videoId);
+    }
+
+
 }

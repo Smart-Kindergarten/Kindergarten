@@ -116,4 +116,21 @@ public class Health extends HttpServlet {
         return s;
     }
 
+
+    /**
+     * @Description: 小程序往期作业
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-09 11:28
+     */
+    @ResponseBody
+    @GetMapping("/selOldHomeWork")
+    public String selOldHomeWork(@RequestParam("page") int page, @RequestParam("uphone") String uphone) {
+        List<ChildHomeWork> health = healthMapper.selOldHomeWork(uphone, (page - 1) * 5, page * 5);
+        Gson gson = new Gson();
+        String s = gson.toJson(health);
+        System.out.println(s);
+        return s;
+    }
+
 }

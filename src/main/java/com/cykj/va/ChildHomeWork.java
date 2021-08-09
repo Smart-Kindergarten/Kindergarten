@@ -38,12 +38,14 @@ public class ChildHomeWork {
     private int completionTime;
     //完成情况
     private int completion;
+    //宝宝作业名
+    private String workName;
 
     public ChildHomeWork() {
 
     }
 
-    public ChildHomeWork(String biname, String homeworkContent, String homeworkURL, String arrangementTime, String tjurl, String pname, String uphone, String evaluation, int chId, int classId, int phId, int babyId, int completionTime, int completion) {
+    public ChildHomeWork(String biname, String homeworkContent, String homeworkURL, String arrangementTime, String tjurl, String pname, String uphone, String evaluation, int chId, int classId, int phId, int babyId, int completionTime, int completion, String workName) {
         this.biname = biname;
         this.homeworkContent = homeworkContent;
         this.homeworkURL = homeworkURL;
@@ -58,6 +60,7 @@ public class ChildHomeWork {
         this.babyId = babyId;
         this.completionTime = completionTime;
         this.completion = completion;
+        this.workName = workName;
     }
 
     public int getChId() {
@@ -172,6 +175,15 @@ public class ChildHomeWork {
         this.uphone = uphone;
     }
 
+
+    public String getWorkName() {
+        return workName;
+    }
+
+    public void setWorkName(String workName) {
+        this.workName = workName;
+    }
+
     @Override
     public String toString() {
         return "ChildHomeWork{" +
@@ -189,6 +201,7 @@ public class ChildHomeWork {
                 ", babyId=" + babyId +
                 ", completionTime=" + completionTime +
                 ", completion=" + completion +
+                ", workName='" + workName + '\'' +
                 '}';
     }
 }
