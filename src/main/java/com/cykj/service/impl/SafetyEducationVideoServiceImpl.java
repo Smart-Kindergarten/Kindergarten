@@ -161,5 +161,11 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
         return b;
     }
 
+    @Override
+    public List<SchoolMessage> selectSchool(int page, int pages) {
+        List<SchoolMessage> schoolMessages = safetyEducationVideoMapper.selectSchool(page,pages);
+        return schoolMessages;
+    }
+
 
 }

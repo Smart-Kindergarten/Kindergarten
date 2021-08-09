@@ -473,4 +473,16 @@ public class SafetyEducationInf {
     }
 
 
+    // 菜单管理  修改菜单
+    @GetMapping("/selectSchool")
+    public @ResponseBody
+    String selectSchool(int page,int pages){
+        System.out.println("查询园所审批");
+        List<SchoolMessage> schoolMessages = safetyEducationVideoMapper.selectSchool((page - 1) * 5, 5);
+        Gson  gson  = new Gson();
+        String s = gson.toJson(schoolMessages);
+        System.out.println(s);
+        return  s;
+    }
+
 }

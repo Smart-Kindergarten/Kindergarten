@@ -83,4 +83,7 @@ public interface SafetyEducationVideoMapper {
 
     // 修改菜单
     public boolean updateMenu(String mename,String menurl,int mepid);
+
+    // 查询园所
+    public List<SchoolMessage> selectSchool(int page,int pages);
 }

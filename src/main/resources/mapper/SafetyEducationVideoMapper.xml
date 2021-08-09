@@ -147,4 +147,9 @@ DELETE from t_familyread  WHERE frid = #{frid}
     <update id="updateMenu">
         update t_menu set t_menu.mename = #{mename},meurl = #{menurl} where mepid = #{mepid}
     </update>
+
+
+    <select id="selectSchool" parameterType="com.cykj.bean.SchoolMessage" resultType="com.cykj.bean.SchoolMessage">
+        select * from t_schoolmessage LIMIT #{page},#{pages}
+    </select>
 </mapper>
