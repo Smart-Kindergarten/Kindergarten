@@ -473,7 +473,7 @@ public class SafetyEducationInf {
     }
 
 
-    // 菜单管理  修改菜单
+    // 菜单管理  修改菜单 啊
     @GetMapping("/selectSchool")
     public @ResponseBody
     String selectSchool(int page,int pages){
