@@ -124,4 +124,16 @@ public class HealthServiceImpl implements HealthService {
     }
 
 
+    /**
+     * @Description: 查询校园公告信息
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-11 4:01
+     */
+    @Override
+    public List<Announcement> selannouncement(int page, int pages) {
+        return healthMapper.selannouncement(page, pages);
+    }
+
+
 }

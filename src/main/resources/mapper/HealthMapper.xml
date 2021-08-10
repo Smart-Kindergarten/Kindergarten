@@ -64,4 +64,10 @@
         select * from t_familyread LIMIT #{page},#{pages}
     </select>
 
+    <!--查看校园公告信息-->
+    <select id="selannouncement" resultType="com.cykj.bean.Announcement">
+        select * from t_announcement LIMIT #{page},#{pages}
+    </select>
+
+
 </mapper>

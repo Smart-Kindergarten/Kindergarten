@@ -41,4 +41,7 @@ public interface HealthService {
 
     //查询绘本信息
     public List<FamilyRead> selHuiben(int page, int pages);
+
+    //查询校园公告信息
+    public List<Announcement> selannouncement(int page, int pages);
 }
