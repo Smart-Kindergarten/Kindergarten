@@ -1,6 +1,7 @@
 package com.cykj.service;
 
 import com.cykj.bean.BabyInf;
+import com.cykj.bean.Curriculum;
 import com.cykj.bean.SchoolMessage;
 import com.cykj.bean.User;
 
@@ -54,4 +55,12 @@ public interface SchoolMessageService {
     String upDateTeacherClass(String changeClass,String teacher);
 
     String checkBabyClass(String date,String name,String className);
+
+    String courseManagement();
+
+    String classSchedule(Curriculum curriculum);
+
+    String changeClass(String nowClassId,String date,String name);
+
+    String selectClass(String pName,String pDate);
 }

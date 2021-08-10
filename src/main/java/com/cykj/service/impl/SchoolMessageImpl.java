@@ -1,10 +1,7 @@
 package com.cykj.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.cykj.bean.BabyInf;
-import com.cykj.bean.ClassManagement;
-import com.cykj.bean.SchoolMessage;
-import com.cykj.bean.User;
+import com.cykj.bean.*;
 import com.cykj.mapper.SchoolMessageMapper;
 import com.cykj.service.SchoolMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -392,5 +389,89 @@ public class SchoolMessageImpl implements SchoolMessageService {
         }
     }
 
+    @Override
+    public String courseManagement() {
+        try {
+            List<ClassManagement> classManagements = messageMapper.courseManagement();
+            String msg = JSON.toJSONString(classManagements);
+            System.out.println(msg);
+            return msg;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public String classSchedule(Curriculum curriculum) {
+        try {
+            List<Curriculum> curricula = messageMapper.classSchedule(curriculum);
+            String msg = JSON.toJSONString(curricula);
+            System.out.println(msg);
+            return msg;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public String changeClass(String nowClassId, String date, String name) {
+        try {
+            Curriculum curriculum = new Curriculum();
+            curriculum.setCurrId(Integer.parseInt(nowClassId));
+            switch (date){
+                case "周一":
+                    curriculum.setBack("currMonday");
+                    break;
+                case "周二":
+                    curriculum.setBack("currTuesday");
+                    break;
+                case "周三":
+                    curriculum.setBack("currWednesday");
+                    break;
+                case "周四":
+                    curriculum.setBack("currThursday");
+                    break;
+                case "周五":
+                    curriculum.setBack("currFriday");
+                    break;
+            }
+            curriculum.setCurrDate(name);
+            messageMapper.changeClass(curriculum);
+            return "成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "失败";
+        }
+    }
+
+    @Override
+    public String selectClass(String pName,  String pDate) {
+        try {
+            String []times = pDate.split(",");
+            long timeOne = Long.parseLong(times[0]);
+            long timeTow = Long.parseLong(times[1]);
+            List<ClassManagement> classManagements = messageMapper.courseManagement();
+            for (ClassManagement c :classManagements) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String mydate = c.getCreationTime();
+                Date datetime = sdf.parse(mydate);;//将你的日期转换为时间戳
+                String time = String.valueOf(datetime.getTime());
+                System.out.println(time);
+                if (c.getClassName().equals(pName)&&Long.parseLong(time)>timeOne&&Long.parseLong(time)<timeTow){
+                    List<ClassManagement> classManagements1 = new ArrayList<ClassManagement>();
+                    classManagements1.add(c);
+                    String msg = JSON.toJSONString(classManagements1);
+                    System.out.println(msg);
+                    return msg;
+                }
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "失败";
+        }
+    }
 
 }

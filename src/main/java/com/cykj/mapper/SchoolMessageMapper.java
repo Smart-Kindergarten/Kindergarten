@@ -1,9 +1,6 @@
 package com.cykj.mapper;
 
-import com.cykj.bean.BabyInf;
-import com.cykj.bean.ClassManagement;
-import com.cykj.bean.SchoolMessage;
-import com.cykj.bean.User;
+import com.cykj.bean.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -54,4 +51,10 @@ public interface SchoolMessageMapper {
     void upDateBabyClass(BabyInf babyInf);
 
     void upDateTeacherClass(ClassManagement classManagement);
+
+    List<ClassManagement> courseManagement();
+
+    List<Curriculum> classSchedule(Curriculum curriculum);
+
+    void changeClass(Curriculum curriculum);
 }

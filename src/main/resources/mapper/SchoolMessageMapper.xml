@@ -108,4 +108,16 @@
     <update id="upDateTeacherClass" parameterType="com.cykj.bean.ClassManagement">
         update t_classManagement set teacher = ${teacher} where classId = ${classId}
     </update>
+
+    <select id="courseManagement" resultType="com.cykj.bean.ClassManagement">
+        select * from t_classManagement INNER join t_user where teacher = uid
+    </select>
+
+    <select id="classSchedule" parameterType="com.cykj.bean.Curriculum" resultType="com.cykj.bean.Curriculum">
+        select * from t_curriculum where classId = ${classId}
+    </select>
+
+    <update id="changeClass" parameterType="com.cykj.bean.Curriculum">
+        update t_curriculum set ${back} = #{currDate} where currId = ${currId}
+    </update>
 </mapper>

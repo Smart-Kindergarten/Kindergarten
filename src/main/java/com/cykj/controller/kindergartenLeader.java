@@ -2,10 +2,7 @@ package com.cykj.controller;
 
 
 import com.alibaba.fastjson.JSON;
-import com.cykj.bean.BabyInf;
-import com.cykj.bean.SchoolMessage;
-import com.cykj.bean.TeacherManagement;
-import com.cykj.bean.User;
+import com.cykj.bean.*;
 import com.cykj.service.SchoolMessageService;
 import com.cykj.service.impl.SchoolMessageImpl;
 import org.apache.ibatis.javassist.expr.NewArray;
@@ -232,6 +229,34 @@ public class kindergartenLeader {
     @RequestMapping("/checkBabyClass")
     public String checkBabyClass(String date,String name,String className) {
         String msg = message.checkBabyClass(date,name,className);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/courseManagement")
+    public String courseManagement() {
+        String msg = message.courseManagement();
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/classSchedule")
+    public String classSchedule(Curriculum curriculum) {
+        String msg = message.classSchedule(curriculum);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/changeClass")
+    public String changeClass(String nowClassId,String date,String name) {
+        String msg = message.changeClass(nowClassId,date,name);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectClassOnly")
+    public String selectClass(String pName,String pDate) {
+        String msg = message.selectClass(pName,pDate);
         return msg;
     }
 }

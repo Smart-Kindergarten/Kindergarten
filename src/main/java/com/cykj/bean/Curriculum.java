@@ -16,6 +16,8 @@ public class Curriculum {
     private String currThursday;    //周四
     private String currFriday;      //周五
     private int classId;            //班级id
+    private int page;
+    private String back;
 
     public Curriculum() {
     }
@@ -45,6 +47,22 @@ public class Curriculum {
                 ", currFriday='" + currFriday + '\'' +
                 ", classId=" + classId +
                 '}';
+    }
+
+    public String getBack() {
+        return back;
+    }
+
+    public void setBack(String back) {
+        this.back = back;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 
     public int getCurrId() {
