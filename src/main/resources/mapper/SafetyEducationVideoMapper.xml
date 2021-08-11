@@ -150,7 +150,7 @@ DELETE from t_familyread  WHERE frid = #{frid}
 
 
     <select id="selectSchool" parameterType="com.cykj.bean.SchoolMessage" resultType="com.cykj.bean.SchoolMessage">
-        select * from t_schoolmessage where type = '通过审核'
+        select * from t_schoolmessage where type = '通过审批'
         <if test="left != null and left !=''">
             AND  EnrolmentTime <![CDATA[>=]]> #{left}
         </if>

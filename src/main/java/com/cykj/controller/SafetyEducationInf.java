@@ -239,7 +239,7 @@ public class SafetyEducationInf {
         if (b) {
             System.out.println("发布资讯成功");
         }
-        return "200";
+        return "success";
     }
 
 
