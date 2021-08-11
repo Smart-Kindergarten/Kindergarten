@@ -69,6 +69,16 @@
         select * from t_announcement LIMIT #{page},#{pages}
     </select>
 
+    <!--查看安全教育视频-->
+    <select id="selVideo" resultType="com.cykj.bean.SafetyEducation">
+        SELECT t_safetyeducation.videoId, t_safetyeducation.videoName, t_safetyeducation.fileSite, t_security.secScore FROM t_safetyeducation LEFT JOIN t_security ON t_safetyeducation.videoId = t_security.videoId LIMIT #{page},#{pages}
+    </select>
+
+    <!--班级管理-->
+<!--    <select id="selVideo" resultType="com.cykj.bean.SafetyEducation">-->
+<!--        SELECT t_safetyeducation.videoId, t_safetyeducation.videoName, t_safetyeducation.fileSite, t_security.secScore FROM t_safetyeducation LEFT JOIN t_security ON t_safetyeducation.videoId = t_security.videoId LIMIT #{page},#{pages}-->
+<!--    </select>-->
+
 
     <update id="changeFood"  parameterType="com.cykj.bean.BabyFood">
         update t_babyfood set ${reserve2} = #{reserve3} where fid = ${fid}

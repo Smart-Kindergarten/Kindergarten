@@ -4,11 +4,13 @@ package com.cykj.controller;
 import com.cykj.bean.Announcement;
 import com.cykj.bean.BabyFood;
 import com.cykj.bean.Healthbean;
+import com.cykj.bean.SafetyEducation;
 import com.cykj.mapper.HealthMapper;
 import com.cykj.service.HealthService;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
 import com.google.gson.Gson;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -143,6 +147,49 @@ public class Health extends HttpServlet {
         Gson gson = new Gson();
         String s = gson.toJson(health);
         return s;
+    }
+
+
+    /**
+     * @Description: 查看安全教育视频
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-12 1:07
+     */
+    @ResponseBody
+    @GetMapping("/selVideo")
+    public String selVideo(@RequestParam("page") int page) {
+        List<SafetyEducation> health = healthMapper.selVideo((page - 1) * 5, page * 5);
+        Gson gson = new Gson();
+        String s = gson.toJson(health);
+        return s;
+    }
+
+
+
+    /**
+     * @Description: DataV数据
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-11 23:10
+     */
+    @ResponseBody
+    @GetMapping("/dataV")
+    public ArrayList<HashMap<String, String>> dataV() {
+        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            HashMap<String, String> map = new HashMap<>();
+            double f1 = Math.floor(Math.random() * 1000);
+            double f2 = Math.floor(Math.random() * 1000);
+            double f3 = Math.floor(Math.random() * 1000);
+            double f4 = Math.floor(Math.random() * 1000);
+            map.put("1", String.valueOf(f1));
+            map.put("2", String.valueOf(f2));
+            map.put("3", String.valueOf(f3));
+            map.put("4", String.valueOf(f4));
+            list.add(map);
+        }
+        return list;
     }
 
 }

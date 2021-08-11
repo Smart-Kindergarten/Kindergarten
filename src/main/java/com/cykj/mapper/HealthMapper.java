@@ -38,4 +38,7 @@ public interface HealthMapper {
 
     //查询校园公告信息
     public List<Announcement> selannouncement(int page, int pages);
+
+    //查询安全教育视频
+    public List<SafetyEducation> selVideo(int page, int pages);
 }

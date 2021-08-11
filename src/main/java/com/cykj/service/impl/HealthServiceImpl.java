@@ -136,4 +136,16 @@ public class HealthServiceImpl implements HealthService {
     }
 
 
+    /**
+     * @Description: 查看安全教育视频
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-12 1:06
+     */
+    @Override
+    public List<SafetyEducation> selVideo(int page, int pages) {
+        return healthMapper.selVideo(page, pages);
+    }
+
+
 }
