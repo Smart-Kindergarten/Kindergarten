@@ -162,9 +162,63 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
     }
 
     @Override
-    public List<SchoolMessage> selectSchool(int page, int pages) {
-        List<SchoolMessage> schoolMessages = safetyEducationVideoMapper.selectSchool(page,pages);
+    public List<SchoolMessage> selectSchool(String left,String right,String schoolName,int page, int pages) {
+        List<SchoolMessage> schoolMessages = safetyEducationVideoMapper.selectSchool(left,right,schoolName,page,pages);
         return schoolMessages;
+    }
+
+    @Override
+    public List<Menu> selectMenuLeft(int meid) {
+        List<Menu> menus = safetyEducationVideoMapper.selectMenuLeft(meid);
+        return menus;
+    }
+
+    @Override
+    public List<Menu> selectMenuRight(int meid) {
+        List<Menu> menus = safetyEducationVideoMapper.selectMenuRight(meid);
+        return menus;
+    }
+
+    @Override
+    public List<Menu> isidexit(int mid, int pid) {
+        List<Menu> isidexit = safetyEducationVideoMapper.isidexit(mid,pid);
+        return isidexit;
+    }
+
+    @Override
+    public boolean insertPower(int mid, int pid) {
+        boolean aBoolean = safetyEducationVideoMapper.insertPower(mid, pid);
+        return aBoolean;
+    }
+
+    @Override
+    public boolean delPower(int mid, int pid) {
+        boolean b = safetyEducationVideoMapper.delPower(mid, pid);
+        return b;
+    }
+
+    @Override
+    public boolean forbidden(String starta, int ID) {
+        boolean forbidden = safetyEducationVideoMapper.forbidden(starta, ID);
+        return forbidden;
+    }
+
+    @Override
+    public boolean resetpwd(int ID) {
+        boolean resetpwd = safetyEducationVideoMapper.resetpwd(ID);
+        return resetpwd;
+    }
+
+    @Override
+    public boolean delectID(int ID) {
+        boolean b = safetyEducationVideoMapper.delectID(ID);
+        return b;
+    }
+
+    @Override
+    public boolean updateID(String schoolname, String schoolacc, Integer ID) {
+        boolean b = safetyEducationVideoMapper.updateID(schoolname,schoolacc,ID);
+        return b;
     }
 
 

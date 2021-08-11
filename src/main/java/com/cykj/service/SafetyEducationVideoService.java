@@ -76,6 +76,32 @@ public interface SafetyEducationVideoService {
     public boolean updateMenu(String mename,String menurl,int mepid);
 
     // 查询园所
-    public List<SchoolMessage> selectSchool(int page,int pages);
+    public List<SchoolMessage> selectSchool(String left,String right,String schoolName,int page,int pages);
 
+    // 查询拥有的权限
+    public List<Menu> selectMenuLeft(int meid);
+
+    // 查询未拥有的权限
+    public List<Menu>   selectMenuRight(int meid);
+
+    //查询该权限是否存在
+    public List<Menu> isidexit(int mid, int pid);
+
+    //添加权限
+    public boolean insertPower(int mid, int pid);
+
+    //删除权限
+    public boolean delPower(int mid, int pid);
+
+    // 园所 禁用启用
+    public boolean forbidden(String starta,int ID);
+
+    // 园所 重置面膜
+    public boolean resetpwd(int ID);
+
+    // 删除园所
+    public boolean delectID(int ID);
+
+    // 修改园所
+    public  boolean updateID(String schoolname,String schoolacc,Integer ID);
 }

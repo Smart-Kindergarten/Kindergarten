@@ -15,11 +15,14 @@ public class Menu {
     private String meres1;
     private String meres2;
     private String menames;
+    private int pid;
+    private int mid;
+    private int pwid;
 
     public Menu() {
     }
 
-    public Menu(int meid, String mename, int mepid, String meurl, String meres1, String meres2, String menames) {
+    public Menu(int meid, String mename, int mepid, String meurl, String meres1, String meres2, String menames, int pid, int mid, int pwid) {
         this.meid = meid;
         this.mename = mename;
         this.mepid = mepid;
@@ -27,8 +30,10 @@ public class Menu {
         this.meres1 = meres1;
         this.meres2 = meres2;
         this.menames = menames;
+        this.pid = pid;
+        this.mid = mid;
+        this.pwid = pwid;
     }
-
 
     public int getMeid() {
         return meid;
@@ -86,6 +91,30 @@ public class Menu {
         this.menames = menames;
     }
 
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
+    }
+
+    public int getPwid() {
+        return pwid;
+    }
+
+    public void setPwid(int pwid) {
+        this.pwid = pwid;
+    }
+
 
     @Override
     public String toString() {
@@ -97,6 +126,9 @@ public class Menu {
                 ", meres1='" + meres1 + '\'' +
                 ", meres2='" + meres2 + '\'' +
                 ", menames='" + menames + '\'' +
+                ", pid=" + pid +
+                ", mid=" + mid +
+                ", pwid=" + pwid +
                 '}';
     }
 }

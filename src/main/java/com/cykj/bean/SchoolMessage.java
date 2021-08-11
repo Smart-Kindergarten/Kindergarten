@@ -1,6 +1,7 @@
 package com.cykj.bean;
 
 public class SchoolMessage {
+    private int ID; // 编号id
     private String schoolName; //幼儿园名称
     private String legalPerson; //法人
     private String legalPersonId; //法人身份证
@@ -14,7 +15,43 @@ public class SchoolMessage {
     private String EnrolmentTime;//审批时间
     private String type;//状态
     private String applicationDeadline;//申请时间
-//    private String //申请id
+    private String backUP2;
+    private String saccount;
+    private String spwd;
+    private String starta;
+
+
+    public SchoolMessage() {
+    }
+
+    public SchoolMessage(int ID, String schoolName, String legalPerson, String legalPersonId, String address, String TLE, String schoolPermit, String hygienicLicense, String firePermit, String organizationPermit, String taxPermit, String enrolmentTime, String type, String applicationDeadline, String backUP2, String saccount, String spwd, String starta) {
+        this.ID = ID;
+        this.schoolName = schoolName;
+        this.legalPerson = legalPerson;
+        this.legalPersonId = legalPersonId;
+        this.address = address;
+        this.TLE = TLE;
+        this.schoolPermit = schoolPermit;
+        this.hygienicLicense = hygienicLicense;
+        this.firePermit = firePermit;
+        this.organizationPermit = organizationPermit;
+        TaxPermit = taxPermit;
+        EnrolmentTime = enrolmentTime;
+        this.type = type;
+        this.applicationDeadline = applicationDeadline;
+        this.backUP2 = backUP2;
+        this.saccount = saccount;
+        this.spwd = spwd;
+        this.starta = starta;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public String getSchoolName() {
         return schoolName;
@@ -118,5 +155,61 @@ public class SchoolMessage {
 
     public void setApplicationDeadline(String applicationDeadline) {
         this.applicationDeadline = applicationDeadline;
+    }
+
+    public String getBackUP2() {
+        return backUP2;
+    }
+
+    public void setBackUP2(String backUP2) {
+        this.backUP2 = backUP2;
+    }
+
+    public String getSaccount() {
+        return saccount;
+    }
+
+    public void setSaccount(String saccount) {
+        this.saccount = saccount;
+    }
+
+    public String getSpwd() {
+        return spwd;
+    }
+
+    public void setSpwd(String spwd) {
+        this.spwd = spwd;
+    }
+
+    public String getStarta() {
+        return starta;
+    }
+
+    public void setStarta(String starta) {
+        this.starta = starta;
+    }
+
+    @Override
+    public String toString() {
+        return "SchoolMessage{" +
+                "ID=" + ID +
+                ", schoolName='" + schoolName + '\'' +
+                ", legalPerson='" + legalPerson + '\'' +
+                ", legalPersonId='" + legalPersonId + '\'' +
+                ", address='" + address + '\'' +
+                ", TLE='" + TLE + '\'' +
+                ", schoolPermit='" + schoolPermit + '\'' +
+                ", hygienicLicense='" + hygienicLicense + '\'' +
+                ", firePermit='" + firePermit + '\'' +
+                ", organizationPermit='" + organizationPermit + '\'' +
+                ", TaxPermit='" + TaxPermit + '\'' +
+                ", EnrolmentTime='" + EnrolmentTime + '\'' +
+                ", type='" + type + '\'' +
+                ", applicationDeadline='" + applicationDeadline + '\'' +
+                ", backUP2='" + backUP2 + '\'' +
+                ", saccount='" + saccount + '\'' +
+                ", spwd='" + spwd + '\'' +
+                ", starta='" + starta + '\'' +
+                '}';
     }
 }

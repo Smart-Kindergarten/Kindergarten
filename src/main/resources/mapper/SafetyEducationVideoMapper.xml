@@ -150,6 +150,74 @@ DELETE from t_familyread  WHERE frid = #{frid}
 
 
     <select id="selectSchool" parameterType="com.cykj.bean.SchoolMessage" resultType="com.cykj.bean.SchoolMessage">
-        select * from t_schoolmessage LIMIT #{page},#{pages}
+        select * from t_schoolmessage where type = '通过审核'
+        <if test="left != null and left !=''">
+            AND  EnrolmentTime <![CDATA[>=]]> #{left}
+        </if>
+        <if test="right != null and right !=''">
+            AND  EnrolmentTime <![CDATA[<=]]> #{right}
+        </if>
+        <if test="schoolName != null and schoolName !=''">
+            AND schoolName = #{schoolName}
+        </if>
+
+        LIMIT #{page},#{pages}
     </select>
+
+    <select id="selectMenuLeft" parameterType="com.cykj.bean.Menu" resultType="com.cykj.bean.Menu">
+        SELECT t_menu.* from t_menu where t_menu.mepid IN
+    (SELECT t_menu.mepid  FROM t_menu,t_power where t_power.pid = t_menu.mepid AND t_power.mid = #{meid})
+ OR t_menu.meid = '0'
+    </select>
+
+
+    <select id="selectMenuRight" parameterType="com.cykj.bean.Menu" resultType="com.cykj.bean.Menu">
+        SELECT t_menu.* from t_menu where t_menu.mepid not IN
+    (SELECT t_menu.mepid  FROM t_menu,t_power where t_power.pid = t_menu.mepid AND t_power.mid = #{meid})
+ OR t_menu.meid = '0'
+    </select>
+
+
+
+    <select id="isidexit" parameterType="java.lang.String" resultType="com.cykj.bean.Menu">
+        SELECT * FROM t_power WHERE
+        <if test="mid != null and mid != ''">
+            mid = #{mid}
+        </if>
+        <if test="pid != null and pid != ''">
+            AND pid = #{pid}
+        </if>
+    </select>
+
+    <insert id="insertPower" parameterType="com.cykj.bean.Menu">
+        INSERT INTO t_power(mid, pid) VALUES(#{mid}, #{pid})
+    </insert>
+
+    <!--删除权限-->
+    <delete id="delPower" parameterType="com.cykj.bean.Menu">
+        DELETE FROM t_power WHERE mid = #{mid} AND pid = #{pid}
+    </delete>
+
+
+<!--    禁用园所-->
+    <update id="forbidden">
+          UPDATE t_schoolmessage set t_schoolmessage.starta = #{starta}  where t_schoolmessage.ID = #{ID}
+    </update>
+
+
+    <!--    重置密码-->
+    <update id="resetpwd">
+          UPDATE t_schoolmessage set t_schoolmessage.spwd = '123456'  where t_schoolmessage.ID = #{ID}
+    </update>
+
+<!--    删除园所-->
+    <delete id="delectID">
+            DELETE from t_schoolmessage where t_schoolmessage.ID = #{ID}
+    </delete>
+
+
+    <!--    修改园所-->
+    <update id="updateID">
+          UPDATE t_schoolmessage set t_schoolmessage.schoolName = #{schoolname},t_schoolmessage.saccount = #{schoolacc}  where t_schoolmessage.ID = #{ID}
+    </update>
 </mapper>
