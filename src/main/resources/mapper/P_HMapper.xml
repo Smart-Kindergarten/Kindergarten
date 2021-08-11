@@ -8,4 +8,12 @@
         INSERT INTO t_publishhomework(classId, teacherId, homeworkContent, arrangementTime, homeworkURL)
         VALUES (#{classId}, #{teacherId}, #{homeworkContent}, #{arrangementTime}, #{homeworkURL});
     </insert>
+    <select id="selectClassPH" resultType="com.cykj.va.P_H">
+        SELECT t1.phId, t1.homeworkContent, t2.uname, t1.arrangementTime, t3.className
+        FROM t_publishhomework t1
+                 INNER JOIN t_user t2 ON t1.teacherId = t2.uid
+                 INNER JOIN t_classmanagement t3 ON t1.classId = t3.classId
+        WHERE t1.classId = #{classId}
+        ORDER BY t1.arrangementTime DESC;
+    </select>
 </mapper>

@@ -14,6 +14,7 @@ public class C_HVa {
     private String homeworkURL;//作业内容
     private String arrangementTime;//发布时间
     private String completionTime;//完成时间
+    private String workName;//宝宝作业名
 
     @Override
     public String toString() {
@@ -25,6 +26,7 @@ public class C_HVa {
                 ", homeworkURL='" + homeworkURL + '\'' +
                 ", arrangementTime='" + arrangementTime + '\'' +
                 ", completionTime='" + completionTime + '\'' +
+                ", workName='" + workName + '\'' +
                 '}';
     }
 
@@ -82,5 +84,13 @@ public class C_HVa {
 
     public void setCompletionTime(String completionTime) {
         this.completionTime = completionTime;
+    }
+
+    public String getWorkName() {
+        return workName;
+    }
+
+    public void setWorkName(String workName) {
+        this.workName = workName;
     }
 }

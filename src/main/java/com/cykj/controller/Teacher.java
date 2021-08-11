@@ -4,19 +4,14 @@ import com.cykj.bean.*;
 import com.cykj.service.impl.*;
 import com.cykj.utils.Parameter;
 import com.cykj.utils.WeekDate;
-import com.cykj.va.C_HVa;
-import com.cykj.va.CheckSafEduTestRecord;
-import com.cykj.va.ClassInfo;
+import com.cykj.va.*;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
 import java.util.List;
 
 /*
@@ -48,6 +43,12 @@ public class Teacher {
     private SE_ServiceImpl seService;
     @Autowired
     private BabyInfServiceImpl babyInfService;
+    @Autowired
+    private ClassPhotoServiceImpl photoService;
+    @Autowired
+    private ClassMessageServiceImpl classMessageService;
+    @Autowired
+    private BabyAttenServiceImpl attenService;
 
     //查询当前日期课程表
     @ResponseBody
@@ -90,6 +91,26 @@ public class Teacher {
         return s;
     }
 
+    //使用班级id获取班级名称
+    @ResponseBody
+    @RequestMapping("/getClName")
+    public String getClName(int classId) {
+        System.out.println("-------使用班级id获取班级名称-------");
+        String s = managementService.getClassName(classId);
+        return s;
+    }
+
+    //查询发布作业
+    @ResponseBody
+    @RequestMapping("/checkPublishHomeworkint")
+    public String checkPublishHomework(int classId) {
+        System.out.println("-------查询发布作业-------");
+        List<P_H> list = pHService.selectClassPH(classId);
+        System.out.println(list);
+        return gson.toJson(list);
+    }
+
+    //发布作业
     @ResponseBody
     @RequestMapping("/upHomework")
     public String upHomework(int id, String uacc) {
@@ -129,38 +150,38 @@ public class Teacher {
         return s;
     }
 
-    //文件下载（现在无法使用）
-    @ResponseBody
-    @GetMapping("/download")
-    public HttpServletResponse download(String path, HttpServletResponse response) {
-        try {
-            System.out.println(path);
-            // path是指欲下载的文件的路径。
-            File file = new File(path);
-            // 取得文件名。
-            String filename = file.getName();
-            // 取得文件的后缀名。
-            String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
-            // 以流的形式下载文件。
-            InputStream fis = new BufferedInputStream(new FileInputStream(path));
-            byte[] buffer = new byte[fis.available()];
-            fis.read(buffer);
-            fis.close();
-            // 清空response
-            response.reset();
-            // 设置response的Header
-            response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes()));
-            response.addHeader("Content-Length", "" + file.length());
-            OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
-            response.setContentType("application/octet-stream");
-            toClient.write(buffer);
-            toClient.flush();
-            toClient.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return response;
-    }
+//    //文件下载（现在无法使用）
+//    @ResponseBody
+//    @GetMapping("/download")
+//    public HttpServletResponse download(String path, HttpServletResponse response) {
+//        try {
+//            System.out.println(path);
+//            // path是指欲下载的文件的路径。
+//            File file = new File(path);
+//            // 取得文件名。
+//            String filename = file.getName();
+//            // 取得文件的后缀名。
+//            String ext = filename.substring(filename.lastIndexOf(".") + 1).toUpperCase();
+//            // 以流的形式下载文件。
+//            InputStream fis = new BufferedInputStream(new FileInputStream(path));
+//            byte[] buffer = new byte[fis.available()];
+//            fis.read(buffer);
+//            fis.close();
+//            // 清空response
+//            response.reset();
+//            // 设置response的Header
+//            response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes()));
+//            response.addHeader("Content-Length", "" + file.length());
+//            OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
+//            response.setContentType("application/octet-stream");
+//            toClient.write(buffer);
+//            toClient.flush();
+//            toClient.close();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//        return response;
+//    }
 
     //查询安全教育
     @ResponseBody
@@ -257,4 +278,87 @@ public class Teacher {
         System.out.println(user);
         return gson.toJson(user);
     }
+
+    //    查询班级相册
+    @ResponseBody
+    @RequestMapping("/checkClassPhoto")
+    public String selectClassPhoto(int classId) {
+        System.out.println("-------查询班级相册-------");
+        List<Photo> photos = photoService.checkClassPhoto(classId);
+        System.out.println(photos);
+        return gson.toJson(photos);
+    }
+
+    //    存储班级照片
+    @ResponseBody
+    @RequestMapping("/newClassPhoto")
+    public String newClassPhoto(int classId, String text) {
+        System.out.println("-------存储班级照片-------");
+        Photo photo = new Photo();
+        photo.setClassId(classId);
+        photo.setPhoName(Parameter.getFileName());
+        photo.setPhoDescribe(text);
+        photo.setPhoto(Parameter.getPublishHomeworkPath());
+        photo.setPhoUploadTime(WeekDate.getCurrentTime());
+        String s = photoService.insertClassPhoto(photo);
+        System.out.println(s);
+        return s;
+    }
+
+    //查询班级所有公告
+    @ResponseBody
+    @RequestMapping("/checkClassMessage")
+    public String checkClassMessage(int classId) {
+        System.out.println("-------查询班级所有公告-------");
+        List<ClassMessage> list = classMessageService.selectAll(classId);
+        System.out.println(list);
+        return gson.toJson(list);
+    }
+
+    //新增班级公告
+    @ResponseBody
+    @RequestMapping("/newClassMessage")
+    public String newClassMessage(int classId, String text) {
+        System.out.println("-------新增班级公告-------");
+        ClassMessage message = new ClassMessage();
+        message.setClassId(classId);
+        message.setMessage(text);
+        message.setMessageTime(WeekDate.getCurrentTime());
+        String s = classMessageService.insertClassMessage(message);
+        System.out.println(s);
+        return s;
+    }
+
+    //查询班级考勤
+    @ResponseBody
+    @RequestMapping("/checkClassAtten")
+    public String checkClassAtten(int id) {
+        System.out.println("-------查询班级考勤-------");
+        List<BabyAttenVa> list = attenService.selectAll(id);
+        System.out.println(list);
+        return gson.toJson(list);
+    }
+
+    //模糊查询班级考勤
+    @ResponseBody
+    @RequestMapping("/fuzzySelectClassAtten")
+    public String fuzzySelectClassAtten(int id, String name) {
+        System.out.println("-------模糊查询班级考勤-------");
+        List<BabyAttenVa> list = attenService.fuzzySelectAll(id, name);
+        System.out.println(list);
+        return gson.toJson(list);
+    }
+
+    //查询宝宝考勤
+    @ResponseBody
+    @RequestMapping("/BabyAtten")
+    public String SelectBabyAtten(int classId, int babyId, String date) {
+        System.out.println("-------查询宝宝考勤-------");
+        System.out.println(classId + " " + babyId + " " + date);
+        List<BabyAtten> babyAttens = attenService.selectBabyAtten(classId, babyId, date);
+        System.out.println(babyAttens);
+        return gson.toJson(babyAttens);
+    }
+
+
 }

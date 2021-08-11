@@ -14,18 +14,21 @@ public class Menu {
     private String meurl;
     private String meres1;
     private String meres2;
+    private String menames;
 
     public Menu() {
     }
 
-    public Menu(int meid, String mename, int mepid, String meurl, String meres1, String meres2) {
+    public Menu(int meid, String mename, int mepid, String meurl, String meres1, String meres2, String menames) {
         this.meid = meid;
         this.mename = mename;
         this.mepid = mepid;
         this.meurl = meurl;
         this.meres1 = meres1;
         this.meres2 = meres2;
+        this.menames = menames;
     }
+
 
     public int getMeid() {
         return meid;
@@ -75,6 +78,15 @@ public class Menu {
         this.meres2 = meres2;
     }
 
+    public String getMenames() {
+        return menames;
+    }
+
+    public void setMenames(String menames) {
+        this.menames = menames;
+    }
+
+
     @Override
     public String toString() {
         return "Menu{" +
@@ -84,6 +96,7 @@ public class Menu {
                 ", meurl='" + meurl + '\'' +
                 ", meres1='" + meres1 + '\'' +
                 ", meres2='" + meres2 + '\'' +
+                ", menames='" + menames + '\'' +
                 '}';
     }
 }

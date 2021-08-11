@@ -34,7 +34,7 @@ public class Terrace {
         System.out.println(biadtimes);
         System.out.println(uname);
         System.out.println(page);
-        List<User> users = terraceMapper.selectPatriarch(biadtime,biadtimes,uname,(page - 1) * 5, page * 5);
+        List<User> users = terraceMapper.selectPatriarch(biadtime,biadtimes,uname,(page - 1) * 5,  5);
         Gson gson = new Gson();
         String s = gson.toJson(users);
         System.out.println(s);

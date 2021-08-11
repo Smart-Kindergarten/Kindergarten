@@ -33,11 +33,11 @@ update t_safetyeducation set t_safetyeducation.textUrl = #{textUrl}  where  t_sa
         select * from t_familyread
         WHERE
         1 = 1
-        <if test="UploadTime != null and UploadTime !=''">
-            AND  UploadTime <![CDATA[>=]]> #{UploadTime}
+        <if test="left != null and left !=''">
+            AND  UploadTime <![CDATA[>=]]> #{left}
         </if>
-        <if test="UploadTime != null and UploadTime !=''">
-            AND  UploadTime <![CDATA[>=]]> #{UploadTime}
+        <if test="right != null and right !=''">
+            AND  UploadTime <![CDATA[<=]]> #{right}
         </if>
         <if test="bookname != null and bookname !=''">
             AND bookname = #{bookname}
@@ -50,11 +50,11 @@ update t_safetyeducation set t_safetyeducation.textUrl = #{textUrl}  where  t_sa
      select * from t_terrace
      WHERE
                 1 = 1
-        <if test="Createtime != null and Createtime !=''">
-            AND  Createtime <![CDATA[>=]]> #{Createtime}
+        <if test="left != null and left !=''">
+            AND  reserve1 <![CDATA[>=]]> #{left}
         </if>
-        <if test="Createtime != null and Createtime !=''">
-            AND  Createtime <![CDATA[>=]]> #{Createtime}
+        <if test="right != null and right !=''">
+            AND  reserve1 <![CDATA[<=]]> #{right}
         </if>
         <if test="iftcontent != null and iftcontent !=''">
             AND iftcontent = #{iftcontent}
@@ -103,4 +103,53 @@ LEFT JOIN t_user ON t_user.uaccount = t_security.baId LIMIT #{page},#{pages}
     <delete id="delectBook">
 DELETE from t_familyread  WHERE frid = #{frid}
     </delete>
+
+
+    <select id="seleleBaby"  parameterType="com.cykj.bean.BabyInf" resultType="com.cykj.bean.BabyInf">
+            select * from t_babyinf
+    </select>
+
+    <select id="selectMan"  parameterType="com.cykj.bean.BabyInf" resultType="com.cykj.bean.BabyInf">
+  SELECT count(*)bisex from t_babyinf where t_babyinf.bisex = '男'
+    </select>
+
+    <select id="selectWoman"  parameterType="com.cykj.bean.BabyInf" resultType="com.cykj.bean.BabyInf">
+  SELECT count(*)bisex from t_babyinf where t_babyinf.bisex = '女'
+    </select>
+
+
+
+    <select id="selecthealthCondition"  parameterType="com.cykj.bean.Healthbean" resultType="com.cykj.bean.Healthbean">
+  SELECT * from t_babyinf LEFT JOIN t_babyhealth on t_babyinf.biid = t_babyhealth.babyid
+    </select>
+
+
+
+    <select id="selectMenu" parameterType="com.cykj.bean.Menu" resultType="com.cykj.bean.Menu">
+        SELECT t1.*,t2.mename menames from t_menu t1,t_menu t2
+        WHERE
+                1 = 1
+        <if test="onename != null and onename !=''">
+            AND  t2.mename <![CDATA[=]]> #{onename}
+        </if>
+        <if test="mename != null and mename !=''">
+            AND  t1.mename <![CDATA[=]]> #{mename}
+        </if>
+         and t1.meid = t2.mepid  LIMIT #{page},#{pages}
+    </select>
+
+
+    <select id="selectOne" parameterType="com.cykj.bean.Menu" resultType="com.cykj.bean.Menu">
+       SELECT * from t_menu where t_menu.meid = '0'
+    </select>
+
+
+    <update id="updateMenu">
+        update t_menu set t_menu.mename = #{mename},meurl = #{menurl} where mepid = #{mepid}
+    </update>
+
+
+    <select id="selectSchool" parameterType="com.cykj.bean.SchoolMessage" resultType="com.cykj.bean.SchoolMessage">
+        select * from t_schoolmessage LIMIT #{page},#{pages}
+    </select>
 </mapper>

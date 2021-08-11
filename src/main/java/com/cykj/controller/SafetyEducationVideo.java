@@ -39,7 +39,7 @@ public class SafetyEducationVideo {
             String fileExt = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1)
                     .toLowerCase();
             File directory = new File("src/main/resources");
-            String courseFile = directory.getCanonicalPath()+ "/static/zw/video";;
+            String courseFile = directory.getCanonicalPath()+ "/static/js/video";;
             System.out.println(courseFile);
             // 重构文件名称
             System.out.println("前端传递的保存路径："+courseFile);

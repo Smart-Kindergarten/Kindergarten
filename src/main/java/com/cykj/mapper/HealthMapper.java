@@ -1,7 +1,6 @@
 package com.cykj.mapper;
 
-import com.cykj.bean.BabyFood;
-import com.cykj.bean.Healthbean;
+import com.cykj.bean.*;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
 import org.springframework.stereotype.Repository;
@@ -25,11 +24,18 @@ public interface HealthMapper {
     //小程序亲子作业
     public List<ChildHomeWork> selChildHomeWork(String uphone, int page, int pages);
 
-    void upFood(BabyFood babyFood);
+    //提交作业至查看作业表
+    public Boolean insertHomeWork(CheckHomework checkHomework);
 
-    List<BabyFood> selectFood();
+    //往期作业
+    public List<ChildHomeWork> selOldHomeWork(String uphone, int page, int pages);
 
-    void changeFood(BabyFood babyFood);
+    //安全教育答题存成绩于数据库
+    public Boolean insertAnswer(String secScore, String videoId);
 
-    void upFoodTime(BabyFood babyFood);
+    //查询绘本信息
+    public List<FamilyRead> selHuiben(int page, int pages);
+
+    //查询校园公告信息
+    public List<Announcement> selannouncement(int page, int pages);
 }

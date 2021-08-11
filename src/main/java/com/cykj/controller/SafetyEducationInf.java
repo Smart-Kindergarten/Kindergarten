@@ -1,26 +1,30 @@
 package com.cykj.controller;
 
-import com.cykj.bean.FamilyRead;
-import com.cykj.bean.Healthbean;
-import com.cykj.bean.SafetyEducation;
-import com.cykj.bean.TerraceInformationBean;
+import com.cykj.bean.*;
 import com.cykj.mapper.SafetyEducationVideoMapper;
 import com.google.gson.Gson;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * @ClassName: 获取安全教育视频信息
@@ -82,9 +86,78 @@ public class SafetyEducationInf {
 
 
 
+    // 资讯爬虫
+    @GetMapping("/reptile")
+    public @ResponseBody
+    String reptile() throws Exception {
+        CloseableHttpResponse response = null;
+        //创建httpclient对象
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+
+        URIBuilder uri = new URIBuilder("https://www.shejiyd.com/zx.html");
+        //创建httpget对象，参数为url
+        HttpGet httpGet = new HttpGet(uri.build());
+        //发起请求
+        response = httpClient.execute(httpGet);
+        if(response.getStatusLine().getStatusCode() == 200) {//状态码为200时，获取response
+            //解析响应
+            HttpEntity httpEntity = response.getEntity();
+            String message = EntityUtils.toString(httpEntity, "UTF-8");
+            //打印为String
+//            String content = EntityUtils.toString(httpEntity, "utf8");
+
+            String s = message.replaceAll("[^a-zA-Z0-9\\u4E00-\\u9FA5]", "");
+//            System.out.println(s);
+            String[] splitAddress=s.split("targetblank");
+
+
+            String one =  splitAddress[2];
+            String[] ones=one.split("adivdivclasscontent");
+            System.out.println(ones[0]);
+            System.out.println(ones[1].replaceAll("[^\u4E00-\u9FA5]", ""));
+
+            // 获取系统时间
+            Date now = new Date();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String hehe = dateFormat.format( now );
+            boolean b = safetyEducationVideoMapper.insTerraceInf(ones[0], ones[1].replaceAll("[^\u4E00-\u9FA5]", ""), hehe,"交通");
+
+            String two = splitAddress[5];
+            String[] twos= two.split("adivdivclasscontent");
+            System.out.println(twos[0]);
+            System.out.println(twos[1].replaceAll("[^\u4E00-\u9FA5]", ""));
+            safetyEducationVideoMapper.insTerraceInf(twos[0], twos[1].replaceAll("[^\u4E00-\u9FA5]", ""), hehe,"交通");
+
+
+            String there = splitAddress[8];
+            String[] theres= there.split("adivdivclasscontent");
+            System.out.println(theres[0]);
+            System.out.println(theres[1].replaceAll("[^\u4E00-\u9FA5]", ""));
+            safetyEducationVideoMapper.insTerraceInf(theres[0], theres[1].replaceAll("[^\u4E00-\u9FA5]", ""), hehe,"亲子");
+
+
+            String four = splitAddress[11];
+            String[] fours= four.split("adivdivclasscontent");
+            System.out.println(fours[0]);
+            System.out.println(fours[1].replaceAll("[^\u4E00-\u9FA5]", ""));
+            safetyEducationVideoMapper.insTerraceInf(fours[0], fours[1].replaceAll("[^\u4E00-\u9FA5]", ""), hehe,"交通");
+
+            String five = splitAddress[14];
+            String[] fives= five.split("adivdivclasscontent");
+            System.out.println(fives[0]);
+            System.out.println(fives[1].replaceAll("[^\u4E00-\u9FA5]", ""));
+            safetyEducationVideoMapper.insTerraceInf(fives[0], fives[1].replaceAll("[^\u4E00-\u9FA5]", ""), hehe,"亲子");
+
+        }
+        return "200";
+    }
+
+
+
+
     @GetMapping("/TerraceInf")
     public @ResponseBody
-    String TerraceInfs( String Createtime, String Createtimes, String iftcontent,  int page){
+    String TerraceInfs( String Createtime, String Createtimes, String iftcontent,  int page) throws Exception {
         System.out.println("获取平台信息");
         System.out.println(Createtime);
         System.out.println(Createtimes);
@@ -94,7 +167,7 @@ public class SafetyEducationInf {
                 ,Createtimes
                 ,iftcontent,
                 (page - 1) * 5,
-                (page * 5));
+                5);
         Gson gson = new Gson();
         String s = gson.toJson(terraceInformationBeans);
         System.out.println(s);
@@ -208,7 +281,7 @@ public class SafetyEducationInf {
         System.out.println(newCompanyImageName);
 
         File directory = new File("src/main/resources");
-        String courseFile = directory.getCanonicalPath()+ "/static/zw/images/";;
+        String courseFile = directory.getCanonicalPath()+ "/static/js/images/";;
         System.out.println(courseFile);
         Date    now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -243,7 +316,7 @@ public class SafetyEducationInf {
         String hehe = dateFormat.format( now );
 
         File directory = new File("src/main/resources");
-        String courseFile = directory.getCanonicalPath()+ "/static/zw/images/";;
+        String courseFile = directory.getCanonicalPath()+ "/static/js/images/";;
         System.out.println(courseFile);
 
 
@@ -266,6 +339,150 @@ public class SafetyEducationInf {
 //        String s = gson.toJson(safetyEducations);
 //        System.out.println(s);
         return "200";
+    }
+
+
+
+    // 统计年龄
+    @GetMapping("/age")
+    public @ResponseBody
+    String age(){
+        int three = 0;
+        int four = 0;
+        int five = 0;
+        int six = 0;
+        String regEx="[\n`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。， 、？]";
+//        Pattern p = Pattern.compile(regEx);
+        List<BabyInf> babyInfs = safetyEducationVideoMapper.seleleBaby();
+        for (int i = 0; i < babyInfs.size() ; i++) {
+//            System.out.println(babyInfs.get(i).getBiytd().replaceAll("-",""));
+            String  s= babyInfs.get(i).getBiytd().replaceAll("-","");
+            int ss = Integer.valueOf(s);
+            if ( ss  > 20190000 && ss < 20200000){
+                three++;
+            }else if ( ss  > 20180000 && ss < 20190000){
+                four++;
+            }else if ( ss  > 20170000 && ss < 20180000){
+                five++;
+            }else if ( ss  > 20160000 && ss < 20170000){
+                six++;
+            }
+        }
+        System.out.println(three);
+        System.out.println(four);
+        System.out.println(five);
+        System.out.println(six);
+        age age = new age(three,four,five,six);
+        Gson  gson  = new Gson();
+        String s = gson.toJson(age);
+        System.out.println(s);
+        return  s;
+    }
+
+
+
+    // 统计性别
+    @GetMapping("/pie")
+    public @ResponseBody
+    String pie(){
+        System.out.println("统计性别");
+        List<BabyInf> babyInfs = safetyEducationVideoMapper.selectMan();
+        List<BabyInf> babyInfss = safetyEducationVideoMapper.selectWoman();
+        System.out.println(babyInfs.get(0).getBisex());
+        System.out.println(babyInfss.get(0).getBisex());
+        pie pie = new pie(babyInfs.get(0).getBisex(),babyInfss.get(0).getBisex());
+        Gson  gson  = new Gson();
+        String s = gson.toJson(pie);
+        System.out.println(s);
+        return  s;
+    }
+
+    // 统计性别
+    @GetMapping("/healthCondition")
+    public @ResponseBody
+    String   healthCondition(){
+        int good = 0;
+        int bad = 0;
+        int ordinary = 0 ;
+        System.out.println("统计健康状况");
+        List<Healthbean> healthbeans = safetyEducationVideoMapper.selecthealthCondition();
+        for (int i = 0; i <healthbeans.size() ; i++) {
+            if ( healthbeans.get(i).getHealthcondition().equals("健康")){
+                good++;
+            }else if (healthbeans.get(i).getHealthcondition().equals("较差")){
+                bad++;
+            }else {
+                ordinary++;
+            }
+        }
+        System.out.println(good);
+        System.out.println(bad);
+        System.out.println(ordinary);
+        healthCondition healthCondition = new healthCondition(good,bad,ordinary);
+        Gson  gson  = new Gson();
+        String s = gson.toJson(healthCondition);
+        System.out.println(s);
+        return  s;
+    }
+
+
+
+
+
+    // 菜单管理
+    @GetMapping("/menuManagement")
+    public @ResponseBody
+    String menuManagement(String onename,String mename,int page){
+        System.out.println("菜单管理");
+        List<Menu> menus = safetyEducationVideoMapper.selectMenu(onename,mename,(page - 1) * 5, 5);
+        Gson  gson  = new Gson();
+        String s = gson.toJson(menus);
+        System.out.println(s);
+        return  s;
+    }
+
+    // 菜单管理  查询一级菜单
+    @GetMapping("/selectOne")
+    public @ResponseBody
+    String selectOne(){
+        System.out.println("一级菜单");
+        List<Menu> menus = safetyEducationVideoMapper.selectOne();
+        Gson  gson  = new Gson();
+        String s = gson.toJson(menus);
+        System.out.println(s);
+        return  s;
+    }
+
+
+
+
+    // 菜单管理  修改菜单
+    @GetMapping("/updateMenu")
+    public @ResponseBody
+    String updateMenu(String umepid,String umename,String umeurl,String umenames){
+        System.out.println("修改菜单");
+        System.out.println(umename);
+        System.out.println(umeurl);
+        System.out.println(umenames);
+        System.out.println(umepid);
+        boolean b = safetyEducationVideoMapper.updateMenu(umename, umeurl, Integer.valueOf(umepid));
+        Gson  gson  = new Gson();
+        String s = gson.toJson(b);
+        System.out.println(s);
+        return  "200";
+    }
+
+
+    // 菜单管理  修改菜单 啊
+    @GetMapping("/selectSchool")
+    public @ResponseBody
+    String selectSchool(int page,int pages){
+        System.out.println("查询园所审批");
+        List<SchoolMessage> schoolMessages = safetyEducationVideoMapper.selectSchool((page - 1) * 5, 5);
+        Gson  gson  = new Gson();
+        String s = gson.toJson(schoolMessages);
+        System.out.println(s);
+        return  s;
     }
 
 }

@@ -1,8 +1,6 @@
 package com.cykj.service;
 
-import com.cykj.bean.FamilyRead;
-import com.cykj.bean.SafetyEducation;
-import com.cykj.bean.TerraceInformationBean;
+import com.cykj.bean.*;
 
 import java.util.List;
 
@@ -56,5 +54,28 @@ public interface SafetyEducationVideoService {
     // 删除绘本
     public boolean delectBook(int frid);
 
+    // 统计年龄
+    public List<BabyInf> seleleBaby();
+
+    // 查询男生人数
+    public List<BabyInf> selectMan();
+
+    // 查询女生人数
+    public List<BabyInf> selectWoman();
+
+    // 统计健康状况
+    public List<Healthbean>  selecthealthCondition();
+
+    // 菜单管理
+    public List<Menu> selectMenu(String onename,String mename,int page,int pages);
+
+    // 查询一级菜单
+    public List<Menu> selectOne();
+
+    // 修改菜单
+    public boolean updateMenu(String mename,String menurl,int mepid);
+
+    // 查询园所
+    public List<SchoolMessage> selectSchool(int page,int pages);
 
 }

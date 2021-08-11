@@ -8,6 +8,7 @@ package com.cykj.bean;
  */
 public class Photo {
     private int phoId;              //照片id
+    private int classId;            //班级id
     private String phoName;         //照片名字
     private String phoDescribe;     //照片描述
     private String photo;           //照片（保存路径）
@@ -16,8 +17,9 @@ public class Photo {
     public Photo() {
     }
 
-    public Photo(int phoId, String phoName, String phoDescribe, String photo, String phoUploadTime) {
+    public Photo(int phoId, int classId, String phoName, String phoDescribe, String photo, String phoUploadTime) {
         this.phoId = phoId;
+        this.classId = classId;
         this.phoName = phoName;
         this.phoDescribe = phoDescribe;
         this.photo = photo;
@@ -28,6 +30,7 @@ public class Photo {
     public String toString() {
         return "Photo{" +
                 "phoId=" + phoId +
+                ", classId=" + classId +
                 ", phoName='" + phoName + '\'' +
                 ", phoDescribe='" + phoDescribe + '\'' +
                 ", photo='" + photo + '\'' +
@@ -41,6 +44,14 @@ public class Photo {
 
     public void setPhoId(int phoId) {
         this.phoId = phoId;
+    }
+
+    public int getClassId() {
+        return classId;
+    }
+
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 
     public String getPhoName() {

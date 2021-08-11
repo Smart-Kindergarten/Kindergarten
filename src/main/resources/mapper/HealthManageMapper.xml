@@ -15,6 +15,8 @@
  UPDATE t_babyhealth set t_babyhealth.babyname = #{babyname},t_babyhealth.height = #{height},t_babyhealth.weight = #{weight},
   t_babyhealth.eyesight = #{eyesight},t_babyhealth.temperature = #{temperature},
   t_babyhealth.healthcondition=#{healthcondition} WHERE t_babyhealth.babyheid = #{babyheid}
+
+
     </update>
 
     <select id="selectAll" parameterType="com.cykj.bean.Healthbean" resultType="com.cykj.bean.Healthbean">
@@ -26,4 +28,8 @@ INSERT INTO t_babyhealth(babyheid,babyname,height,weight,eyesight,temperature,he
 VALUES(null ,#{babyname},#{height},#{weight},#{eyesight}, #{temperature},#{healthcondition},#{checkuptime});
     </insert>
 
+
+    <select id="lookFood" parameterType="com.cykj.bean.BabyFood" resultType="com.cykj.bean.BabyFood" >
+        select * from t_babyfood LIMIT #{page},#{pages}
+    </select>
 </mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.BabyAttenMapper">
+    <select id="selectAll" resultType="com.cykj.va.BabyAttenVa">
+        SELECT DISTINCT t2.biid, t2.biname, t3.uname, t1.attendanceDate, t2.bisex
+        FROM t_babyatten t1
+                 INNER JOIN t_babyinf t2 ON t1.babyId = t2.biid
+                 INNER JOIN t_user t3 ON t2.uid = t3.uid
+        WHERE t1.classId = #{id}
+        ORDER BY t1.attendanceDate DESC;
+    </select>
+    <select id="fuzzySelectAll" resultType="com.cykj.va.BabyAttenVa">
+        SELECT DISTINCT t2.biid, t2.biname, t3.uname, t1.attendanceDate, t2.bisex
+        FROM t_babyatten t1
+        INNER JOIN t_babyinf t2 ON t1.babyId = t2.biid
+        INNER JOIN t_user t3 ON t2.uid = t3.uid
+        WHERE 1=1
+        <if test="id != null and id != ''">
+            and t1.classId = #{id}
+        </if>
+        <if test="name != null and name != ''">
+            and t2.biname LIKE concat('%', #{name}, '%')
+        </if>
+        ORDER BY t1.attendanceDate DESC;
+    </select>
+    <select id="selectBabyAtten" resultType="com.cykj.bean.BabyAtten">
+        SELECT *
+        FROM t_babyatten
+        WHERE t_babyatten.classId = #{classId}
+          AND t_babyatten.babyId = #{babyId}
+          AND t_babyatten.attendanceDate = #{date};
+    </select>
+</mapper>

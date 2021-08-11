@@ -1,5 +1,12 @@
 package com.cykj.controller;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.net.URISyntaxException;
 
 /**
  * @ClassName: images
@@ -29,14 +37,15 @@ public class images {
             try {
 
                 File directory = new File("src/main/resources");
-                String courseFile = directory.getCanonicalPath()+ "/static/zw/images/";;
+                String courseFile = directory.getCanonicalPath()+ "/static/js/images/";;
                 System.out.println(courseFile);
 
                 System.out.println(name);
                 System.out.println("qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
                 //图片命名
-                String newCompanyImageName = name+".jpg";
-                String newCompanyImagepath = courseFile+newCompanyImageName;
+                String newCompanyImageName = name;
+                String newCompanyImageNames = newCompanyImageName+".jpg";
+                String newCompanyImagepath = courseFile+newCompanyImageNames;
 
                 HttpSession session = req.getSession();
                 session.setAttribute("newCompanyImageName",newCompanyImageName);
@@ -60,4 +69,9 @@ public class images {
         }
         return "图片上传失败！";
     }
+
+
+
+
+
 }

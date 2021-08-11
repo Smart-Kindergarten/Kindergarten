@@ -1,8 +1,6 @@
 package com.cykj.service.impl;
 
-import com.cykj.bean.FamilyRead;
-import com.cykj.bean.SafetyEducation;
-import com.cykj.bean.TerraceInformationBean;
+import com.cykj.bean.*;
 import com.cykj.mapper.SafetyEducationVideoMapper;
 import com.cykj.mapper.TerraceMapper;
 import com.cykj.service.SafetyEducationVideoService;
@@ -120,4 +118,54 @@ public class SafetyEducationVideoServiceImpl implements SafetyEducationVideoServ
         boolean b = safetyEducationVideoMapper.delectBook(frid);
         return b;
     }
+
+    @Override
+    public List<BabyInf> seleleBaby() {
+        List<BabyInf> babyInfs = safetyEducationVideoMapper.seleleBaby();
+        return babyInfs;
+    }
+
+    @Override
+    public List<BabyInf> selectMan() {
+        List<BabyInf> babyInfs = safetyEducationVideoMapper.selectMan();
+        return babyInfs;
+    }
+
+    @Override
+    public List<BabyInf> selectWoman() {
+        List<BabyInf> babyInfs = safetyEducationVideoMapper.selectWoman();
+        return babyInfs;
+    }
+
+    @Override
+    public List<Healthbean> selecthealthCondition() {
+        List<Healthbean> healthbeans = safetyEducationVideoMapper.selecthealthCondition();
+        return healthbeans;
+    }
+
+    @Override
+    public List<Menu> selectMenu(String onename,String mename,int page,int pages) {
+        List<Menu> menus = safetyEducationVideoMapper.selectMenu(onename,mename,page,pages);
+        return menus;
+    }
+
+    @Override
+    public List<Menu> selectOne() {
+        List<Menu> menus = safetyEducationVideoMapper.selectOne();
+        return menus;
+    }
+
+    @Override
+    public boolean updateMenu(String mename, String menurl, int mepid) {
+        boolean b =  safetyEducationVideoMapper.updateMenu(mename,menurl,mepid);
+        return b;
+    }
+
+    @Override
+    public List<SchoolMessage> selectSchool(int page, int pages) {
+        List<SchoolMessage> schoolMessages = safetyEducationVideoMapper.selectSchool(page,pages);
+        return schoolMessages;
+    }
+
+
 }

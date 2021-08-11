@@ -1,6 +1,7 @@
 package com.cykj.controller;
 
 
+import com.cykj.bean.Announcement;
 import com.cykj.bean.BabyFood;
 import com.cykj.bean.Healthbean;
 import com.cykj.mapper.HealthMapper;
@@ -61,7 +62,6 @@ public class Health extends HttpServlet {
         List<Healthbean> health = healthMapper.selHeaUphone(uphone, (page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
-        System.out.println(s);
         return s;
     }
 
@@ -78,7 +78,6 @@ public class Health extends HttpServlet {
         List<CurrAndUser> health = healthMapper.selCurrAndUser(uphone, (page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
-        System.out.println(s);
         return s;
     }
 
@@ -95,7 +94,6 @@ public class Health extends HttpServlet {
         List<BabyFood> health = healthMapper.selBabyFood((page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
-        System.out.println(s);
         return s;
     }
 
@@ -112,7 +110,38 @@ public class Health extends HttpServlet {
         List<ChildHomeWork> health = healthMapper.selChildHomeWork(uphone, (page - 1) * 5, page * 5);
         Gson gson = new Gson();
         String s = gson.toJson(health);
-        System.out.println(s);
+        return s;
+    }
+
+
+    /**
+     * @Description: 小程序往期作业
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-09 11:28
+     */
+    @ResponseBody
+    @GetMapping("/selOldHomeWork")
+    public String selOldHomeWork(@RequestParam("page") int page, @RequestParam("uphone") String uphone) {
+        List<ChildHomeWork> health = healthMapper.selOldHomeWork(uphone, (page - 1) * 5, page * 5);
+        Gson gson = new Gson();
+        String s = gson.toJson(health);
+        return s;
+    }
+
+
+    /**
+     * @Description: 查询校园公告信息
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-11 4:01
+     */
+    @ResponseBody
+    @GetMapping("/selannouncement")
+    public String selannouncement(@RequestParam("page") int page) {
+        List<Announcement> health = healthMapper.selannouncement((page - 1) * 5, page * 5);
+        Gson gson = new Gson();
+        String s = gson.toJson(health);
         return s;
     }
 

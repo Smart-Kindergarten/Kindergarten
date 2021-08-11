@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.ClassPhotoMapper">
+    <select id="checkClassPhoto" resultType="com.cykj.bean.Photo">
+        SELECT *
+        FROM t_photo
+        WHERE t_photo.classId = #{classId}
+        ORDER BY t_photo.phoUploadTime DESC;
+    </select>
+    <insert id="insertClassPhoto">
+        INSERT INTO t_photo(classId, phoName, phoDescribe, photo, phoUploadTime)
+        VALUES (#{classId}, #{phoName}, #{phoDescribe}, #{photo}, #{phoUploadTime})
+    </insert>
+</mapper>

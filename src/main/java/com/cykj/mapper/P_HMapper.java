@@ -1,7 +1,10 @@
 package com.cykj.mapper;
 
 import com.cykj.bean.PublishHomework;
+import com.cykj.va.P_H;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @version 1.0
@@ -14,4 +17,5 @@ import org.springframework.stereotype.Repository;
 public interface P_HMapper {
     int insertAll(PublishHomework publishHomework);
 
+    List<P_H> selectClassPH(int classId);
 }

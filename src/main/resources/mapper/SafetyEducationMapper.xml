@@ -6,7 +6,8 @@
 <mapper namespace="com.cykj.mapper.SafetyEducationMapper">
     <select id="selectSafEduAll" resultType="com.cykj.bean.SafetyEducation">
         SELECT *
-        FROM t_safetyeducation;
+        FROM t_safetyeducation
+        ORDER BY t_safetyeducation.startTime DESC;
     </select>
 
     <update id="updateTime">
