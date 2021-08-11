@@ -474,4 +474,83 @@ public class SchoolMessageImpl implements SchoolMessageService {
         }
     }
 
+    @Override
+    public String addCam(MessageNotification messageNotification) {
+        try {
+            messageMapper.addCam(messageNotification);
+            return "成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "失败";
+        }
+    }
+
+    @Override
+    public String checkMessage() {
+        try {
+            List<Announcement> announcements = messageMapper.checkMessage();
+            String msg = JSON.toJSONString(announcements);
+            System.out.println(msg);
+            return msg;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public String addAnn(Announcement announcement) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
+            sdf.applyPattern("yyyy-MM-dd");// a为am/pm的标记
+            Date date = new Date();// 获取当前时间
+            System.out.println("现在时间：" + sdf.format(date)); // 输出已经格式化的现在时间(24小时制)
+            announcement.setCreationTime(sdf.format(date));
+            messageMapper.addAnn(announcement);
+            return "成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "失败";
+        }
+    }
+
+    @Override
+    public String changeAnn(Announcement announcement) {
+        try {
+            messageMapper.changeAnn(announcement);
+            return "成功";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "失败";
+        }
+    }
+
+    @Override
+    public String checkAnno(String pDate, String pName) {
+        try {
+            String []times = pDate.split(",");
+            long timeOne = Long.parseLong(times[0]);
+            long timeTow = Long.parseLong(times[1]);
+            List<Announcement> announcements = messageMapper.checkMessage();
+            for (Announcement a : announcements) {
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+                String myDate = a.getCreationTime();
+                Date datetime = sdf1.parse(myDate);
+                ;//将你的日期转换为时间戳
+                String time = String.valueOf(datetime.getTime());
+                if (a.getMessageName().equals(pName)&&Long.parseLong(time)>timeOne&&Long.parseLong(time)<timeTow){
+                    List<Announcement> announcements1 = new ArrayList<Announcement>();
+                    announcements1.add(a);
+                    String msg = JSON.toJSONString(announcements1);
+                    System.out.println(msg);
+                    return msg;
+                }
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

@@ -120,4 +120,22 @@
     <update id="changeClass" parameterType="com.cykj.bean.Curriculum">
         update t_curriculum set ${back} = #{currDate} where currId = ${currId}
     </update>
+
+    <insert id="addCam" parameterType="com.cykj.bean.MessageNotification">
+        insert into t_messagenotification(schoolName,Message) value (#{schoolName},#{Message})
+    </insert>
+
+    <select id="checkMessage" resultType="com.cykj.bean.Announcement">
+        select * from t_announcement
+    </select>
+
+    <insert id="addAnn" parameterType="com.cykj.bean.Announcement">
+        insert into t_announcement(messageName,message,creationTime) value (#{messageName},#{message},#{creationTime})
+    </insert>
+
+    <update id="changeAnn" parameterType="com.cykj.bean.Announcement">
+        update t_announcement
+        set messageName= #{messageName},message= #{message},creationTime=#{creationTime}
+        where ID = ${ID}
+    </update>
 </mapper>

@@ -259,4 +259,39 @@ public class kindergartenLeader {
         String msg = message.selectClass(pName,pDate);
         return msg;
     }
+
+    @ResponseBody
+    @RequestMapping("/addCam")
+    public String addCam(MessageNotification messageNotification) {
+        String msg = message.addCam(messageNotification);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/checkMessage")
+    public String checkMessage() {
+        String msg = message.checkMessage();
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/addAnn")
+    public String addAnn(Announcement announcement) {
+        String msg = message.addAnn(announcement);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/changeAnn")
+    public String changeAnn(Announcement announcement) {
+        String msg = message.changeAnn(announcement);
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/checkAnno")
+    public String checkAnno(String pDate,String pName) {
+        String msg = message.checkAnno(pDate,pName);
+        return msg;
+    }
 }

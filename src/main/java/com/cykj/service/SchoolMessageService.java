@@ -1,9 +1,6 @@
 package com.cykj.service;
 
-import com.cykj.bean.BabyInf;
-import com.cykj.bean.Curriculum;
-import com.cykj.bean.SchoolMessage;
-import com.cykj.bean.User;
+import com.cykj.bean.*;
 
 import java.util.List;
 
@@ -63,4 +60,14 @@ public interface SchoolMessageService {
     String changeClass(String nowClassId,String date,String name);
 
     String selectClass(String pName,String pDate);
+
+    String addCam(MessageNotification messageNotification);
+
+    String checkMessage();
+
+    String addAnn(Announcement announcement);
+
+    String changeAnn(Announcement announcement);
+
+    String checkAnno(String pDate,String pName);
 }

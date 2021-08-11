@@ -57,4 +57,12 @@ public interface SchoolMessageMapper {
     List<Curriculum> classSchedule(Curriculum curriculum);
 
     void changeClass(Curriculum curriculum);
+
+    void addCam(MessageNotification messageNotification);
+
+    List<Announcement> checkMessage();
+
+    void addAnn(Announcement announcement);
+
+    void changeAnn(Announcement announcement);
 }
