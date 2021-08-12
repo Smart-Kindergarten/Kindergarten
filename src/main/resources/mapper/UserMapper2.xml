@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.UserMapper2">
+    <resultMap id="BaseResultMap" type="com.cykj.bean.User">
+        <id column="uid" jdbcType="INTEGER" property="uid"/>
+        <result column="uaccount" jdbcType="VARCHAR" property="uaccount"/>
+        <result column="upwd" jdbcType="VARCHAR" property="upwd"/>
+        <result column="urid" jdbcType="VARCHAR" property="urid"/>
+        <result column="uname" jdbcType="VARCHAR" property="uname"/>
+        <result column="ustate" jdbcType="VARCHAR" property="ustate"/>
+        <result column="uwork" jdbcType="VARCHAR" property="uwork"/>
+        <result column="usite" jdbcType="VARCHAR" property="usite"/>
+        <result column="uphone" jdbcType="VARCHAR" property="uphone"/>
+        <result column="uchildrelation" jdbcType="VARCHAR" property="uchildrelation"/>
+        <result column="ures1" jdbcType="VARCHAR" property="ures1"/>
+        <result column="ures2" jdbcType="VARCHAR" property="ures2"/>
+        <result column="ures3" jdbcType="VARCHAR" property="ures3"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        uid
+        ,uaccount,upwd,urid,uname,ustate,uwork,usite,uphone,uchildrelation,ures1,ures2,ures3
+    </sql>
+
+    <select id="selectUserByName" resultType="com.cykj.bean.User">
+        SELECT *
+        FROM t_user
+        WHERE t_user.uaccount = #{uAcc}
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where uid = #{id}
+    </select>
+
+    <select id="getCloudList" resultType="com.cykj.bean.User">
+        SELECT t1.uid,t1.uaccount,t1.uname FROM t_user t1 LEFT JOIN t_babyinf t2 ON t1.uid=t2.uid LEFT JOIN t_classmanagement t3 ON t2.clid=t3.classId OR t1.uid=t3.teacher
+        WHERE 1=1
+        <if test="list != null">
+            AND t1.uid NOT IN
+            <foreach collection="list" open="(" close=")" separator="," item="i">
+                #{i}
+            </foreach>
+        </if>
+        <if test="classId != null">
+            AND t3.classId=#{classId}
+        </if>
+    </select>
+
+
+</mapper>

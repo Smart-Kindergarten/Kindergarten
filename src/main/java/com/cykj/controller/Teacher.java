@@ -360,5 +360,24 @@ public class Teacher {
         return gson.toJson(babyAttens);
     }
 
+    //查询角色称号
+    @ResponseBody
+    @RequestMapping("/getUserUrId")
+    public String getUserUrId(HttpServletRequest req) {
+        System.out.println("-------查询角色称号-------");
+        String uAcc = (String) req.getSession().getAttribute("uaccount");
+        int userUrid = userService.getUserUrid(uAcc);
+        System.out.println(userUrid);
+        return String.valueOf(userUrid);
+    }
 
+    //查询宝宝所在班级
+    @ResponseBody
+    @RequestMapping("/getBabyClass")
+    public String getBabyClass(HttpServletRequest req) {
+        System.out.println("-------查询宝宝所在班级-------");
+        String uAcc = (String) req.getSession().getAttribute("uaccount");
+        int i = userService.babyClass(uAcc);
+        return gson.toJson(i);
+    }
 }

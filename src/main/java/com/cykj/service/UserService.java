@@ -16,4 +16,8 @@ public interface UserService {
 
     //家长信息
     User parentsInfo(int id);
+    int getUserUrid(String acc);
+
+    //    查询宝宝所在班级
+    int babyClass(String acc);
 }
