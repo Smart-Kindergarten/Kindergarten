@@ -7,6 +7,7 @@ import com.cykj.bean.Healthbean;
 import com.cykj.bean.SafetyEducation;
 import com.cykj.mapper.HealthMapper;
 import com.cykj.service.HealthService;
+import com.cykj.va.AttenAndUser;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
 import com.google.gson.Gson;
@@ -190,6 +191,22 @@ public class Health extends HttpServlet {
             list.add(map);
         }
         return list;
+    }
+
+
+    /**
+     * @Description: 查看宝宝考勤信息
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-12 4:54
+     */
+    @ResponseBody
+    @GetMapping("/selectBabyAtten")
+    public String selectBabyAtten(@RequestParam("page") int page, @RequestParam("uphone") String uphone) {
+        List<AttenAndUser> health = healthMapper.selectBabyAtten(uphone, (page - 1) * 5, page * 5);
+        Gson gson = new Gson();
+        String s = gson.toJson(health);
+        return s;
     }
 
 }

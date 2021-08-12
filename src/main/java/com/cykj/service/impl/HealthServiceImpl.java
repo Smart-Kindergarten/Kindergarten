@@ -4,6 +4,7 @@ package com.cykj.service.impl;
 import com.cykj.bean.*;
 import com.cykj.mapper.HealthMapper;
 import com.cykj.service.HealthService;
+import com.cykj.va.AttenAndUser;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,6 +146,18 @@ public class HealthServiceImpl implements HealthService {
     @Override
     public List<SafetyEducation> selVideo(int page, int pages) {
         return healthMapper.selVideo(page, pages);
+    }
+
+
+    /**
+     * @Description: 查询宝宝考勤信息
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-12 4:56
+     */
+    @Override
+    public List<AttenAndUser> selectBabyAtten(String uphone, int page, int pages) {
+        return healthMapper.selectBabyAtten(uphone, page, pages);
     }
 
 

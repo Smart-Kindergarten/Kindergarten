@@ -84,4 +84,9 @@
         update t_babyfood set ${reserve2} = #{reserve3} where fid = ${fid}
     </update>
 
+    <!--查询宝宝考勤信息-->
+    <select id="selectBabyAtten" resultType="com.cykj.va.AttenAndUser">
+       SELECT * from t_user,t_babyatten where t_user.uphone = #{uphone} LIMIT #{page},#{pages}
+    </select>
+
 </mapper>

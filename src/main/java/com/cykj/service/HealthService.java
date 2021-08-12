@@ -1,6 +1,7 @@
 package com.cykj.service;
 
 import com.cykj.bean.*;
+import com.cykj.va.AttenAndUser;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
 import org.springframework.stereotype.Service;
@@ -47,4 +48,7 @@ public interface HealthService {
 
     //查询安全教育视频
     public List<SafetyEducation> selVideo(int page, int pages);
+
+    //查询宝宝考勤信息
+    public List<AttenAndUser> selectBabyAtten(String uphone, int page, int pages);
 }
