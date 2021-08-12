@@ -9,10 +9,24 @@
         FROM t_user
         WHERE t_user.uaccount = #{acc}
     </select>
+
     <select id="parentsInfo" resultType="com.cykj.bean.User">
         SELECT t2.*
         FROM t_babyinf t1
                  INNER JOIN t_user t2 ON t1.uid = t2.uid
         WHERE t1.biid = #{id}
     </select>
+    <select id="getUserUrid" resultType="int">
+        SELECT t_user.urid
+        FROM t_user
+        WHERE t_user.uaccount = #{acc}
+    </select>
+    <select id="babyClass" resultType="int">
+        SELECT t2.clid
+        FROM t_user t1
+                 INNER JOIN t_babyinf t2 ON t1.uid = t2.uid
+        WHERE t1.uaccount = #{acc}
+    </select>
+
+
 </mapper>

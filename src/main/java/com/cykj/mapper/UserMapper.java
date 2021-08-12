@@ -3,8 +3,6 @@ package com.cykj.mapper;
 import com.cykj.bean.User;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * @version 1.0
  * @author: qiyuan
@@ -18,4 +16,10 @@ public interface UserMapper {
 
     //家长信息
     User parentsInfo(int id);
+
+    int getUserUrid(String acc);
+
+    //    查询宝宝所在班级
+    int babyClass(String acc);
+
 }

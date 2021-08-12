@@ -32,4 +32,20 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    @Override
+    public int getUserUrid(String acc) {
+        return userMapper.getUserUrid(acc);
+    }
+
+    @Override
+    public int babyClass(String acc) {
+        int i = userMapper.babyClass(acc);
+        if (i != 0) {
+            return i;
+        }
+        return 0;
+    }
+
+
 }
