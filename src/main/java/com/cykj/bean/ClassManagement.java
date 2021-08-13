@@ -24,7 +24,7 @@ public class ClassManagement {
     public ClassManagement() {
     }
 
-    public ClassManagement(int classId, String className, int teacher, String classRoom, String creationTime, String backUp1, String backUP2) {
+    public ClassManagement(int classId, String className, int teacher, String classRoom, String creationTime, String backUp1, String backUP2, String biid, String biname, String uname) {
         this.classId = classId;
         this.className = className;
         this.teacher = teacher;
@@ -32,6 +32,9 @@ public class ClassManagement {
         this.creationTime = creationTime;
         this.backUp1 = backUp1;
         this.backUP2 = backUP2;
+        this.biid = biid;
+        this.biname = biname;
+        this.uname = uname;
     }
 
     @Override
@@ -39,11 +42,14 @@ public class ClassManagement {
         return "ClassManagement{" +
                 "classId=" + classId +
                 ", className='" + className + '\'' +
-                ", teacher='" + teacher + '\'' +
+                ", teacher=" + teacher +
                 ", classRoom='" + classRoom + '\'' +
                 ", creationTime='" + creationTime + '\'' +
                 ", backUp1='" + backUp1 + '\'' +
                 ", backUP2='" + backUP2 + '\'' +
+                ", biid='" + biid + '\'' +
+                ", biname='" + biname + '\'' +
+                ", uname='" + uname + '\'' +
                 '}';
     }
 
@@ -109,5 +115,21 @@ public class ClassManagement {
 
     public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
+    }
+
+    public String getBackUp1() {
+        return backUp1;
+    }
+
+    public void setBackUp1(String backUp1) {
+        this.backUp1 = backUp1;
+    }
+
+    public String getBackUP2() {
+        return backUP2;
+    }
+
+    public void setBackUP2(String backUP2) {
+        this.backUP2 = backUP2;
     }
 }

@@ -4,6 +4,7 @@ import com.cykj.bean.*;
 import com.cykj.va.AttenAndUser;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -45,4 +46,25 @@ public interface HealthMapper {
 
     //查询宝宝考勤信息
     public List<AttenAndUser> selectBabyAtten(String uphone, int page, int pages);
+
+    //多条件查询园长端班级管理信息
+    public List<ClassManagement> ClassInforAll(String left, String right, String className, int page, int pages);
+
+    //查询园长端班级总数
+    public int ClaInforCount();
+
+    //查询园长端班级教室
+    public List<ClassManagement> selclassManage();
+
+    //查询园长端班主任
+    public List<ClassManagement> selTeacher();
+
+    //修改园长端班级
+    public Boolean updclaManage(String className, int teacher, String classRoom,int classId);
+
+    //新增园长端班级
+    public Boolean insertClaManage(String className, int teacher, String classRoom, String creationTime);
+
+    //删除园长端班级
+    public Boolean delClaManage(int classId);
 }

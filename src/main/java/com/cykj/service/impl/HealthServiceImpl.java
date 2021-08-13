@@ -161,4 +161,88 @@ public class HealthServiceImpl implements HealthService {
     }
 
 
+    /**
+     * @Description: 多条件查询园长端班级管理信息
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 2:37
+     */
+    @Override
+    public List<ClassManagement> ClassInforAll(String bgtime, String overtime, String className, int page, int pages) {
+        return healthMapper.ClassInforAll(bgtime, overtime, className, page, pages);
+    }
+
+
+    /**
+     * @Description: 查询园长端班级总数
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 2:57
+     */
+    @Override
+    public int ClaInforCount() {
+        return healthMapper.ClaInforCount();
+    }
+
+
+    /**
+     * @Description: 查询园长端班级教室
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 4:14
+     */
+    @Override
+    public List<ClassManagement> selclassManage() {
+        return healthMapper.selclassManage();
+    }
+
+
+    /**
+     * @Description: 查询园长端班主任
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-14 2:43
+     */
+    @Override
+    public List<ClassManagement> selTeacher() {
+        return healthMapper.selTeacher();
+    }
+
+
+    /**
+     * @Description: 修改园长端班级
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 9:10
+     */
+    @Override
+    public Boolean updclaManage(String className, int teacher, String classRoom, int classId) {
+        return healthMapper.updclaManage(className, teacher, classRoom, classId);
+    }
+
+
+    /**
+     * @Description: 新增园长端班级
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 11:34
+     */
+    @Override
+    public Boolean insertClaManage(String className, int teacher, String classRoom, String creationTime) {
+        return healthMapper.insertClaManage(className, teacher, classRoom, creationTime);
+    }
+
+
+    /**
+     * @Description: 删除园长端班级
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 12:48
+     */
+    @Override
+    public Boolean delClaManage(int classId) {
+        return healthMapper.delClaManage(classId);
+    }
+
+
 }

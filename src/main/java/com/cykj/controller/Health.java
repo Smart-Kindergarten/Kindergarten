@@ -1,17 +1,14 @@
 package com.cykj.controller;
 
 
-import com.cykj.bean.Announcement;
-import com.cykj.bean.BabyFood;
-import com.cykj.bean.Healthbean;
-import com.cykj.bean.SafetyEducation;
+import com.cykj.bean.*;
+import com.cykj.config.PageBean;
 import com.cykj.mapper.HealthMapper;
 import com.cykj.service.HealthService;
 import com.cykj.va.AttenAndUser;
 import com.cykj.va.ChildHomeWork;
 import com.cykj.va.CurrAndUser;
 import com.google.gson.Gson;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,6 +31,7 @@ import java.util.List;
 @RequestMapping("/Health")
 public class Health extends HttpServlet {
 
+    Gson gson = new Gson();
     @Autowired
     private HealthService healthService;
     @Autowired
@@ -167,7 +168,6 @@ public class Health extends HttpServlet {
     }
 
 
-
     /**
      * @Description: DataV数据
      * @Param:
@@ -208,5 +208,104 @@ public class Health extends HttpServlet {
         String s = gson.toJson(health);
         return s;
     }
+
+
+    /**
+     * @Description: 查询园长端班级管理信息
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 2:28
+     */
+//    String biadtime, String biadtimes, String className,
+    @ResponseBody
+    @GetMapping(value = "/ClassInforAll", produces = {"application/text;charset=UTF-8"})
+    public String ClassInforAll(String bgtime, String overtime, String className, int page, int pages) {
+        System.out.println(bgtime);
+        System.out.println(overtime);
+        System.out.println(className);
+        System.out.println(page);
+        System.out.println(pages);
+        int num = healthMapper.ClaInforCount();
+        List<ClassManagement> ruserLists = healthMapper.ClassInforAll(bgtime, overtime, className, (Integer.valueOf(page) - 1) * Integer.valueOf(pages), Integer.valueOf(pages));
+        PageBean pageBean = new PageBean(0, "成功", num, ruserLists);
+        String userJson = gson.toJson(pageBean);
+        return userJson;
+    }
+
+
+    /**
+     * @Description: 查询园长端班级教室
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 4:14
+     */
+    @ResponseBody
+    @GetMapping("/selclassManage")
+    public String selclassManage() {
+        List<ClassManagement> health = healthMapper.selclassManage();
+        String s = gson.toJson(health);
+        return s;
+    }
+
+
+    /**
+     * @Description: 查询园长端班主任
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 4:14
+     */
+    @ResponseBody
+    @GetMapping("/selTeacher")
+    public String selTeacher() {
+        List<ClassManagement> health = healthMapper.selTeacher();
+        String s = gson.toJson(health);
+        return s;
+    }
+
+
+    /**
+     * @return
+     * @Description: 修改园长端班级
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 9:10
+     */
+    @ResponseBody
+    @GetMapping("/updclaManage")
+    public Boolean updclaManage(String className, int teacher, String classRoom, int classId) {
+        Boolean flags = healthMapper.updclaManage(className, teacher, classRoom, classId);
+        return flags;
+    }
+
+
+    /**
+     * @Description: 新增园长端班级
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 11:34
+     */
+    @ResponseBody
+    @GetMapping("/insertClaManage")
+    public Boolean insertClaManage(String className, int teacher, String classRoom, String creationTime) {
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
+        String format = sdf.format(d);
+        Boolean flags = healthMapper.insertClaManage(className, teacher, classRoom, format);
+        return flags;
+    }
+
+    /**
+     * @Description: 删除园长端班级
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-13 12:48
+     */
+    @ResponseBody
+    @GetMapping("/delClaManage")
+    public Boolean delClaManage(int classId) {
+        Boolean flags = healthMapper.delClaManage(classId);
+        return flags;
+    }
+
 
 }

@@ -51,4 +51,25 @@ public interface HealthService {
 
     //查询宝宝考勤信息
     public List<AttenAndUser> selectBabyAtten(String uphone, int page, int pages);
+
+    //多条件查询园长端班级管理信息
+    public List<ClassManagement> ClassInforAll(String bgtime, String overtime, String className, int page, int pages);
+
+    //查询园长端班级总数
+    public int ClaInforCount();
+
+    //查询园长端班级教室
+    public List<ClassManagement> selclassManage();
+
+    //查询园长端班主任
+    public List<ClassManagement> selTeacher();
+
+    //修改园长端班级
+    public Boolean updclaManage(String className, int teacher, String classRoom,int classId);
+
+    //新增园长端班级
+    public Boolean insertClaManage(String className, int teacher, String classRoom, String creationTime);
+
+    //删除园长端班级
+    public Boolean delClaManage(int classId);
 }

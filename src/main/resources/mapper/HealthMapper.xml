@@ -74,13 +74,7 @@
         SELECT t_safetyeducation.videoId, t_safetyeducation.videoName, t_safetyeducation.fileSite, t_security.secScore FROM t_safetyeducation LEFT JOIN t_security ON t_safetyeducation.videoId = t_security.videoId LIMIT #{page},#{pages}
     </select>
 
-    <!--班级管理-->
-<!--    <select id="selVideo" resultType="com.cykj.bean.SafetyEducation">-->
-<!--        SELECT t_safetyeducation.videoId, t_safetyeducation.videoName, t_safetyeducation.fileSite, t_security.secScore FROM t_safetyeducation LEFT JOIN t_security ON t_safetyeducation.videoId = t_security.videoId LIMIT #{page},#{pages}-->
-<!--    </select>-->
-
-
-    <update id="changeFood"  parameterType="com.cykj.bean.BabyFood">
+    <update id="changeFood" parameterType="com.cykj.bean.BabyFood">
         update t_babyfood set ${reserve2} = #{reserve3} where fid = ${fid}
     </update>
 
@@ -88,5 +82,56 @@
     <select id="selectBabyAtten" resultType="com.cykj.va.AttenAndUser">
        SELECT * from t_user,t_babyatten where t_user.uphone = #{uphone} LIMIT #{page},#{pages}
     </select>
+
+    <!--    SELECT t_classmanagement.*, t_user.uname uname FROM t_classmanagement,t_user WHERE t_classmanagement.teacher = t_user.uid LIMIT  #{page},#{pages}-->
+    <!--多条件查询园长端班级管理信息-->
+    <select id="ClassInforAll" parameterType="com.cykj.bean.ClassManagement" resultType="com.cykj.bean.ClassManagement">
+        SELECT t_classmanagement.*, t_user.uname uname FROM t_classmanagement,t_user
+        WHERE
+        1 = 1
+        <if test="left != null and left !=''">
+            AND t_classmanagement.creationTime <![CDATA[>=]]> #{left}
+        </if>
+        <if test="right != null and right !=''">
+            AND t_classmanagement.creationTime <![CDATA[<=]]> #{right}
+        </if>
+        <if test="className != null and className !=''">
+            AND t_classmanagement.className = #{className}
+        </if>
+        AND t_classmanagement.teacher = t_user.uid LIMIT #{page},#{pages}
+    </select>
+
+    <!--查询园长端班级总数-->
+    <select id="ClaInforCount" parameterType="int" resultType="Integer">
+        select count(*) from t_classmanagement
+    </select>
+
+    <!--查询园长端班级教室-->
+    <select id="selclassManage" parameterType="com.cykj.bean.ClassManagement"
+            resultType="com.cykj.bean.ClassManagement">
+        SELECT t_classroom.classroomName classRoom,t_classroom.backUp1 className FROM t_classroom
+    </select>
+
+    <!--查询园长端班主任-->
+    <select id="selTeacher" parameterType="com.cykj.bean.ClassManagement"
+            resultType="com.cykj.bean.ClassManagement">
+        SELECT uname,uid teacher FROM t_user where urid = '2'
+    </select>
+
+    <!--修改园长端班级-->
+    <update id="updclaManage">
+        update t_classmanagement set t_classmanagement.className = #{className},t_classmanagement.teacher = #{teacher},t_classmanagement.classRoom = #{classRoom} where t_classmanagement.classId = #{classId}
+    </update>
+
+    <!--新增园长端班级-->
+    <insert id="insertClaManage" parameterType="com.cykj.bean.ClassManagement">
+        INSERT INTO t_classmanagement(className, teacher,classRoom,creationTime)
+        VALUES (#{className}, #{teacher}, #{classRoom}, #{creationTime})
+    </insert>
+
+    <!--删除园长端班级-->
+    <delete id="delClaManage">
+        DELETE from t_classmanagement where t_classmanagement.classId = #{classId}
+    </delete>
 
 </mapper>
