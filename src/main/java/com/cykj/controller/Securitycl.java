@@ -1,13 +1,8 @@
 package com.cykj.controller;
 
-import com.cykj.bean.Baby;
-import com.cykj.bean.BabyClass;
-import com.cykj.bean.pick;
+import com.cykj.bean.*;
 import com.cykj.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,5 +52,15 @@ public class Securitycl {
     @RequestMapping("/GetBabyClass")
     public List<BabyClass> GetBabyClass(@RequestParam(required = false ,value = "CName") String CName){
         return securityService.GetBabyClass(CName);
+    }
+    @ResponseBody
+    @RequestMapping("/getAlertlog")
+    public List<Alertlog> getAlertlog(@RequestParam(required = false ,value = "minDate")String minDate,@RequestParam(required = false ,value = "maxDate")String maxDate){
+        return securityService.getAlertlog(minDate,maxDate);
+    }
+    @ResponseBody
+    @RequestMapping("/getKdata")
+    public List<KBean> getKdata(){
+        return securityService.getkdata();
     }
 }

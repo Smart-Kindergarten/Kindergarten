@@ -90,4 +90,30 @@
             and class.className LIKE "%"#{CName}"%"
         </if>
     </select>
+    <select id="getAlertlog" resultType="com.cykj.bean.Alertlog">
+        SELECT
+        t2.*,
+        bay.biname
+        FROM
+        t_babyinf bay
+        INNER JOIN (
+        SELECT
+        t1.AID,
+        param.pname,
+        t1.BID,
+        t1.time
+        FROM
+        t_param param
+        INNER JOIN ( SELECT * FROM t_alertlog ) t1 ON param.pid = t1.PID
+        ) t2 ON bay.biid = t2.BID WHERE 1=1
+        <if test="minDate != null and minDate != ''">
+            AND t2.time > #{minDate}
+        </if>
+        <if test="maxDate != null and maxDate != ''">
+            AND #{maxDate} > t2.time
+        </if>
+    </select>
+    <select id="getKName" resultType="com.cykj.bean.KBean">
+        SELECT schoolName KName FROM t_schoolmessage t1 WHERE t1.type = '通过审核'
+    </select>
 </mapper>

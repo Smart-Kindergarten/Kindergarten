@@ -1,9 +1,6 @@
 package com.cykj.service.impl;
 
-import com.cykj.bean.Baby;
-import com.cykj.bean.BabyClass;
-import com.cykj.bean.Menu;
-import com.cykj.bean.pick;
+import com.cykj.bean.*;
 import com.cykj.mapper.LoginMapper;
 import com.cykj.mapper.PickMapper;
 import com.cykj.service.SecurityService;
@@ -121,6 +118,7 @@ public class SecurityServicelmpl implements SecurityService {
                             pick.setState("迟到");
                         }
                     }
+
                 }
                 return picks;
             }else{
@@ -151,6 +149,27 @@ public class SecurityServicelmpl implements SecurityService {
         }else{
             return new ArrayList<BabyClass>();
         }
+    }
+
+    @Override
+    public List<Alertlog> getAlertlog(String minDate,String maxDate) {
+        return pickMapper.getAlertlog(minDate,maxDate);
+    }
+
+    @Override
+    public List<KBean> getkdata() {
+        List<KBean> KBeens = pickMapper.getKName();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String date = df.format(new Date());
+        for(KBean kBean : KBeens){
+            kBean.setDate(date);
+        }
+        return KBeens;
+    }
+
+    @Override
+    public void alert(String serialize) {
+
     }
 
 }
