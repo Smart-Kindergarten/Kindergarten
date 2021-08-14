@@ -24,4 +24,10 @@ public interface LoginMapper {
     //小程序修改密码
     Boolean updatePwd(@Param("upwd") String upwd, @Param("uphone") String uphone);
 
+    //查询账号是否存在
+    List<User> existUacc(@Param("uaccount") String uaccount);
+
+    //PC修改密码
+    Boolean updPcPwd(@Param("upwd") String upwd, @Param("uaccount") String uaccount);
+
 }

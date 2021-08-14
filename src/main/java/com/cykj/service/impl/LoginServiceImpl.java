@@ -65,7 +65,31 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public Boolean updatePwd(String upwd, String uphone) {
-        return loginMapper.updatePwd(upwd,uphone);
+        return loginMapper.updatePwd(upwd, uphone);
+    }
+
+
+    /**
+     * @Description: 查询账号是否存在
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-14 9:36
+     */
+    @Override
+    public List<User> existUacc(String uaccount) {
+        return loginMapper.existUacc(uaccount);
+    }
+
+
+    /**
+     * @Description: PC端修改密码
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-14 8:40
+     */
+    @Override
+    public Boolean updPcPwd(String upwd, String uaccount) {
+        return loginMapper.updPcPwd(upwd, uaccount);
     }
 
 

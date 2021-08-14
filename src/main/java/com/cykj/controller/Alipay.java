@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,11 +36,15 @@ public class Alipay {
         Map<String,Object> map = new HashMap<>();
         map.put("out_trade_no",System.currentTimeMillis());
         map.put("product_code","FAST_INSTANT_TRADE_PAY");
-        map.put("total_amount","0.10");
+        map.put("total_amount","2000");
         map.put("subject","缴学费");
         alipayTradePagePayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayTradePagePayRequest.setNotifyUrl(AlipayConfig.notify_url);
         String string = gson.toJson(map);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("uaccount","100");
+
         log.info(string);
         alipayTradePagePayRequest.setBizContent(string);
         String body = client.pageExecute(alipayTradePagePayRequest).getBody();

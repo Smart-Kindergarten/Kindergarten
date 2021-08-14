@@ -38,4 +38,16 @@
         update t_user set t_user.upwd = #{upwd} where t_user.uphone = #{uphone}
     </update>
 
+
+    <!--查询账号是否存在-->
+    <select id="existUacc" parameterType="com.cykj.bean.User" resultType="com.cykj.bean.User">
+        SELECT * FROM t_user WHERE uaccount = #{uaccount}
+    </select>
+
+
+    <!--PC端修改密码-->
+    <update id="updPcPwd" parameterType="com.cykj.bean.User">
+        update t_user set t_user.upwd = #{upwd} where t_user.uaccount = #{uaccount}
+    </update>
+
 </mapper>

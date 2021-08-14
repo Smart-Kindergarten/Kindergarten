@@ -106,4 +106,41 @@ public class LoginController extends HttpServlet {
         return flag;
     }
 
+
+    /**
+     * @Description: 查询账号是否存在
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-14 9:36
+     */
+    @ResponseBody
+    @RequestMapping("/existUacc")
+    public List<User> existUacc(String uaccount) {
+        System.out.println(uaccount);
+        List<User> flags = loginMapper.existUacc(uaccount);
+        return flags;
+    }
+
+
+
+    /**
+     * @Description: PC端修改密码
+     * @Param:
+     * @Author: BWL
+     * @Date: 2021-08-14 8:40
+     */
+    @ResponseBody
+    @RequestMapping("/updPcPwd")
+    public Boolean updPcPwd(String upwd, String uaccount) {
+        System.out.println(upwd);
+        System.out.println(uaccount);
+        Boolean flags = loginMapper.updPcPwd(upwd, uaccount);
+        if (flags) {
+            flag = true;
+        } else {
+            flag = false;
+        }
+        return flag;
+    }
+
 }
