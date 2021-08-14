@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.FoodManageMapper">
+    <!--execl表格解析数据存入exampaper表-->
+    <!--  id 方法名  resultType返回类型 -->
+
+    <select id="selectAll" parameterType="com.cykj.bean.BabyFood" resultType="com.cykj.bean.BabyFood">
+        SELECT * FROM t_babyfood LIMIT #{page},#{pages}
+    </select>
+</mapper>

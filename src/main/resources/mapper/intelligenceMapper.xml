@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.intelligenceMapper">
+    <!--execl表格解析数据存入exampaper表-->
+    <!--  id 方法名  resultType返回类型 -->
+
+    <select id="selectAll" parameterType="com.cykj.bean.SchoolMessage" resultType="com.cykj.bean.SchoolMessage">
+        SELECT * FROM t_schoolMessage LIMIT #{page},#{pages}
+    </select>
+
+    <update id="update">
+ UPDATE t_schoolMessage set t_schoolMessage.type = #{type},t_schoolMessage.EnrolmentTime = #{EnrolmentTime} WHERE t_schoolMessage.ID = #{ID}
+    </update>
+
+    <update id="updateAll">
+ UPDATE t_schoolMessage set t_schoolMessage.type = #{type},t_schoolMessage.EnrolmentTime = #{EnrolmentTime}
+ WHERE t_schoolMessage.ID = #{ID}
+    </update>
+
+    <select id="select" parameterType="com.cykj.bean.SchoolMessage" resultType="com.cykj.bean.SchoolMessage">
+        select * from t_schoolMessage
+        WHERE
+        1 = 1
+        <if test="applicationDeadline != null and applicationDeadline !=''">
+            AND  applicationDeadline <![CDATA[>=]]> #{applicationDeadline}
+        </if>
+        <if test="applicationDeadlines != null and applicationDeadlines !=''">
+            AND  applicationDeadline <![CDATA[<=]]> #{applicationDeadlines}
+        </if>
+        <if test="type != null and type !=''">
+            AND type = #{type}
+        </if>
+        <if test="schoolName != null and schoolName !=''">
+            AND schoolName = #{schoolName}
+        </if>
+        LIMIT #{page},#{pages}
+    </select>
+
+</mapper>
