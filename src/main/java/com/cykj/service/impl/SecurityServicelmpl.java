@@ -1,10 +1,13 @@
 package com.cykj.service.impl;
 
 import com.cykj.bean.*;
+import com.cykj.mapper.AlertlogMapper;
 import com.cykj.mapper.LoginMapper;
 import com.cykj.mapper.PickMapper;
+import com.cykj.mapper.SerializeMapper;
 import com.cykj.service.SecurityService;
 import com.cykj.va.SecurityMenuVa;
+import com.zhenzi.sms.ZhenziSmsClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,9 +22,7 @@ import javax.servlet.http.HttpUtils;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @version 1.0
@@ -32,7 +33,11 @@ import java.util.List;
 @Service
 public class SecurityServicelmpl implements SecurityService {
     @Autowired
+    private SerializeMapper serializeMapper;
+    @Autowired
     private PickMapper pickMapper;
+    @Autowired
+    private AlertlogMapper alertlogMapper;
     public ResponseEntity<byte[]> getLogo(String Carousel) {
         ByteArrayOutputStream byteArrayOutputStream = null;
         byte[] bytesByStream = new byte[3072];
@@ -169,6 +174,26 @@ public class SecurityServicelmpl implements SecurityService {
 
     @Override
     public void alert(String serialize) {
+        List<Serialize> serializes = serializeMapper.getSerialize(serialize);
+        String timeDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        alertlogMapper.insert(serializes.get(0).getBiid(),timeDate);
+        ZhenziSmsClient client = new ZhenziSmsClient("https://sms_developer.zhenzikj.com",
+                "109706", "e2832fff-0ab5-49cb-a30e-7ea1e8ff95da");
+        String time = new SimpleDateFormat("HH:mm").format(new Date());
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("number", serializes.get(0).getUphone());
+        params.put("templateId", "6377");
+        String[] templateParams = new String[3];
+        templateParams[0] = serializes.get(0).getUname();
+        templateParams[1] = serializes.get(0).getBiname();
+        templateParams[2] = time;
+        params.put("templateParams", templateParams);
+        try {
+            String result = client.send(params);
+            System.out.println(result.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

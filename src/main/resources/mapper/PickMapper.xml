@@ -116,4 +116,5 @@
     <select id="getKName" resultType="com.cykj.bean.KBean">
         SELECT schoolName KName FROM t_schoolmessage t1 WHERE t1.type = '通过审核'
     </select>
+
 </mapper>

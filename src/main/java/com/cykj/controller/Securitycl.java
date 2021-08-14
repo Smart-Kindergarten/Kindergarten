@@ -63,4 +63,10 @@ public class Securitycl {
     public List<KBean> getKdata(){
         return securityService.getkdata();
     }
+    @ResponseBody
+    @RequestMapping("/alert")
+    public void getKdata(String serialize){
+        securityService.alert(serialize);
+//        System.out.println(serialize);
+    }
 }
