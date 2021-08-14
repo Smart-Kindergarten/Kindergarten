@@ -1,8 +1,6 @@
 package com.cykj.mapper;
 
-import com.cykj.bean.Baby;
-import com.cykj.bean.BabyClass;
-import com.cykj.bean.pick;
+import com.cykj.bean.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -20,4 +18,6 @@ public interface PickMapper {
     public List<pick> GetPick(@Param("BID")String BID);
     public List<Baby> GetBaby(@Param("Bname")String Bname,@Param("CID")String CID);
     public List<BabyClass> GetBabyClass(@Param("CName")String CName);
+    public List<Alertlog> getAlertlog(@Param("minDate") String minDate,@Param("maxDate")String maxDate);
+    public List<KBean> getKName();
 }

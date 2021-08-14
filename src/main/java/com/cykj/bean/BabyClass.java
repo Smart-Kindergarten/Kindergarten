@@ -7,7 +7,13 @@ package com.cykj.bean;
  * @desc:
  */
 public class BabyClass {
+    /**
+     * 班级名称
+     */
     private String ClassBabyName;
+    /**
+     * 班级ID
+     */
     private String ClassID;
 
     @Override

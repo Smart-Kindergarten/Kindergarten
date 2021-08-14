@@ -45,24 +45,25 @@ public class pick {
      * 当前时间段为上下午？
      */
     private String TimeClass;
+
+    /**
+     * 考勤时间段
+     */
+    private String TimeSlot;
     public pick() {
     }
 
-    public pick(String pid, String biid, String time, String date, String uname, String uid, String state, String bname, String sex, String timeClass) {
-        this.pid = pid;
-        this.biid = biid;
-        this.time = time;
-        this.date = date;
-        this.uname = uname;
-        this.uid = uid;
-        this.state = state;
-        this.bname = bname;
-        this.sex = sex;
-        TimeClass = timeClass;
-    }
 
     public String getBiid() {
         return biid;
+    }
+
+    public String getTimeSlot() {
+        return TimeSlot;
+    }
+
+    public void setTimeSlot(String timeSlot) {
+        TimeSlot = timeSlot;
     }
 
     @Override
@@ -78,7 +79,22 @@ public class pick {
                 ", bname='" + bname + '\'' +
                 ", sex='" + sex + '\'' +
                 ", TimeClass='" + TimeClass + '\'' +
+                ", TimeSlot='" + TimeSlot + '\'' +
                 '}';
+    }
+
+    public pick(String pid, String biid, String time, String date, String uname, String uid, String state, String bname, String sex, String timeClass, String timeSlot) {
+        this.pid = pid;
+        this.biid = biid;
+        this.time = time;
+        this.date = date;
+        this.uname = uname;
+        this.uid = uid;
+        this.state = state;
+        this.bname = bname;
+        this.sex = sex;
+        TimeClass = timeClass;
+        TimeSlot = timeSlot;
     }
 
     public String getTimeClass() {

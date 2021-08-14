@@ -1,9 +1,6 @@
 package com.cykj.service;
 
-import com.cykj.bean.Baby;
-import com.cykj.bean.BabyClass;
-import com.cykj.bean.Menu;
-import com.cykj.bean.pick;
+import com.cykj.bean.*;
 import com.cykj.va.SecurityMenuVa;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -48,23 +45,39 @@ public interface SecurityService {
 
     /**
      * 获取指定宝宝的接送记录
-     * @param BID 宝贝id
+     * @param BID 宝贝id 必须传入的参数
      * @return 返回所有接送记录
      */
     public List<pick> GetPick(String BID);
 
     /**
      * 根据条件获取宝宝信息
-     * @param Bname 宝宝ID
-     * @param CID 班级ID
+     * @param Bname 宝宝名称 非必须参
+     * @param CID 班级ID 非必须参
      * @return 返回符合条件的宝宝信息
      */
     public List<Baby> GetBaby(String Bname, String CID);
 
     /**
      * 根据条件获取宝宝班级
-     * @param CName 班级名称 支持模糊查询
+     * @param CName 班级名称 支持模糊查询 非必须参
      * @return  返回符合条件的所有班级列表
      */
     public List<BabyClass> GetBabyClass(String CName);
+
+    /**
+     * 获取所以警报日志
+     * @return 返回所有警报日志
+     */
+    public List<Alertlog> getAlertlog(String minDate,String maxDate);
+
+    /**
+     * 获取院校基本信息
+     * @return 返回院校基本信息 使用List类型防止报错
+     */
+    public List<KBean> getkdata();
+    /**
+     * 发送短信
+     */
+    public void alert(String serialize);
 }
