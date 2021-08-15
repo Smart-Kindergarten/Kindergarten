@@ -20,4 +20,5 @@ public interface PickMapper {
     public List<BabyClass> GetBabyClass(@Param("CName")String CName);
     public List<Alertlog> getAlertlog(@Param("minDate") String minDate,@Param("maxDate")String maxDate);
     public List<KBean> getKName();
+    public List<SecurityGuardUserBen> getSecurityUser(String acc);
 }

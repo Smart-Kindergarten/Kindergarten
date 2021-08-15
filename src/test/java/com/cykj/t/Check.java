@@ -23,15 +23,15 @@ public class Check {
      * @throws URISyntaxException URI打开异常
      * @throws IOException        io流异常
      */
-    public static String checkFile(String path) throws URISyntaxException, IOException {
-        File file = new File(path);
-        if (!file.exists()) {
-            throw new NullPointerException("图片不存在");
-        }
-        String image = BaseImg64.getImageStrFromPath(path);
-        String param = "image=" + image;
-        return post(param);
-    }
+//    public static String checkFile(String path) throws URISyntaxException, IOException {
+//        File file = new File(path);
+//        if (!file.exists()) {
+//            throw new NullPointerException("图片不存在");
+//        }
+//        String image = BaseImg64.getImageStrFromPath(path);
+//        String param = "image=" + image;
+//        return post(param);
+//    }
 
     /**
      * @param url 图片url
@@ -78,14 +78,14 @@ public class Check {
     }
 
     public static void main(String[] args) {
-        String path = "C:\\Users\\10371\\Desktop\\1.jpg";
-        try {
-            long now = System.currentTimeMillis();
-            checkFile(path);
-            checkUrl("https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=08c05c0e8444ebf8797c6c6db890bc4f/fc1f4134970a304e46bfc5f7d2c8a786c9175c19.jpg");
-            System.out.println("耗时：" + (System.currentTimeMillis() - now) / 1000 + "s");
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
-        }
+//        String path = "C:\\Users\\10371\\Desktop\\1.jpg";
+//        try {
+//            long now = System.currentTimeMillis();
+//            checkFile(path);
+//            checkUrl("https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=08c05c0e8444ebf8797c6c6db890bc4f/fc1f4134970a304e46bfc5f7d2c8a786c9175c19.jpg");
+//            System.out.println("耗时：" + (System.currentTimeMillis() - now) / 1000 + "s");
+//        } catch (URISyntaxException | IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }

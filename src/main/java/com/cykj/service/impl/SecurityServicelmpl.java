@@ -195,6 +195,16 @@ public class SecurityServicelmpl implements SecurityService {
             e.printStackTrace();
         }
 
+
+    }
+
+    @Override
+    public List<SecurityGuardUserBen> getSecurityUser(String acc) {
+        List<SecurityGuardUserBen> Users =  pickMapper.getSecurityUser(acc);
+        for(SecurityGuardUserBen user : Users){
+            user.setTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(new Long(user.getTime()))));
+        }
+        return Users;
     }
 
 }

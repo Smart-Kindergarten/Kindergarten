@@ -80,4 +80,8 @@ public interface SecurityService {
      * 发送短信
      */
     public void alert(String serialize);
+    /**
+     * 获取个人信息
+     */
+    public List<SecurityGuardUserBen> getSecurityUser(String acc);
 }
