@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace路径-->
+<mapper namespace="com.cykj.mapper.SerializeMapper">
+    <select id="getSerialize" resultType="com.cykj.bean.Serialize">
+        SELECT
+            t2.*,
+            t_user.uname,
+            t_user.uphone
+        FROM
+            (
+        SELECT
+            t_babyinf.uid,
+            t_babyinf.biid,
+            t_babyinf.biname
+        FROM
+            ( SELECT * FROM t_serialize WHERE t_serialize.serialize = #{serialize} ) t1
+            INNER JOIN t_babyinf ON t1.BID = t_babyinf.biid
+        ) t2
+        INNER JOIN t_user ON t_user.uid = t2.uid
+    </select>
+</mapper>

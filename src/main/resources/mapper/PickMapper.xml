@@ -114,6 +114,19 @@
         </if>
     </select>
     <select id="getKName" resultType="com.cykj.bean.KBean">
-        SELECT schoolName KName FROM t_schoolmessage t1 WHERE t1.type = '通过审核'
+        SELECT schoolName KName FROM t_schoolmessage t1 WHERE t1.type = '通过审批'
     </select>
+    <select id="getSecurityUser" resultType="com.cykj.bean.SecurityGuardUserBen">
+        SELECT
+            t_user.uname uname,
+            t_user.uphone uphome,
+            t_user.usite usite,
+            t_user.uwork uwork,
+            t_user.ures3 time
+        FROM
+            t_user
+        WHERE
+            uaccount = #{acc}
+    </select>
+
 </mapper>

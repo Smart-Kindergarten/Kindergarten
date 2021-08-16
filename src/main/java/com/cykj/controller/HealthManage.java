@@ -4,8 +4,6 @@ import com.cykj.bean.Healthbean;
 import com.cykj.mapper.HealthManageMappper;
 import com.cykj.service.HealthManageService;
 import com.google.gson.Gson;
-import javafx.scene.chart.PieChart;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
