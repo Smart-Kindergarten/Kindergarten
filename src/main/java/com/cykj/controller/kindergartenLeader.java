@@ -7,9 +7,8 @@ import com.cykj.service.SchoolMessageService;
 import com.cykj.service.impl.SchoolMessageImpl;
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -293,5 +292,13 @@ public class kindergartenLeader {
     public String checkAnno(String pDate,String pName) {
         String msg = message.checkAnno(pDate,pName);
         return msg;
+    }
+
+    @ResponseBody
+    @PostMapping("/uploader")
+    @CrossOrigin
+    public String uploader(@RequestParam("file") MultipartFile multipartFile) {
+        System.out.println("访问");
+        return SchoolMessageImpl.upload(multipartFile).replaceAll("\\\\", "/");
     }
 }
