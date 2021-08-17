@@ -1,18 +1,27 @@
 package com.cykj.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.aliyun.oss.OSSClient;
 import com.cykj.bean.*;
+import com.cykj.controller.AliyunOSSClientUtil;
+import com.cykj.controller.Sample;
 import com.cykj.mapper.SchoolMessageMapper;
 import com.cykj.service.SchoolMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import static com.cykj.controller.OSSClientConstants.BACKET_NAME;
+import static com.cykj.controller.OSSClientConstants.FOLDER;
 
 @Service
 public class SchoolMessageImpl implements SchoolMessageService {
@@ -551,6 +560,47 @@ public class SchoolMessageImpl implements SchoolMessageService {
             e.printStackTrace();
             return null;
         }
+    }
+
+
+    public static String upload(MultipartFile multipartFile) {
+        // 文件存储位置，文件的目录要存在才行，可以先创建文件目录，然后进行存储
+        String filePath = "F:/" + multipartFile.getOriginalFilename();
+        File file = new File(filePath);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        // 文件存储
+        try {
+            multipartFile.transferTo(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //初始化OSSClient
+        //初始化OSSClient
+        OSSClient ossClient=AliyunOSSClientUtil.getOSSClient();
+        //上传文件
+        String files = filePath;
+        String[] file1=files.split(",");
+        for(String filename:file1){
+            //System.out.println("filename:"+filename);
+            File filess=new File(filename);
+            String md5key = AliyunOSSClientUtil.uploadObject2OSS(ossClient, filess, AliyunOSSClientUtil.BACKET_NAME, AliyunOSSClientUtil.FOLDER);
+            AliyunOSSClientUtil.logger.info("上传后的文件MD5数字唯一签名:" + md5key);
+            //上传后的文件MD5数字唯一签名:40F4131427068E08451D37F02021473A
+        }
+        String licen = Sample.LicensePlate("https://jdk11.oss-cn-shanghai.aliyuncs.com/somnus/"+multipartFile.getOriginalFilename());
+        System.out.println("这边解析出来的"+licen);
+        if (licen!=""){
+            return licen;
+        }else if (licen==null){
+            return "not";
+        }
+            return null;
     }
 
 }
